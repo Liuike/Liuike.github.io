@@ -2,7 +2,7 @@
 # Change these to your info
 
 url: "https://liuike.github.io"   # no trailing slash
-baseurl: "/Liuike.github.io"      # for project sites use "/<reponame>"
+baseurl: ""                       # empty for user sites (username.github.io repos)
 title: "Liuike"
 description: "Developer • Designer • Tinkerer"
 
