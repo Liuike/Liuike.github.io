@@ -27,6 +27,11 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
+  - vendor/
+  - .bundle/
+  - node_modules/
+  - .sass-cache/
+  - .jekyll-cache/
 
 # Author/profile (used in templates)
 author:
