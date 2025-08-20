@@ -1,39 +1,50 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-#
-# If you need help with YAML syntax, here are some quick references for you:
-# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
-# https://learnxinyminutes.com/docs/yaml/
-#
 # Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
+# Change these to your info
 
-title: Your awesome title
-email: your-email@example.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-domain: liuike.github.io
-baseurl: "/Liuike.github.io/" # the subpath of your site, e.g. /blog
-url: "https://liuike.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+url: "https://liuike.github.io"   # no trailing slash
+baseurl: "/Liuike.github.io"      # for project sites use "/<reponame>"
+title: "Liuike"
+description: "Developer • Designer • Tinkerer"
 
-# Build settings
-theme: minima
+# Build settings (safe GitHub Pages defaults)
+markdown: kramdown
+theme: null
 plugins:
   - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  
+# Collections (optional)
+# collections:
+#   projects:
+#     output: true
+
+# Permalinks
+permalink: /:categories/:year/:month/:day/:title/
+
+# Excludes from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+
+# Author/profile (used in templates)
+author:
+  name: "Liuike"
+  email: "you@example.com"
+  github: "Liuike"
+  twitter: "your_handle"
+
+# Navbar links for convenience
+nav:
+  - name: Home
+    url: /
+  - name: About
+    url: /pages/about/
+  - name: Projects
+    url: /pages/projects/
+  - name: Blog
+    url: /
 
 # Exclude from processing.
 # The following items will not be processed, by default.
