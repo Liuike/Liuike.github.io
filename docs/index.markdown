@@ -1,12 +1,8 @@
 ---
 layout: home
-title: Home
+title: About
 ---
 
-Welcome! I'm **Liuike** — I build things for the web.
+---
 
-- 👨‍💻 Currently: Working on exciting projects
-- 🛠️ Tech: Web development, programming, and design
-- ✉️ Contact: [you@example.com](mailto:you@example.com)
-
-Latest posts are below.
+<p>This is a placeholder for now...</p>

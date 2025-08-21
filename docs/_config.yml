@@ -3,8 +3,8 @@
 
 url: "https://liuike.github.io"   # no trailing slash
 baseurl: ""                       # empty for user sites (username.github.io repos)
-title: "Liuike"
-description: "Developer • Designer • Tinkerer"
+title: "Luke"
+description: "Average Student"
 
 # Build settings (safe GitHub Pages defaults)
 markdown: kramdown
@@ -35,21 +35,23 @@ exclude:
 
 # Author/profile (used in templates)
 author:
-  name: "Liuike"
-  email: "you@example.com"
+  name: "Enyan (Luke) Zhang"
+  email: "lukezhangenyan@gmail.com"
   github: "Liuike"
   twitter: "your_handle"
 
 # Navbar links for convenience
 nav:
-  - name: Home
-    url: /
   - name: About
-    url: /pages/about/
+    url: /
+  - name: Blog
+    url: /blog/
   - name: Projects
     url: /pages/projects/
-  - name: Blog
-    url: /
+  - name: Fun
+    url: /fun-facts/
+  - name: Resume
+    url: /assets/resume.pdf
 
 # Exclude from processing.
 # The following items will not be processed, by default.
