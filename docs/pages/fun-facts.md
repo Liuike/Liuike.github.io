@@ -7,40 +7,30 @@ permalink: /fun-facts/
 <div class="main-content">
   <div class="container">
     <h1>Fun</h1>
-    
-    <div class="intro">
-      <p>Here are some random and interesting things about me that you probably didn't know!</p>
-    </div>
 
     <ul class="post-list">
       <li>
-        <strong>🎮 Gaming Enthusiast</strong>
-        <small>I can spend hours perfecting my strategy in turn-based games</small>
+        <small>I'm really into modern tetris! I used to be top <a href="https://ch.tetr.io/u/liuike" target="_blank">5% worldwide</a>, but now I play less...</small>
       </li>
       <li>
-        <strong>☕ Coffee Connoisseur</strong>
-        <small>I've tried over 50 different coffee beans from around the world</small>
+        <small>I have a cat called <span class="clickable-fore" onclick="toggleForeImage()">Fore</span>, but at home we call him 福贵 (fú guì).</small>
+        <div id="fore-image-dropdown" class="image-dropdown" style="display: none;">
+          <img src="/assets/img/fore.jpg" alt="Fore the cat" />
+        </div>
       </li>
       <li>
-        <strong>🌱 Plant Parent</strong>
-        <small>I have 12 houseplants and somehow manage to keep most of them alive</small>
+        <small>I picked up fencing in middle school and loved it ever since!</small>
       </li>
       <li>
-        <strong>📚 Speed Reader</strong>
-        <small>I can read an average novel in about 4-6 hours</small>
-      </li>
-      <li>
-        <strong>🎵 Music Discovery</strong>
-        <small>I discover at least 5 new songs every week and maintain curated playlists</small>
-      </li>
-      <li>
-        <strong>🔧 Tinkerer</strong>
-        <small>I enjoy taking apart old electronics just to see how they work</small>
+        <small>You should listen to <a href="https://www.youtube.com/channel/UC6LfIWARVzv6l2OexwbKNHw" target="_blank">酔シグレ: Yoishigure</a>! I especially like this <span class="clickable-music" onclick="toggleMusicPlayer()">one</span>.</small>
+        <div id="music-player-dropdown" class="music-dropdown" style="display: none;">
+          <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/i3fNQFF0Wy0?rel=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
       </li>
     </ul>
 
     <div class="intro">
-      <p><em>This list is always growing as I discover new things about myself and the world around me!</em></p>
+      <p><em>This list will be preiodically updated...</em></p>
     </div>
 
     <div class="links">
@@ -48,3 +38,23 @@ permalink: /fun-facts/
     </div>
   </div>
 </div>
+
+<script>
+function toggleForeImage() {
+    const dropdown = document.getElementById('fore-image-dropdown');
+    if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+        dropdown.style.display = 'block';
+    } else {
+        dropdown.style.display = 'none';
+    }
+}
+
+function toggleMusicPlayer() {
+    const dropdown = document.getElementById('music-player-dropdown');
+    if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+        dropdown.style.display = 'block';
+    } else {
+        dropdown.style.display = 'none';
+    }
+}
+</script>

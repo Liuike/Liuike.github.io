@@ -1,10 +1,41 @@
 <header class="site-header">
-  <nav class="nav container">
-    <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-    <ul>
-      {% for item in site.nav %}
-        <li><a href="{{ item.url | relative_url }}">{{ item.name }}</a></li>
-      {% endfor %}
-    </ul>
+  <nav class="nav">
+    <div class="nav-left">
+      <a class="brand" href="{{ '/' | relative_url }}">{{ site.brand }}</a>
+      <ul>
+        {% for item in site.nav %}
+          {% assign item_url = item.url | relative_url %}
+          {% assign current_url = page.url | relative_url %}
+          {% assign is_active = false %}
+          
+          {% comment %} Check if current page matches nav item {% endcomment %}
+          {% if current_url == item_url %}
+            {% assign is_active = true %}
+          {% elsif current_url == '/' and item_url == '/' %}
+            {% assign is_active = true %}
+          {% elsif current_url contains '/blog/' and item_url contains '/blog/' %}
+            {% assign is_active = true %}
+          {% elsif current_url contains '/projects/' and item_url contains '/projects/' %}
+            {% assign is_active = true %}
+          {% elsif current_url contains '/fun-facts/' and item_url contains '/fun-facts/' %}
+            {% assign is_active = true %}
+          {% endif %}
+          
+          <li><a href="{{ item_url }}"{% if is_active %} class="active"{% endif %}>{{ item.name }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="search-container">
+      <button class="search-btn" onclick="toggleSearch()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+      </button>
+      <div class="search-dropdown" id="searchDropdown">
+        <input type="text" class="search-input" placeholder="Search..." id="searchInput">
+        <div class="search-results" id="searchResults"></div>
+      </div>
+    </div>
   </nav>
 </header>

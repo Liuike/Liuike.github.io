@@ -3,7 +3,8 @@
 
 url: "https://liuike.github.io"   # no trailing slash
 baseurl: ""                       # empty for user sites (username.github.io repos)
-title: "Luke"
+title: "Enyan (Luke) Zhang"
+brand: "Luke"
 description: "Average Student"
 
 # Build settings (safe GitHub Pages defaults)
@@ -47,7 +48,7 @@ nav:
   - name: Blog
     url: /blog/
   - name: Projects
-    url: /pages/projects/
+    url: /projects/
   - name: Fun
     url: /fun-facts/
   - name: Resume

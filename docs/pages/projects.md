@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Projects
-permalink: /pages/projects/
+permalink: /projects/
 ---
 
 <div class="main-content">

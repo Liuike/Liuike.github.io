@@ -11,14 +11,19 @@ layout: default
       <div class="content">
         <h1>{{ site.title }}</h1>
         
+        {% if site.author.github %}
+          <div class="github-icon">
+            <a href="https://github.com/{{ site.author.github }}" target="_blank">
+              <img src="{{ '/assets/img/github-mark-white.png' | relative_url }}" alt="GitHub" />
+            </a>
+          </div>
+        {% endif %}
+        
         <div class="intro">
           {{ content }}
         </div>
 
         <div class="links">
-          {% if site.author.github %}
-            <a href="https://github.com/{{ site.author.github }}" class="link" target="_blank">GitHub</a>
-          {% endif %}
         </div>
       </div>
     </div>
