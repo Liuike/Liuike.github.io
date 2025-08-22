@@ -30,7 +30,7 @@ permalink: /fun-facts/
     </ul>
 
     <div class="intro">
-      <p><em>This list will be preiodically updated...</em></p>
+      <p><em>This list will be periodically updated...</em></p>
     </div>
 
     <div class="links">
