@@ -1,9 +1,12 @@
 source 'https://rubygems.org'
+require_relative 'ruby40_compat_boot'
 
 # Lock to the version GitHub Pages uses in production
 # This brings in jekyll, kramdown, and the supported plugins
 
 gem 'github-pages', group: :jekyll_plugins
+gem 'csv' # Ruby 3.4+ no longer ships csv as a default gem for older Jekyll to rely on
+gem 'bigdecimal' # Ruby 3.4+ no longer ships bigdecimal as a default gem for older Liquid/Jekyll to rely on
 
 group :development do
   gem 'webrick'    # needed for local `bundle exec jekyll serve`

@@ -1,0 +1,59 @@
+# Edit this file to update the subdomain page content.
+# Add new questions by appending to `questions`, and add new narratives
+# by appending to each question's `responses` list.
+# Each response should include a short `preview` sentence that stays visible
+# before the full narrative is expanded.
+# Use `university` and `graduation_year` for the response header.
+
+title: College Application Narratives
+intro: >
+  This project aims to answer some common and uncommon questions about college admissions using personal narratives from college students who have been through this journey. 
+intro_secondary: >
+  These responses are intentionally personal. We hope to provide more than facts and anecdotes you can hear everywhere. Here, you can hear factual, but maybe not so exciting, stories, to guide your college application journey. 
+
+  Remember, these stories don't reflect "the way" to apply to colleges, but we hope they can be of use for you.
+main_site_url: "https://lukeez.com"
+main_site_label: "Back to main site"
+questions: 
+  - id: choose-where-to-apply
+    prompt: How do you choose where to apply?
+    responses:
+      - university: Brown University
+        graduation_year: 2028
+        tags:
+          - planning
+          - stress
+        preview: I made a checklist that only covered the next two weeks.
+        text: >
+          I stopped trying to solve everything at once and made a checklist that only covered the next two weeks.
+          That let me separate urgent work, like teacher requests and deadlines, from the noise in my head about
+          building the perfect list. Once I could see manageable steps, the whole process felt less like a verdict
+          on my future and more like a series of tasks I could actually complete.
+
+  - id: choose-major
+    prompt: How did you choose a major, and did you stick with it?
+    responses: []
+
+
+  - id: pay-for-college
+    prompt: How did you pay for college?
+    responses: []
+
+  - id: financial-aid-documents
+    prompt: What kind of documents did you need for financial aid? Were there difficulties in obtaining them?
+    responses: []
+  - id: application-timeline
+    prompt: When did you start your college application, and what was your timeline?
+    responses: []
+  - id: recommendation-letters
+    prompt: Who did you ask for recommendation letters?
+    responses: []
+  - id: application-help
+    prompt: Who helped you with your college application
+    responses: []
+  - id: frame-application
+    prompt: How did you frame your application?
+    responses: []
+  - id: general-tips
+    prompt: Any general tips/words for younger students?
+    responses: []
