@@ -3,12 +3,13 @@
 # by appending to each question's `responses` list.
 # Each response should include a short `preview` sentence that stays visible
 # before the full narrative is expanded.
-# Use `university` and `graduation_year` for the response header.
+# Use `university`, `graduation_year`, and `intended_majors` for the response header.
+# Separate intro paragraphs with blank lines.
 
 title: College Application Narratives
-intro: >
-  This project aims to answer some common and uncommon questions about college admissions using personal narratives from college students who have been through this journey. 
-intro_secondary: >
+intro: |
+  This project aims to answer some common and uncommon questions about college admissions using personal narratives from college students who have been through this journey.
+
   These responses are intentionally personal. We hope to provide more than facts and anecdotes you can hear everywhere. Here, you can hear factual, but maybe not so exciting, stories, to guide your college application journey. 
 
   Remember, these stories don't reflect "the way" to apply to colleges, but we hope they can be of use for you.
@@ -20,40 +21,93 @@ questions:
     responses:
       - university: Brown University
         graduation_year: 2028
-        tags:
-          - planning
-          - stress
-        preview: I made a checklist that only covered the next two weeks.
+        intended_majors: APMA-CS & pre-med 
+        preview: I had a list of 'safety', 'target', and 'reach' schools.
         text: >
-          I stopped trying to solve everything at once and made a checklist that only covered the next two weeks.
-          That let me separate urgent work, like teacher requests and deadlines, from the noise in my head about
-          building the perfect list. Once I could see manageable steps, the whole process felt less like a verdict
-          on my future and more like a series of tasks I could actually complete.
+          I followed the standard suggestion I heard, which is to have a set of "safety", "target", and "reach" schools. I didn't have much other
+          factors that influenced where I applied. I applied to my state's public colleges for safety; schools with strong STEM programs as target schools; 
+          and top 20s for reach schools. I also applied to the UC schools. 
 
   - id: choose-major
     prompt: How did you choose a major, and did you stick with it?
-    responses: []
-
+    responses:
+      - university: Brown University
+        graduation_year: 2028
+        intended_majors: APMA-CS & pre-med 
+        preview: I just chose whatever fitted my portfolio the best.
+        text: >
+          I really didn't have an idea of what to apply as, so I just applied as BME(Biomedical Engineering) since I had biology olympiad experience. 
+          Matter of fact, I just chose whatever fitted my portfolio the best. 
+          During college though, I decided that engineering was a bad idea and switched to APMA. 
 
   - id: pay-for-college
     prompt: How did you pay for college?
-    responses: []
+    responses: 
+      - university: Brown University
+        graduation_year: 2028
+        intended_majors: APMA-CS & pre-med 
+        preview: My parents were able to pay for my college.
+        text: >
+          I'm really fortunate to say that my parents were able to pay for all of my tuition. 
 
   - id: financial-aid-documents
     prompt: What kind of documents did you need for financial aid? Were there difficulties in obtaining them?
     responses: []
   - id: application-timeline
     prompt: When did you start your college application, and what was your timeline?
-    responses: []
+    responses: 
+      - university: Brown University
+        graduation_year: 2028
+        intended_majors: APMA-CS & pre-med 
+        preview: I didn't think about college applications until junior year.
+        text: >
+          I vaguely started knowing about college applications in middle school, but I really didn't care about it until junior year of high school.
+          I started preparing for the SAT in my junior year, asked for recommendation letters at the end of junior year, and started writing my essays
+          in the summer before senior year. The essays and applications continued all the way until the end of regular decisions.
+
   - id: recommendation-letters
     prompt: Who did you ask for recommendation letters?
-    responses: []
+    responses: 
+      - university: Brown University
+        graduation_year: 2028
+        intended_majors: APMA-CS & pre-med 
+        preview: Math and English teacher, because I had the best relationship with them.
+        text: >
+          Outside of the required counselor recommendation letter, I asked for recommendation letters from my math and English teacher. I read
+          somewhere that you should have your two teacher recommendations be from two non-adjacent subjects, and I figured I had the best relationship
+          with my math teacher in STEM classes, and English teacher in non-STEM classes. 
+
   - id: application-help
-    prompt: Who helped you with your college application
-    responses: []
+    prompt: Who helped you with your college application?
+    responses: 
+      - university: Brown University
+        graduation_year: 2028
+        intended_majors: APMA-CS & pre-med 
+        preview: English teacher, dad.
+        text: >
+          My English teacher and my dad both helped me proofread my essays. My dad also helped me do school research on which schools to apply. 
+          Other than that, I was in brief contact with a college advising company, but I didn't end up working with them. My school also provided
+          college counselors, but they weren't super useful for me.
+
   - id: frame-application
     prompt: How did you frame your application?
-    responses: []
+    responses:
+      - university: Brown University
+        graduation_year: 2028
+        intended_majors: APMA-CS & pre-med 
+        preview: Biomedical engineer interested in natural sciences.
+        text: >
+          I had plenty of olympiad expereinces during high school, such as in computer science, math, and biology, 
+          so I mainly centered my application around those. I also included Chess as my main hobby outside of academics, but that was about it. 
+          I would say I presented myself as a biomedical engineer whose interested in natural sciences.
+
   - id: general-tips
     prompt: Any general tips/words for younger students?
-    responses: []
+    responses: 
+      - university: Brown University
+        graduation_year: 2028
+        intended_majors: APMA-CS & pre-med 
+        preview: Start your college essays early!
+        text: >
+          Arguably the most important componenets of your college application outside of activities and grades is your essay. Make sure you 
+          start early for those. Personally, I had over 10 versions of my personal statement essay, with some complete rewrites! 

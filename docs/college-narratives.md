@@ -11,8 +11,7 @@ permalink: /college-narratives/
     <div class="narratives-hero">
       <h1>{{ narratives.title }}</h1>
       <div class="intro">
-        <p>{{ narratives.intro | newline_to_br }}</p>
-        <p>{{ narratives.intro_secondary | newline_to_br }}</p>
+        {{ narratives.intro | markdownify }}
       </div>
     </div>
 
@@ -40,7 +39,7 @@ permalink: /college-narratives/
                   <summary class="response-summary">
                     <div class="response-meta">
                       <p class="response-author">
-                        {% if response.university %}{{ response.university }}{% endif %}{% if response.university and response.graduation_year %}, Class of {{ response.graduation_year }}{% endif %}{% if response.graduation_year and response.university == nil %}Class of {{ response.graduation_year }}{% endif %}
+                        {% if response.university %}{{ response.university }}{% endif %}{% if response.university and response.graduation_year %}, Class of {{ response.graduation_year }}{% endif %}{% if response.graduation_year and response.university == nil %}Class of {{ response.graduation_year }}{% endif %}{% if response.intended_majors %}{% if response.university or response.graduation_year %}, {% endif %}Major{% if response.intended_majors contains " and " or response.intended_majors contains "," %}s{% endif %}: {{ response.intended_majors }}{% endif %}
                       </p>
                     </div>
                     <p class="response-preview">"{{ response.preview }}"</p>
