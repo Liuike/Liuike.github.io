@@ -24,8 +24,8 @@ To update it:
 - add a new question by appending a new item under `questions`
 - add a new response by appending a new item under that question's `responses`
 - for each new response, set a short `preview` sentence that appears before the full answer is expanded
-- set each response header with `university` and `graduation_year`
+- set each response header with `university`, `graduation_year`, and `intended_majors`
 
 The page is designed so routine content edits do not require template changes.
 
-TODO: add feedback button, add more questions, populate the answers, background visual, etc.
+TODO: add feedback button, add more questions,background visual, randomize response ordering etc. 
