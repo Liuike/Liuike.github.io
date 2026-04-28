@@ -59,7 +59,7 @@ permalink: /college-narratives/
     </div>
 
     <div class="narratives-bottom-actions">
-      <a href="{{ narratives.main_site_url }}" class="link narratives-return-link">{{ narratives.main_site_label }}</a>
+      <a href="{{ '/' | relative_url }}" class="link narratives-return-link">{{ narratives.main_site_label }}</a>
     </div>
   </div>
 </div>

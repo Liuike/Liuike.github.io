@@ -13,7 +13,6 @@ intro: |
   These responses are intentionally personal. We hope to provide more than facts and anecdotes you can hear everywhere. Here, you can hear factual, but maybe not so exciting, stories, to guide your college application journey. 
 
   Remember, these stories don't reflect "the way" to apply to colleges, but we hope they can be of use for you.
-main_site_url: "https://lukeez.com"
 main_site_label: "Back to main site"
 questions: 
   - id: choose-where-to-apply
@@ -24,9 +23,27 @@ questions:
         intended_majors: APMA-CS & pre-med 
         preview: I had a list of 'safety', 'target', and 'reach' schools.
         text: >
-          I followed the standard suggestion I heard, which is to have a set of "safety", "target", and "reach" schools. I didn't have much other
+          I followed the standard suggestion I heard, which is to have a set of "safety", "target", and "reach" schools. I didn't have many other
           factors that influenced where I applied. I applied to my state's public colleges for safety; schools with strong STEM programs as target schools; 
           and top 20s for reach schools. I also applied to the UC schools. 
+      - university: Brown University
+        graduation_year: 2028
+        intended_majors: Sociology & Math 
+        preview: I factored in application difficulty vs. time spent...
+        text: >
+          I'm based in California, so naturally, I applied to the UC schools. As far as other schools, I factored in application difficulty vs. time spent 
+          on application when creating my list of "safety", "target", and "reach" schools. Also specifically, I toured Harvard and felt the vibes were off, so I didn't apply
+          there.
+
+  - id: early-decision-choice
+    prompt: Did you apply early decision to any schools? If so, how did you choose the school?
+    responses: 
+      - university: Brown University
+        graduation_year: 2028
+        intended_majors: Sociology & Math 
+        preview: I chose my early school based on environment, prestige, and school size.
+        text: >
+          I applied ED to Brown and ED2 to Pomona College. I kind of knew they were my top choices because of environment, prestige, and a smaller school size. 
 
   - id: choose-major
     prompt: How did you choose a major, and did you stick with it?
@@ -34,11 +51,19 @@ questions:
       - university: Brown University
         graduation_year: 2028
         intended_majors: APMA-CS & pre-med 
-        preview: I just chose whatever fitted my portfolio the best.
+        preview: I just chose whatever fit my portfolio the best.
         text: >
-          I really didn't have an idea of what to apply as, so I just applied as BME(Biomedical Engineering) since I had biology olympiad experience. 
-          Matter of fact, I just chose whatever fitted my portfolio the best. 
+          I really didn't have an idea of what to apply as, so I just applied as BME (Biomedical Engineering) since I had biology olympiad experience. 
+          As a matter of fact, I just chose whatever fit my portfolio the best. 
           During college though, I decided that engineering was a bad idea and switched to APMA. 
+      - university: Brown University
+        graduation_year: 2028
+        intended_majors: Sociology & Math 
+        preview: I chose my major because it resonated with my essays and portfolio.
+        text: >
+          I chose sociology when I applied and I did stick with it. I chose sociology because it resonated with my essays and portfolio in healthcare
+          inequalities and stuff like that. I guess I could've also chosen public health, but I chose sociology in the end because I think it covers
+          a broader area of my interest, and I also didn't want to go into the full medical track.
 
   - id: pay-for-college
     prompt: How did you pay for college?
@@ -52,7 +77,16 @@ questions:
 
   - id: financial-aid-documents
     prompt: What kind of documents did you need for financial aid? Were there difficulties in obtaining them?
-    responses: []
+    responses: 
+      - university: Amherst College
+        graduation_year: 2029
+        intended_majors: Philosophy
+        preview: The documents were manageable to get, but there were a lot of them.
+        text: >
+          I remember needing a lot of documents and information. I had to submit tax filing from two years prior, income documentation, proof of employment
+          and specific household information from my parents. I don't remember particular difficulties in getting these documents, but it was a hassle to get all 
+          of them.
+
   - id: application-timeline
     prompt: When did you start your college application, and what was your timeline?
     responses: 
@@ -64,6 +98,15 @@ questions:
           I vaguely started knowing about college applications in middle school, but I really didn't care about it until junior year of high school.
           I started preparing for the SAT in my junior year, asked for recommendation letters at the end of junior year, and started writing my essays
           in the summer before senior year. The essays and applications continued all the way until the end of regular decisions.
+      - university: Brown University
+        graduation_year: 2028
+        intended_majors: Sociology & Math 
+        preview: I started thinking about applications early, but it didn't affect me until later in high school.
+        text: >
+          I started writing my application in senior year of high school, but I guess I started thinking about colleges since the start of high school.
+          I had a sister who was four years older, so my parents kind of started reminding me about college applications early, though it didn't really
+          affect me in freshman and sophomore years. 
+      
 
   - id: recommendation-letters
     prompt: Who did you ask for recommendation letters?
@@ -76,6 +119,14 @@ questions:
           Outside of the required counselor recommendation letter, I asked for recommendation letters from my math and English teacher. I read
           somewhere that you should have your two teacher recommendations be from two non-adjacent subjects, and I figured I had the best relationship
           with my math teacher in STEM classes, and English teacher in non-STEM classes. 
+      - university: Brown University
+        graduation_year: 2028
+        intended_majors: Sociology & Math 
+        preview: I asked teachers who knew me well, plus my mock trial coach.
+        text: >
+          I asked my history teacher from freshman and junior year. He was also a club moderator for a club I was in, so I felt like he could give
+          a helpful perspective. I also asked my math teacher because that was my favorite subject at the time and I participated frequently in the class.
+          I also actually had an additional letter from my mock trial coach. 
 
   - id: application-help
     prompt: Who helped you with your college application?
@@ -88,6 +139,13 @@ questions:
           My English teacher and my dad both helped me proofread my essays. My dad also helped me do school research on which schools to apply. 
           Other than that, I was in brief contact with a college advising company, but I didn't end up working with them. My school also provided
           college counselors, but they weren't super useful for me.
+      - university: Brown University
+        graduation_year: 2028
+        intended_majors: Sociology & Math 
+        preview: My mom, sister, and school counselor.
+        text: >
+          My mom reminded me about college and planning ahead for applications. My sister helped look at my essays. I had some interaction with my college
+          counselor in school as well; they looked at my college list and actually suggested ROTC to me, which I didn't do.
 
   - id: frame-application
     prompt: How did you frame your application?
@@ -97,9 +155,16 @@ questions:
         intended_majors: APMA-CS & pre-med 
         preview: Biomedical engineer interested in natural sciences.
         text: >
-          I had plenty of olympiad expereinces during high school, such as in computer science, math, and biology, 
-          so I mainly centered my application around those. I also included Chess as my main hobby outside of academics, but that was about it. 
-          I would say I presented myself as a biomedical engineer whose interested in natural sciences.
+          I had plenty of olympiad experiences during high school, such as in computer science, math, and biology, 
+          so I mainly centered my application around those. I also included chess as my main hobby outside of academics, but that was about it. 
+          I would say I presented myself as a biomedical engineer who was interested in natural sciences.
+      - university: Brown University
+        graduation_year: 2028
+        intended_majors: Sociology & Math 
+        preview: Someone who cares about other people and the broader society. 
+        text: >
+          I presented myself as someone who cares about other people and the broader society. I focused on my observations about things that were going
+          on around me in detail and engaged with them on a deeper level. 
 
   - id: general-tips
     prompt: Any general tips/words for younger students?
@@ -109,5 +174,12 @@ questions:
         intended_majors: APMA-CS & pre-med 
         preview: Start your college essays early!
         text: >
-          Arguably the most important componenets of your college application outside of activities and grades is your essay. Make sure you 
-          start early for those. Personally, I had over 10 versions of my personal statement essay, with some complete rewrites! 
+          Arguably, one of the most important components of your college application outside of activities and grades is your essay. Make sure you 
+          start early on those. Personally, I had over 10 versions of my personal statement essay, with some complete rewrites!
+      - university: Brown University
+        graduation_year: 2028
+        intended_majors: Sociology & Math 
+        preview: Try to center your application around a theme/subject.
+        text: >
+          Really put forward what you're interested in. If it's hard to figure out your exact interest, you should still try to center your
+          application around a theme/subject. Also, remember you can exaggerate in your application, but don't lie!

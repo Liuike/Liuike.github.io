@@ -20,7 +20,7 @@ Then visit [http://localhost:4000](http://localhost:4000)
 The college narratives page lives at `docs/college-narratives.md` and pulls all of its content from `docs/_data/college_narratives.yml`.
 
 To update it:
-- edit the page intro or main-site link in `docs/_data/college_narratives.yml`
+- edit the page intro or main-site label in `docs/_data/college_narratives.yml`
 - add a new question by appending a new item under `questions`
 - add a new response by appending a new item under that question's `responses`
 - for each new response, set a short `preview` sentence that appears before the full answer is expanded
