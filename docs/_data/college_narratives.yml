@@ -53,8 +53,23 @@ questions:
         endorsed: false
         preview: I applied to in-state universities because of tuition, and also reach schools strong in CS.
         text: >
-          I mostly thought of applying to in-state universities because of in-state tuitions. After that, I went for reach schools that were strong in the CS
+          I mostly thought of applying to in-state universities because of in-state tuition. After that, I went for reach schools that were strong in the CS
           department, like MIT, Stanford and such. 
+      - university: University of Richmond
+        graduation_year: 2029
+        intended_majors: Undecided
+        endorsed: false
+        preview: I focused on in-state schools because of strong aid for low-income Virginia residents.
+        text: >
+          I'm from Virginia, and I mostly looked at in-state schools because Virginia schools have pretty good aid for low-income here. I think at University of Richmond, 
+          Virginia residents with income under $75,000 can get a full ride. And this was a primary motivation behind my choices.
+      - university: Carnegie Mellon University
+        graduation_year: 2030
+        intended_majors: Visual Arts
+        endorsed: false
+        preview: Student culture and school size were my biggest factors.
+        text: >
+          I value student culture in a college the most, and I also like bigger schools. And those were the primary influences when I chose my schools.
 
   - id: early-decision-choice
     prompt: Did you apply early decision to any schools? If so, how did you choose the school?
@@ -82,6 +97,23 @@ questions:
         text: >
           I chose not to apply early decision anywhere. I kind of figured that I didn't feel too strongly about any individual school. But in hindsight,
           it might have been worth it to just shoot my shot at a school. I did apply non-restrictive early action to schools in my list that had it. 
+      - university: Carnegie Mellon University
+        graduation_year: 2030
+        intended_majors: Visual Arts
+        endorsed: false
+        preview: I chose UVA early decision because of its size and student culture.
+        text: >
+          I applied ED to University of Virginia because I like that it's a bigger school and has nice student culture. Since I'm really interested in 
+          student culture and community, I made this decision by following online accounts of the schools I was considering and found which one fit me
+          the most.
+      - university: Brown University
+        graduation_year: 2027
+        intended_majors: IAPA, Classics, Archaeology
+        endorsed: false
+        preview: I applied because of departmental strength and open curriculum. 
+        text: >
+          I applied ED to Brown. Since I knew I was going for classics, Brown was a natural choice because it has a really good classics program. I also
+          knew that I wanted to do multiple things, so the open curriculum really fit my needs.
 
   - id: choose-major
     prompt: How did you choose a major, and did you stick with it?
@@ -119,6 +151,30 @@ questions:
         preview: I always wanted to do computer science.
         text: >
           I always wanted to do computer science, so I didn't really think too hard about it and applied as CS for all the schools. 
+      - university: University of Richmond
+        graduation_year: 2029
+        intended_majors: Undecided
+        endorsed: false
+        preview: I applied undecided.
+        text: >
+          I actually didn't choose a major. I applied undecided. 
+      - university: Carnegie Mellon University
+        graduation_year: 2030
+        intended_majors: Visual Arts
+        endorsed: false
+        preview: I chose visual arts because my arts background felt stronger.
+        text: >
+          I had a really tough time choosing between visual arts and psychology. I applied psychology for UVA, but other than that, I mostly applied as 
+          visual arts because I felt like I had a stronger background in arts. For CMU specifically, I applied visual arts because I liked their art program and integration with technology. 
+      - university: Brown University
+        graduation_year: 2027
+        intended_majors: IAPA, Classics, Archaeology
+        endorsed: false
+        preview: I applied as classics and archaeology, and I later added IAPA.
+        text: >
+          I applied classics and also put archaeology as my second major. My story with classics was in high school, my English teacher had a classics degree, 
+          and he taught a classics class. He's like one of those ones in a lifetime teachers, and it really made me interested in the subject. Here at Brown, I also
+          picked up IAPA because I also have an interest in modern politics. 
 
   - id: pay-for-college
     prompt: How did you pay for college?
@@ -137,6 +193,13 @@ questions:
         preview: Mostly parents, plus a very small portion of federal financial aid.
         text: >
           Mostly parents, plus a very small portion of federal financial aid.
+      - university: University of Richmond
+        graduation_year: 2029
+        intended_majors: Undecided
+        endorsed: false
+        preview: Financial aid covered my tuition and school-related expenses.
+        text: >
+          I didn't pay anything tuition-wise; I received full financial aid for tuition and school-related expenses.
 
   - id: financial-aid-documents
     prompt: What kind of documents did you need for financial aid? Were there difficulties in obtaining them?
@@ -148,7 +211,7 @@ questions:
         preview: The documents were manageable to get, but there were a lot of them.
         text: >
           They asked for so many things: tax filing from two years prior, income documentation, proof of employment and specific household information from my parents.
-          All of those information also has to be routed through College Board/FAFSA.
+          All of that information also has to be routed through College Board/FAFSA.
 
   - id: application-timeline
     prompt: When did you start your college application, and what was your timeline?
@@ -188,7 +251,21 @@ questions:
           I started my application halfway through the summer before my senior year. I started by looking at schools that had rolling decisions and honors
           colleges which were a higher priority for me. After those were done, I repurposed my existing essays for the other schools closer to the deadline.
           I think I finalized my essays about a week before all the deadlines. 
-
+      - university: Carnegie Mellon University
+        graduation_year: 2030
+        intended_majors: Visual Arts
+        endorsed: false
+        preview: I started in late June but still submitted pretty last-minute.
+        text: >
+          I think I started everything in late June. But honestly, I procrastinated quite a bit and submitted my applications pretty last-minute.
+      - university: Brown University
+        graduation_year: 2027
+        intended_majors: IAPA, Classics, Archaeology
+        endorsed: false
+        preview: I started seriously working on my application the summer before senior year and submitted in October.
+        text: >
+          I kind of knew about applying to colleges from a young age. But I really started working on my application in June of the summer before senior year.
+          I put together my first draft in August, did the Brown video essay in September, and submitted the application in October. 
 
   - id: recommendation-letters
     prompt: Who did you ask for recommendation letters?
@@ -220,6 +297,16 @@ questions:
           I asked my math and CS teacher, who taught me for three years. I felt his class challenged me the most; I always walk out of his class
           dead, in a good way. I also asked my philosophy teacher, who taught me and also saw me through my ethics bowl stuff, which was one of the biggest struggles
           I had in high school. I also had a letter from a professor at another college who I did online research with.
+      - university: Brown University
+        graduation_year: 2027
+        intended_majors: IAPA, Classics, Archaeology
+        endorsed: false
+        preview: I asked my Latin and English teachers.
+        text: >
+          I asked my Latin and English teacher. I feel like those two were the teachers whom I had the most developed relationships with outside of the
+          classroom. Also, on the topic of suggesting to have recommendation letters from different subject areas, I think it didn't apply to me as much because
+          I was applying for two humanities degrees. I also think it helped show me as someone who's kind of knows the direction they're going. 
+      
 
   - id: application-help
     prompt: Who helped you with your college application?
@@ -247,7 +334,7 @@ questions:
         endorsed: false
         preview: Graduated students, parents, paid college advising company.
         text: >
-          I remember some graduated students who helped me chose schools. My parents were also somewhat involved in the process. Most help came from
+          I remember some graduated students who helped me choose schools. My parents were also somewhat involved in the process. Most help came from
           an external paid college advising company. It was very much of an out of school operation.
       - university: University of Pittsburgh
         graduation_year: 2028
@@ -257,6 +344,14 @@ questions:
         text: >
           I think the most help I got was from my father who read over a lot of my essays. He also helped me edit them before submitting. My literature
           class teacher also had us submit our personal statement and give feedback on those as well. 
+      - university: Brown University
+        graduation_year: 2027
+        intended_majors: IAPA, Classics, Archaeology
+        endorsed: false
+        preview: I mostly relied on my college counselor and my own sense of voice.
+        text: >
+          Beyond my college counselor who gave me good general advice and knowledge about applications, I didn't really get much other help. I 
+          didn't feel like other people were able to speak for me. 
 
   - id: frame-application
     prompt: How did you frame your application?
@@ -295,6 +390,23 @@ questions:
         text: >
           I was really interested in math and CS stuff, so I tried to frame it around my passion for math and CS. In hindsight though, I think I
           probably should've knit some of my other activities in that would differentiate me from the crowd. 
+      - university: Carnegie Mellon University
+        graduation_year: 2030
+        intended_majors: Visual Arts
+        endorsed: false
+        preview: I tried to show that I valued community.
+        text: >
+          I really valued community, and I wanted colleges to know that. I've really tried to show that point through my personal statement and 
+          extracurriculars. Also, for my art portfolio, I also made sure that messages related to humility and empathy get across. 
+      - university: Brown University
+        graduation_year: 2027
+        intended_majors: IAPA, Classics, Archaeology
+        endorsed: false
+        preview: I wanted every part of my application to match a bigger story.
+        text: >
+          I wanted to present myself in two ways: who I am, and where I am going. And I was really concerned with every part of the application matching
+          up with a bigger story that's authentic to myself. I think people sometimes get scared thinking that another person's on the other side, but as weird as 
+          this may sound, the admissions officer knows you're still a kid, so I took advantage of that to have some fun. 
 
   - id: general-tips
     prompt: Any general tips/words for younger students?
@@ -331,3 +443,19 @@ questions:
         text: >
           I was really stressed during the application season about things like getting into a really prestigious college. But now that I'm in my second
           year of college, I've found myself to be doing pretty well. So yeah, I think as stressful as the application season may be, you will generally end up okay.
+      - university: University of Richmond
+        graduation_year: 2029
+        intended_majors: Undecided
+        endorsed: false
+        preview: Start thinking about essays early, reach out for help if needed, and research and visit colleges.
+        text: >
+          You should at least start thinking about your essays in the summer before senior year. Also make sure to reach out for help if you need it. 
+          Research the colleges you're applying to, and definitely visit colleges too!
+      - university: Brown University
+        graduation_year: 2027
+        intended_majors: IAPA, Classics, Archaeology
+        endorsed: false
+        preview: Have a direction and make your application feel like a cohesive story.
+        text: >
+          While you don't have to be set, I feel like you should have an idea why you want to go to college, and where you'll be at the end of it.
+          Your application should also be a cohesive story, with different parts of the application being distinct subsections pointing towards the same thing. 
