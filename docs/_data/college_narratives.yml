@@ -4,95 +4,159 @@
 # Each response should include a short `preview` sentence that stays visible
 # before the full narrative is expanded.
 # Use `university`, `graduation_year`, and `intended_majors` for the response header.
+# Set `endorsed: true` on responses that should always appear in the four-response preview.
 # Separate intro paragraphs with blank lines.
 
 title: College Application Narratives
 intro: |
   This project aims to answer some common and uncommon questions about college admissions using personal narratives from college students who have been through this journey.
 
-  These responses are intentionally personal. We hope to provide more than facts and anecdotes you can hear everywhere. Here, you can hear factual, but maybe not so exciting, stories, to guide your college application journey. 
+  These responses are intentionally personal. We hope to provide more than facts and anecdotes you can hear everywhere. Here, you can hear factual, but maybe not so exciting, stories, to guide your college application journey.
 
-  Remember, these stories don't reflect "the way" to apply to colleges, but we hope they can be of use for you.
+  Remember, these stories don't reflect "the way" to apply to colleges. I quote one of the respondents here: "having gone through the [college application] process" doesn't mean [college students] actually know how it works.
+  Nonetheless, we hope this project can be of use for you in your application journey.
+
 main_site_label: "Back to main site"
-questions: 
+questions:
   - id: choose-where-to-apply
     prompt: How do you choose where to apply?
     responses:
       - university: Brown University
         graduation_year: 2028
-        intended_majors: APMA-CS & pre-med 
+        intended_majors: APMA-CS & pre-med
+        endorsed: false
         preview: I had a list of 'safety', 'target', and 'reach' schools.
         text: >
           I followed the standard suggestion I heard, which is to have a set of "safety", "target", and "reach" schools. I didn't have many other
-          factors that influenced where I applied. I applied to my state's public colleges for safety; schools with strong STEM programs as target schools; 
-          and top 20s for reach schools. I also applied to the UC schools. 
+          factors that influenced where I applied. I applied to my state's public colleges for safety; schools with strong STEM programs as target schools;
+          and top 20s for reach schools. I also applied to the UC schools.
       - university: Brown University
         graduation_year: 2028
-        intended_majors: Sociology & Math 
+        intended_majors: Sociology & Math
+        endorsed: false
         preview: I factored in application difficulty vs. time spent...
         text: >
-          I'm based in California, so naturally, I applied to the UC schools. As far as other schools, I factored in application difficulty vs. time spent 
+          I'm based in California, so naturally, I applied to the UC schools. As far as other schools, I factored in application difficulty vs. time spent
           on application when creating my list of "safety", "target", and "reach" schools. Also specifically, I toured Harvard and felt the vibes were off, so I didn't apply
           there.
+      - university: Amherst College
+        graduation_year: 2029
+        intended_majors: Philosophy
+        endorsed: false
+        preview: I made a big list, then did research on if there's anything off-putting.
+        text: >
+          My process was very vibes based. I made a list of 40 schools, of which I could imagine myself being in. Then I did research on if any of the schools
+          had anything off-putting. Some of my reasons of putting a school in my list are location and strength in a subject I'm interested in.
+      - university: University of Pittsburgh
+        graduation_year: 2028
+        intended_majors: Computer Science
+        endorsed: false
+        preview: I applied to in-state universities because of tuition, and also reach schools strong in CS.
+        text: >
+          I mostly thought of applying to in-state universities because of in-state tuitions. After that, I went for reach schools that were strong in the CS
+          department, like MIT, Stanford and such. 
 
   - id: early-decision-choice
     prompt: Did you apply early decision to any schools? If so, how did you choose the school?
-    responses: 
+    responses:
       - university: Brown University
         graduation_year: 2028
-        intended_majors: Sociology & Math 
+        intended_majors: Sociology & Math
+        endorsed: false
         preview: I chose my early school based on environment, prestige, and school size.
         text: >
-          I applied ED to Brown and ED2 to Pomona College. I kind of knew they were my top choices because of environment, prestige, and a smaller school size. 
+          I applied ED to Brown and ED2 to Pomona College. I kind of knew they were my top choices because of environment, prestige, and a smaller school size.
+      - university: Amherst College
+        graduation_year: 2029
+        intended_majors: Philosophy
+        endorsed: false
+        preview: I applied ED to Brown because of the open curriculum and employment outlook.
+        text: >
+          I applied ED to Brown. I chose Brown because I wanted to do whatever I wanted, and the open curriculum fits that. It also has a good enough
+          prestige, which is a good tool if I want to get employment after.
+      - university: University of Pittsburgh
+        graduation_year: 2028
+        intended_majors: Computer Science
+        endorsed: false
+        preview: I chose not to apply early decision anywhere, though I did apply non-restrictive early action. 
+        text: >
+          I chose not to apply early decision anywhere. I kind of figured that I didn't feel too strongly about any individual school. But in hindsight,
+          it might have been worth it to just shoot my shot at a school. I did apply non-restrictive early action to schools in my list that had it. 
 
   - id: choose-major
     prompt: How did you choose a major, and did you stick with it?
     responses:
       - university: Brown University
         graduation_year: 2028
-        intended_majors: APMA-CS & pre-med 
+        intended_majors: APMA-CS & pre-med
+        endorsed: false
         preview: I just chose whatever fit my portfolio the best.
         text: >
-          I really didn't have an idea of what to apply as, so I just applied as BME (Biomedical Engineering) since I had biology olympiad experience. 
-          As a matter of fact, I just chose whatever fit my portfolio the best. 
-          During college though, I decided that engineering was a bad idea and switched to APMA. 
+          I really didn't have an idea of what to apply as, so I just applied as BME (Biomedical Engineering) since I had biology olympiad experience.
+          As a matter of fact, I just chose whatever fit my portfolio the best.
+          During college though, I decided that engineering was a bad idea and switched to APMA.
       - university: Brown University
         graduation_year: 2028
-        intended_majors: Sociology & Math 
+        intended_majors: Sociology & Math
+        endorsed: false
         preview: I chose my major because it resonated with my essays and portfolio.
         text: >
           I chose sociology when I applied and I did stick with it. I chose sociology because it resonated with my essays and portfolio in healthcare
           inequalities and stuff like that. I guess I could've also chosen public health, but I chose sociology in the end because I think it covers
           a broader area of my interest, and I also didn't want to go into the full medical track.
-
-  - id: pay-for-college
-    prompt: How did you pay for college?
-    responses: 
-      - university: Brown University
-        graduation_year: 2028
-        intended_majors: APMA-CS & pre-med 
-        preview: My parents were able to pay for my college.
-        text: >
-          I'm really fortunate to say that my parents were able to pay for all of my tuition. 
-
-  - id: financial-aid-documents
-    prompt: What kind of documents did you need for financial aid? Were there difficulties in obtaining them?
-    responses: 
       - university: Amherst College
         graduation_year: 2029
         intended_majors: Philosophy
+        endorsed: false
+        preview: I applied with a wide range of majors and declared with philosophy for now.
+        text: >
+          I applied in the range of philosophy, religion, French, psychology, and linguistics, which are all, broadly, my interests. I declared philosophy in my first semester in college
+          because I wanted to have an anchor. But I'm still exploring other majors as well.
+      - university: University of Pittsburgh
+        graduation_year: 2028
+        intended_majors: Computer Science
+        endorsed: false
+        preview: I always wanted to do computer science.
+        text: >
+          I always wanted to do computer science, so I didn't really think too hard about it and applied as CS for all the schools. 
+
+  - id: pay-for-college
+    prompt: How did you pay for college?
+    responses:
+      - university: Brown University
+        graduation_year: 2028
+        intended_majors: APMA-CS & pre-med
+        endorsed: false
+        preview: My parents were able to pay for my college.
+        text: >
+          I'm really fortunate to say that my parents were able to pay for all of my tuition.
+      - university: Amherst College
+        graduation_year: 2029
+        intended_majors: Philosophy
+        endorsed: false
+        preview: Mostly parents, plus a very small portion of federal financial aid.
+        text: >
+          Mostly parents, plus a very small portion of federal financial aid.
+
+  - id: financial-aid-documents
+    prompt: What kind of documents did you need for financial aid? Were there difficulties in obtaining them?
+    responses:
+      - university: Amherst College
+        graduation_year: 2029
+        intended_majors: Philosophy
+        endorsed: false
         preview: The documents were manageable to get, but there were a lot of them.
         text: >
-          I remember needing a lot of documents and information. I had to submit tax filing from two years prior, income documentation, proof of employment
-          and specific household information from my parents. I don't remember particular difficulties in getting these documents, but it was a hassle to get all 
-          of them.
+          They asked for so many things: tax filing from two years prior, income documentation, proof of employment and specific household information from my parents.
+          All of those information also has to be routed through College Board/FAFSA.
 
   - id: application-timeline
     prompt: When did you start your college application, and what was your timeline?
-    responses: 
+    responses:
       - university: Brown University
         graduation_year: 2028
-        intended_majors: APMA-CS & pre-med 
+        intended_majors: APMA-CS & pre-med
+        endorsed: false
         preview: I didn't think about college applications until junior year.
         text: >
           I vaguely started knowing about college applications in middle school, but I really didn't care about it until junior year of high school.
@@ -100,86 +164,170 @@ questions:
           in the summer before senior year. The essays and applications continued all the way until the end of regular decisions.
       - university: Brown University
         graduation_year: 2028
-        intended_majors: Sociology & Math 
+        intended_majors: Sociology & Math
+        endorsed: false
         preview: I started thinking about applications early, but it didn't affect me until later in high school.
         text: >
           I started writing my application in senior year of high school, but I guess I started thinking about colleges since the start of high school.
           I had a sister who was four years older, so my parents kind of started reminding me about college applications early, though it didn't really
-          affect me in freshman and sophomore years. 
-      
+          affect me in freshman and sophomore years.
+      - university: Amherst College
+        graduation_year: 2029
+        intended_majors: Philosophy
+        endorsed: false
+        preview: I started thinking about it in freshman year, but didn't start until the summer before senior year.
+        text: >
+          I started thinking about the application in freshman year of high school. I took my SAT in my sophomore year, but I didn't start
+          with the actual application until the summer before senior year.
+      - university: University of Pittsburgh
+        graduation_year: 2028
+        intended_majors: Computer Science
+        endorsed: false
+        preview: I started by applying for my higher priority schools, and then repurposed my existing essays for other schools.
+        text: >
+          I started my application halfway through the summer before my senior year. I started by looking at schools that had rolling decisions and honors
+          colleges which were a higher priority for me. After those were done, I repurposed my existing essays for the other schools closer to the deadline.
+          I think I finalized my essays about a week before all the deadlines. 
+
 
   - id: recommendation-letters
     prompt: Who did you ask for recommendation letters?
-    responses: 
+    responses:
       - university: Brown University
         graduation_year: 2028
-        intended_majors: APMA-CS & pre-med 
+        intended_majors: APMA-CS & pre-med
+        endorsed: false
         preview: Math and English teacher, because I had the best relationship with them.
         text: >
           Outside of the required counselor recommendation letter, I asked for recommendation letters from my math and English teacher. I read
           somewhere that you should have your two teacher recommendations be from two non-adjacent subjects, and I figured I had the best relationship
-          with my math teacher in STEM classes, and English teacher in non-STEM classes. 
+          with my math teacher in STEM classes, and English teacher in non-STEM classes.
       - university: Brown University
         graduation_year: 2028
-        intended_majors: Sociology & Math 
+        intended_majors: Sociology & Math
+        endorsed: false
         preview: I asked teachers who knew me well, plus my mock trial coach.
         text: >
           I asked my history teacher from freshman and junior year. He was also a club moderator for a club I was in, so I felt like he could give
           a helpful perspective. I also asked my math teacher because that was my favorite subject at the time and I participated frequently in the class.
-          I also actually had an additional letter from my mock trial coach. 
+          I also actually had an additional letter from my mock trial coach.
+      - university: Amherst College
+        graduation_year: 2029
+        intended_majors: Philosophy
+        endorsed: false
+        preview: Math/CS teacher and philosophy teacher, who saw my growth in high school. Also a professor from online research.
+        text: >
+          I asked my math and CS teacher, who taught me for three years. I felt his class challenged me the most; I always walk out of his class
+          dead, in a good way. I also asked my philosophy teacher, who taught me and also saw me through my ethics bowl stuff, which was one of the biggest struggles
+          I had in high school. I also had a letter from a professor at another college who I did online research with.
 
   - id: application-help
     prompt: Who helped you with your college application?
-    responses: 
+    responses:
       - university: Brown University
         graduation_year: 2028
-        intended_majors: APMA-CS & pre-med 
+        intended_majors: APMA-CS & pre-med
+        endorsed: false
         preview: English teacher, dad.
         text: >
-          My English teacher and my dad both helped me proofread my essays. My dad also helped me do school research on which schools to apply. 
+          My English teacher and my dad both helped me proofread my essays. My dad also helped me do school research on which schools to apply.
           Other than that, I was in brief contact with a college advising company, but I didn't end up working with them. My school also provided
           college counselors, but they weren't super useful for me.
       - university: Brown University
         graduation_year: 2028
-        intended_majors: Sociology & Math 
+        intended_majors: Sociology & Math
+        endorsed: false
         preview: My mom, sister, and school counselor.
         text: >
           My mom reminded me about college and planning ahead for applications. My sister helped look at my essays. I had some interaction with my college
           counselor in school as well; they looked at my college list and actually suggested ROTC to me, which I didn't do.
+      - university: Amherst College
+        graduation_year: 2029
+        intended_majors: Philosophy
+        endorsed: false
+        preview: Graduated students, parents, paid college advising company.
+        text: >
+          I remember some graduated students who helped me chose schools. My parents were also somewhat involved in the process. Most help came from
+          an external paid college advising company. It was very much of an out of school operation.
+      - university: University of Pittsburgh
+        graduation_year: 2028
+        intended_majors: Computer Science
+        endorsed: false
+        preview: My father and my literature class teacher.
+        text: >
+          I think the most help I got was from my father who read over a lot of my essays. He also helped me edit them before submitting. My literature
+          class teacher also had us submit our personal statement and give feedback on those as well. 
 
   - id: frame-application
     prompt: How did you frame your application?
     responses:
       - university: Brown University
         graduation_year: 2028
-        intended_majors: APMA-CS & pre-med 
+        intended_majors: APMA-CS & pre-med
+        endorsed: false
         preview: Biomedical engineer interested in natural sciences.
         text: >
-          I had plenty of olympiad experiences during high school, such as in computer science, math, and biology, 
-          so I mainly centered my application around those. I also included chess as my main hobby outside of academics, but that was about it. 
+          I had plenty of olympiad experiences during high school, such as in computer science, math, and biology,
+          so I mainly centered my application around those. I also included chess as my main hobby outside of academics, but that was about it.
           I would say I presented myself as a biomedical engineer who was interested in natural sciences.
       - university: Brown University
         graduation_year: 2028
-        intended_majors: Sociology & Math 
-        preview: Someone who cares about other people and the broader society. 
+        intended_majors: Sociology & Math
+        endorsed: false
+        preview: Someone who cares about other people and the broader society.
         text: >
           I presented myself as someone who cares about other people and the broader society. I focused on my observations about things that were going
-          on around me in detail and engaged with them on a deeper level. 
+          on around me in detail and engaged with them on a deeper level.
+      - university: Amherst College
+        graduation_year: 2029
+        intended_majors: Philosophy
+        endorsed: true
+        preview: An application is a fiction based on reality.
+        text: >
+          I think an application is not a non-fiction. It's a fiction based on reality. In that regard, if you want to make a character memorable, you have
+          to give them back stories that are tragic or funny. Which is why I chose a tragic and funny one. I wanted to be seen as a nerd, but for good reasons, not
+          because I want to go to some university, but because I'm somehow born and disposed to being that way.
+      - university: University of Pittsburgh
+        graduation_year: 2028
+        intended_majors: Computer Science
+        endorsed: false
+        preview: I framed my application around my passion for math and CS.
+        text: >
+          I was really interested in math and CS stuff, so I tried to frame it around my passion for math and CS. In hindsight though, I think I
+          probably should've knit some of my other activities in that would differentiate me from the crowd. 
 
   - id: general-tips
     prompt: Any general tips/words for younger students?
-    responses: 
+    responses:
       - university: Brown University
         graduation_year: 2028
-        intended_majors: APMA-CS & pre-med 
+        intended_majors: APMA-CS & pre-med
+        endorsed: false
         preview: Start your college essays early!
         text: >
-          Arguably, one of the most important components of your college application outside of activities and grades is your essay. Make sure you 
+          Arguably, one of the most important components of your college application outside of activities and grades is your essay. Make sure you
           start early on those. Personally, I had over 10 versions of my personal statement essay, with some complete rewrites!
       - university: Brown University
         graduation_year: 2028
-        intended_majors: Sociology & Math 
+        intended_majors: Sociology & Math
+        endorsed: false
         preview: Try to center your application around a theme/subject.
         text: >
           Really put forward what you're interested in. If it's hard to figure out your exact interest, you should still try to center your
           application around a theme/subject. Also, remember you can exaggerate in your application, but don't lie!
+      - university: Amherst College
+        graduation_year: 2029
+        intended_majors: Philosophy
+        endorsed: false
+        preview: Don't spend too much time on your safety schools.
+        text: >
+          For individual students, they should avoid being tutored by current college students. Just because they've been through the process doesn't
+          mean they know how it works. Also, don't spend too much time on your safety schools, since you will most likely get in.
+      - university: University of Pittsburgh
+        graduation_year: 2028
+        intended_majors: Computer Science
+        endorsed: false
+        preview: The process is stressful, but you will generally end up okay.
+        text: >
+          I was really stressed during the application season about things like getting into a really prestigious college. But now that I'm in my second
+          year of college, I've found myself to be doing pretty well. So yeah, I think as stressful as the application season may be, you will generally end up okay.

@@ -26,7 +26,7 @@ permalink: /college-narratives/
 
     <div class="narratives-sections">
       {% for question in narratives.questions %}
-        <section class="question-section" id="{{ question.id }}">
+        <section class="question-section" id="{{ question.id }}" data-response-section>
           <div class="question-header">
             <p class="question-label">Question {{ forloop.index }}</p>
             <h2>{{ question.prompt }}</h2>
@@ -35,7 +35,7 @@ permalink: /college-narratives/
           <div class="response-list">
             {% if question.responses and question.responses.size > 0 %}
               {% for response in question.responses %}
-                <details class="response-card">
+                <details class="response-card" data-response-card data-endorsed="{% if response.endorsed %}true{% else %}false{% endif %}">
                   <summary class="response-summary">
                     <div class="response-meta">
                       <p class="response-author">
@@ -54,6 +54,10 @@ permalink: /college-narratives/
               <p class="response-empty">No narratives added for this question yet.</p>
             {% endif %}
           </div>
+
+          {% if question.responses and question.responses.size > 4 %}
+            <button class="responses-toggle" type="button" data-show-all-responses>View all responses</button>
+          {% endif %}
         </section>
       {% endfor %}
     </div>
