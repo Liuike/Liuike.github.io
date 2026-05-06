@@ -16,10 +16,15 @@ permalink: /college-narratives/
     </div>
 
     <section class="narratives-jump-list" aria-labelledby="questions-heading">
-      <h2 id="questions-heading">Questions</h2>
+      <p id="questions-heading" class="narratives-nav-label">Questions</p>
       <ul class="question-links">
         {% for question in narratives.questions %}
-          <li><a href="#{{ question.id }}">{{ question.prompt }}</a></li>
+          <li>
+            <a href="#{{ question.id }}">
+              <span class="question-link-num">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+              <span class="question-link-text">{{ question.prompt }}</span>
+            </a>
+          </li>
         {% endfor %}
       </ul>
     </section>
