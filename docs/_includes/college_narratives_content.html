@@ -1,9 +1,3 @@
----
-layout: college_narratives
-title: College Application Narratives
-permalink: /college-narratives/
----
-
 {% assign narratives = site.data.college_narratives %}
 
 <div class="main-content narratives-page">
@@ -68,7 +62,7 @@ permalink: /college-narratives/
     </div>
 
     <div class="narratives-bottom-actions">
-      <a href="{{ '/' | relative_url }}" class="link narratives-return-link">{{ narratives.main_site_label }}</a>
+      <a href="{{ narratives.main_site_url }}" class="link narratives-return-link">{{ narratives.main_site_label }}</a>
     </div>
   </div>
 </div>

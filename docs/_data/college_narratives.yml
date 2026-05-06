@@ -17,6 +17,7 @@ intro: |
   Nonetheless, we hope this project can be of use for you in your application journey.
 
 main_site_label: "Back to main site"
+main_site_url: "https://lukeez.com/"
 questions:
   - id: choose-where-to-apply
     prompt: How do you choose where to apply?

@@ -17,7 +17,7 @@ Then visit [http://localhost:4000](http://localhost:4000)
 - ... something else will come to mind probably
 
 ## College narratives page
-The college narratives page lives at `docs/college-narratives.md` and pulls all of its content from `docs/_data/college_narratives.yml`.
+This branch serves the college narratives page at the site root. The root page lives at `docs/index.markdown`, pulls reusable markup from `docs/_includes/college_narratives_content.html`, and pulls all content from `docs/_data/college_narratives.yml`.
 
 To update it:
 - edit the page intro or main-site label in `docs/_data/college_narratives.yml`
