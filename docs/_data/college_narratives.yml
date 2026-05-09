@@ -6,18 +6,40 @@
 # Use `university`, `graduation_year`, and `intended_majors` for the response header.
 # Set `endorsed: true` on responses that should always appear in the four-response preview.
 # Separate intro paragraphs with blank lines.
+# Response bodies support Markdown (including inline links like [resource](https://example.com)).
+# Optional translation fields are supported throughout this file:
+# - title_es, title_pt, intro_es, intro_pt, main_site_label_es, main_site_label_pt
+# - question-level: prompt_es, prompt_pt
+# - response-level: preview_es, preview_pt, text_es, text_pt
 
 title: College Application Narratives
 intro: |
-  This project aims to answer some common and uncommon questions about college admissions using personal narratives from college students who have been through this journey.
+  This project aims to answer the common and uncommon questions about college admissions using personal narratives from college students who have experienced it first-hand.
 
-  These responses are intentionally personal. We hope to provide more than facts and anecdotes you can hear everywhere. Here, you can hear factual, but maybe not so exciting, stories, to guide your college application journey.
+  These responses are intentionally personal. We hope to provide more than facts and anecdotes you can hear everywhere.
+  Here, you can hear factual, but maybe not so exciting, stories, to (hopefully) guide your college application journey.
 
-  Remember, these stories don't reflect "the way" to apply to colleges. I quote one of the respondents here: "having gone through the [college application] process" doesn't mean [college students] actually know how it works.
-  Nonetheless, we hope this project can be of use for you in your application journey.
+  Remember, these stories don't reflect "the way" to apply to colleges. I quote one of the respondents: "having gone through the [college application] process" doesn't mean [college students] actually know how it works.
+  Nonetheless, we hope this project can be of use for you.
 
-main_site_label: "Back to main site"
+main_site_label: "If you want to check out who's behind this project :)"
 main_site_url: "https://lukeez.com/"
+labels:
+  language_en: English
+  language_es: Español
+  language_pt: Português
+  questions_en: Questions
+  questions_es: Preguntas
+  questions_pt: Perguntas
+  question_prefix_en: Question
+  question_prefix_es: Pregunta
+  question_prefix_pt: Pergunta
+  empty_responses_en: No narratives added for this question yet.
+  empty_responses_es: Todavia no hay narrativas agregadas para esta pregunta.
+  empty_responses_pt: Ainda nao ha narrativas adicionadas para esta pergunta.
+  view_all_en: View all responses
+  view_all_es: Ver todas las respuestas
+  view_all_pt: Ver todas as respostas
 questions:
   - id: choose-where-to-apply
     prompt: How do you choose where to apply?
@@ -212,6 +234,22 @@ questions:
   - id: pay-for-college
     prompt: How did you pay for college?
     responses:
+      - university: Editor's Note
+        is_editor_note: true
+        endorsed: true
+        preview: Additional resources related to financial aid and scholarships. 
+        text: |
+          Searching for aid/scholarships can be challenging. We hope to help by including some extra links to relevant resources:
+
+          Governmental Aid: [FAFSA](https://studentaid.gov/h/apply-for-aid/fafsa), [State Financial Aid Programs](https://www.nasfaa.org/state_financial_aid_programs)
+
+          College-Specific Aid/Scholarships: [CSS](https://cssprofile.collegeboard.org/), [QuestBridge](https://www.questbridge.org/apply-to-college/programs/national-college-match)
+
+          Immigrant/Undocumented Students: [The Dream US](https://www.thedream.us/scholarships/), [Immigrants Rising](https://immigrantsrising.org/resource/list-of-scholarships-and-fellowships/)
+
+          Scholarships search: [College Board](https://bigfuture.collegeboard.org/scholarship-search?sort=deadline-nearest-first), [Career One Stop](https://www.careeronestop.org/Toolkit/Training/find-scholarships.aspx)
+
+          Avoiding Scholarship/Financial Aid Scam: [FTA](https://consumer.ftc.gov/articles/how-avoid-scholarship-and-financial-aid-scams)
       - university: Brown University
         graduation_year: 2028
         intended_majors: APMA-CS; pre-med

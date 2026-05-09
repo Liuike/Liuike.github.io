@@ -1,0 +1,346 @@
+# Portuguese translations for college narratives
+# Maps question IDs to translated prompts and responses
+intro: |
+  Este projeto visa responder as perguntas comuns e incomuns sobre admissoes universitarias, usando narrativas pessoais de estudantes universitarios que vivenciaram o processo em primeira mao.
+
+  Essas respostas sao intencionalmente pessoais. Esperamos oferecer mais do que fatos e anedotas que se ouvem por toda parte. Aqui, voce pode ouvir historias factuais, embora talvez nao muito empolgantes, que (esperancosamente) orientem sua jornada de candidatura universitaria.
+
+  Lembre-se: essas historias nao representam "a maneira" de se candidatar as universidades. Cito uma das pessoas que respondeu: "ter passado pelo [processo de candidatura universitaria]" nao significa que os estudantes realmente saibam como ele funciona.
+  Mesmo assim, esperamos que este projeto seja util para voce.
+questions:
+  - id: choose-where-to-apply
+    prompt: "Como voce escolhe onde se candidatar?"
+    responses:
+      - preview: "Tinha uma lista de escolas de 'seguranca', 'objetivo' e 'alcance'."
+        text: >
+          Segui a sugestao padrao que ouvi, que e ter um conjunto de escolas de "seguranca", "objetivo" e "alcance". Nao tive muitos outros
+          fatores que influenciaram onde me candidatei. Me candidatei as universidades publicas do meu estado para seguranca; escolas com programas STEM fortes como escolas de objetivo;
+          e top 20 para escolas de alcance. Tambem me candidatei as escolas UC.
+      - preview: "Considerei a dificuldade da aplicacao versus tempo gasto..."
+        text: >
+          Sou baseado na California, entao naturalmente me candidatei as escolas UC. Quanto a outras escuelas, considerei a dificuldade da aplicacao versus o tempo gasto
+          na aplicacao ao criar minha lista de escolas de "seguranca", "objetivo" e "alcance". Especificamente, visitei Harvard e senti que as vibracoes nao eram boas, entao nao me candidatei
+          la.
+      - preview: "Fiz uma lista grande, depois pesquisei se havia algo desagradavel."
+        text: >
+          Meu processo foi baseado em vibracoes. Fiz uma lista de 40 escolas em que podia me imaginar estar. Depois pesquisei se alguma das escolas
+          tinha algo desagradavel. Algumas das minhas razoes para colocar uma escola na minha lista sao localizacao e forca em um assunto que me interessa.
+      - preview: "Me candidatei a universidades no estado por mensalidade e tambem a escolas de alcance fortes em CS."
+        text: >
+          Principalmente pensei em me candidatar a universidades no estado por causa da mensalidade in-state. Depois disso, me candidatei a escolas de alcance que eram fortes no
+          departamento de CS, como MIT, Stanford e similares.
+      - preview: "Foquei em escolas no estado por causa da ajuda forte para residentes de Virginia com baixa renda."
+        text: >
+          Sou da Virginia e principalmente procurei por escolas no estado porque as escolas da Virginia tem uma ajuda muito boa para pessoas de baixa renda aqui. Acho que na Universidade de Richmond,
+          residentes da Virginia com renda abaixo de $75.000 podem obter uma bolsa completa. E essa foi uma motivacao principal atras das minhas escolhas.
+      - preview: "Cultura estudantil e tamanho da escola foram meus fatores mais importantes."
+        text: >
+          Valorizo a cultura estudantil em uma universidade acima de tudo, e tambem gosto de escolas maiores. E essas foram as influencias principais quando escolhi minhas escolas.
+      - preview: "Tinha uma mistura saudavel de escolas de seguranca, objetivo e alcance com base no meu GPA e preferencias."
+        text: >
+          Tinha uma mistura saudavel de escolas de seguranca, objetivo e alcance. Mas tambem baseei minhas escolhas no meu GPA e preferencias. Tambem nao me candidatei
+          a muitas Ivy Leagues porque elas nao alinhavam com minha vibe.
+      - preview: "Escolhi escolas com base na orientacao familiar e forca do programa de engenharia."
+        text: >
+          Os lugares que escolhi foram baseados na visao da minha familia sobre em que universidades eu precisava ir. Tambem me candidatei para programas especificos que eram muito
+          bons para engenharia. Diria que a influencia entre orientacao parental e forca do programa foi meio a meio.
+
+  - id: early-decision-choice
+    prompt: "Voce se candidatou com decisao antecipada a alguma escola? Se sim, como escolheu a escola?"
+    responses:
+      - preview: "Escolhi minha escola antecipada com base no ambiente, prestigio e tamanho da escola."
+        text: >
+          Me candidatei ED a Brown e ED2 a Pomona College. Mais ou menos sabia que eram minhas opcoes principais por causa do ambiente, prestigio e um tamanho de escola menor.
+      - preview: "Me candidatei ED a Brown por causa do curriculo aberto e perspectivas de emprego."
+        text: >
+          Me candidatei ED a Brown. Escolhi Brown porque queria fazer o que quisesse, e o curriculo aberto se encaixa nisso. Tambem tem prestigio suficiente,
+          que e uma boa ferramenta se eu quiser conseguir emprego depois.
+      - preview: "Decidi nao me candidatar com decisao antecipada em lugar nenhum, embora me candidatei com acao antecipada nao restritiva."
+        text: >
+          Decidi nao me candidatar com decisao antecipada em lugar nenhum. Mais ou menos sentia que nao tinha sentimentos muito fortes sobre nenhuma escola individual. Mas em retrospectiva,
+          poderia ter valido a pena simplesmente tentar minha chance em uma escola. Me candidatei com acao antecipada nao restritiva a escolas na minha lista que tinham.
+      - preview: "Escolhi UVA decisao antecipada por causa do tamanho e cultura estudantil."
+        text: >
+          Me candidatei ED a Universidade de Virginia porque gosto que seja uma escola maior e tenha uma boa cultura estudantil. Como sou realmente interessado em
+          cultura e comunidade estudantil, tomei essa decisao seguindo contas online das escolas que estava considerando e encontrei qual se ajustava melhor.
+      - preview: "Me candidatei por forca departamental e curriculo aberto."
+        text: >
+          Me candidatei ED a Brown. Como sabia que ia estudar classicos, Brown era uma escolha natural porque tem um programa de classicos muito bom. Tambem
+          sabia que queria fazer multiplas coisas, entao o curriculo aberto se encaixava perfeitamente nas minhas necessidades.
+      - preview: "Escolhi CMU decisao antecipada depois de frequentar um programa de verao la."
+        text: >
+          Me candidatei com decisao antecipada a CMU e de fato entrei, mas na verdade nao pude aceitar a oferta por razoes financeiras. Escolhi CMU porque fiz
+          um programa de verao la, SAMS, e essa foi realmente a primeira vez que vi estudantes com historicos e interesses similares.
+
+  - id: choose-major
+    prompt: "Como voce escolheu uma carreira e se manteve nela?"
+    responses:
+      - preview: "Apenas escolhi o que se encaixava melhor no meu portfolio."
+        text: >
+          Realmente nao tinha ideia do que me candidatar, entao apenas me candidatei como Engenharia Biomedica (BME) porque tinha experiencia em olimpiadas de biologia.
+          De fato, apenas escolhi o que se encaixava melhor no meu portfolio.
+          Durante a faculdade, decidi que engenharia era uma ma ideia e mudei para APMA.
+      - preview: "Escolhi minha carreira porque se alinhava com meus ensaios e portfolio."
+        text: >
+          Escolhi sociologia quando me candidatei e sim me mantive nela. Escolhi sociologia porque se alinhava com meus ensaios e portfolio em desigualdades de saude
+          e coisas do genero. Acho que poderia ter tambem escolhido saude publica, mas escolhi sociologia no final porque acho que abrange
+          uma area mais ampla dos meus interesses, e tambem nao queria seguir a carreira medica completa.
+      - preview: "Me candidatei com uma ampla gama de carreiras e declarei filosofia por enquanto."
+        text: >
+          Me candidatei na faixa de filosofia, religiao, Frances, psicologia e linguistica, que sao todas, em geral, meus interesses. Declarei filosofia no meu primeiro semestre na faculdade
+          porque queria ter uma ancora. Mas ainda estou explorando outras carreiras tambem.
+      - preview: "Sempre quis fazer ciencia da computacao."
+        text: >
+          Sempre quis fazer ciencia da computacao, entao realmente nao pensei muito nisso e me candidatei como CS para todas as escolas.
+      - preview: "Me candidatei sem decidir."
+        text: >
+          De fato nao escolhi uma carreira. Me candidatei sem decidir.
+      - preview: "Escolhi artes visuais porque meu historico em artes se sentia mais forte."
+        text: >
+          Tive uma decisao muito dificil entre artes visuais e psicologia. Me candidatei como psicologia para UVA, mas alem disso, principalmente me candidatei como
+          artes visuais porque sentia que tinha um historico mais forte em artes. Para CMU especificamente, me candidatei como artes visuais porque gostei do programa de arte e integracao com tecnologia.
+      - preview: "Me candidatei como classicos e arqueologia, e depois adicionei IAPA."
+        text: >
+          Me candidatei como classicos e tambem coloquei arqueologia como minha segunda carreira. Minha historia com classicos foi no ensino medio, meu professor de ingles tinha um diploma em classicos,
+          e ensinava uma aula de classicos. E um daqueles professores que aparecem uma unica vez na vida, e realmente me interessou pelo assunto. Aqui em Brown, tambem
+          escolhi IAPA porque tambem tenho interesse em politica moderna.
+      - preview: "Escolhi engenharia mecanica porque gosto de CAD, design e manufatura."
+        text: >
+          Estava escolhendo entre engenharia mecanica e engenharia civil. No final, escolhi e me mantive em engenharia mecanica porque
+          tenho interesse em CAD, design e manufatura.
+
+  - id: pay-for-college
+    prompt: "Como voce pagou a faculdade?"
+    responses:
+      - university: "Nota do editor"
+        preview: "Recursos adicionais relacionados a ajuda financeira e bolsas."
+        text: |
+          Procurar por ajuda/bolsas pode ser desafiador. Esperamos ajudar incluindo alguns links adicionais para recursos relevantes:
+
+          Ajuda governamental: [FAFSA](https://studentaid.gov/h/apply-for-aid/fafsa), [Programas estaduais de auxílio financeiro](https://www.nasfaa.org/state_financial_aid_programs)
+
+          Ajuda específica de faculdades/bolsas: [CSS](https://cssprofile.collegeboard.org/), [QuestBridge](https://www.questbridge.org/apply-to-college/programs/national-college-match)
+
+          Estudantes imigrantes/sem documentação: [The Dream US](https://www.thedream.us/scholarships/), [Immigrants Rising](https://immigrantsrising.org/resource/list-of-scholarships-and-fellowships/)
+
+          Busca de bolsas: [College Board](https://bigfuture.collegeboard.org/scholarship-search?sort=deadline-nearest-first), [Career One Stop](https://www.careeronestop.org/Toolkit/Training/find-scholarships.aspx)
+
+          Evitando golpes de bolsas/ajuda financeira: [FTA](https://consumer.ftc.gov/articles/how-avoid-scholarship-and-financial-aid-scams)
+      - preview: "Meus pais conseguiram pagar minha faculdade."
+        text: >
+          E realmente afortunado poder dizer que meus pais conseguiram pagar toda a minha mensalidade.
+      - preview: "Principalmente pais, alem de uma pequena porcao de ajuda financeira federal."
+        text: >
+          Principalmente pais, alem de uma pequena porcao de ajuda financeira federal.
+      - preview: "Ajuda financeira cobriu minha mensalidade e despesas relacionadas a escola."
+        text: >
+          Nao paguei nada em termos de mensalidade; recebi ajuda financeira completa para mensalidade e despesas relacionadas a escola.
+      - preview: "Uma mistura de ajuda FAFSA, emprestimos e contribuicao dos pais."
+        text: >
+          Tomei ajuda e emprestimo do FAFSA. Tambem tive contribuicao dos meus pais, e uma mistura dos dois.
+      - preview: "Bolsas cobriram a maioria dos meus custos, o resto dos meus pais."
+        text: >
+          Estou pagando principalmente atraves de bolsas de UMich. De fato recebi muitas bolsas por merito porque me candidatei com acao antecipada.
+          E aproximadamente uma divisao 2:1 entre bolsas e meus pais. De fato tambem me candidatei para muitas bolsas externas, como
+          bolsas especificas etnicas, competicoes de escrita e coisas do genero.
+
+  - id: financial-aid-documents
+    prompt: "Que tipo de documentos voce precisou para ajuda financeira? Houve dificuldades em obte-los?"
+    responses:
+      - preview: "Os documentos foram gerenciaveis, mas havia muitos."
+        text: >
+          Eles pediram tantas coisas: declaracao de imposto de dois anos atras, documentacao de renda, prova de emprego e informacoes domesticas especificas dos meus pais.
+          Todas essas informacoes tambem precisam ser encaminhadas atraves do College Board/FAFSA.
+      - preview: "Muitos documentos, mas nao foi dificil porque estava organizado."
+        text: >
+          Lembro de ter que obter formularios W2, formularios de imposto, numeros de contribuinte, etc. Nao foram dificeis de encontrar, principalmente porque ja estava organizado.
+      - preview: "Tive que pesquisar FAFSA cuidadosamente porque meus pais nao estavam familiarizados com o processo."
+        text: >
+          Tive que obter documentos de informacoes financeiras dos meus pais para colocar no FAFSA. Porque meus pais sao imigrantes e realmente nao sabem
+          como fazer essas coisas, e tive que fazer muita pesquisa por minha conta para ter certeza de que estou apresentando FAFSA corretamente.
+
+  - id: application-timeline
+    prompt: "Quando voce comecou sua candidatura universitaria e qual foi sua linha do tempo?"
+    responses:
+      - preview: "Nao pensei em candidaturas universitarias ate o terceiro ano."
+        text: >
+          Vagamente comecei a saber sobre candidaturas universitarias no ensino fundamental, mas realmente nao me importei ate o terceiro ano do ensino medio.
+          Comecei a me preparar para o SAT no meu terceiro ano, pedi cartas de recomendacao no final do terceiro ano, e comecei a escrever meus ensaios
+          no verao antes do ultimo ano. Os ensaios e candidaturas continuaram ate o final das decisoes regulares.
+      - preview: "Comecei a pensar em candidaturas cedo, mas nao me afetou ate mais tarde no ensino medio."
+        text: >
+          Comecei a escrever minha candidatura no ultimo ano do ensino medio, mas acho que comecei a pensar em faculdades desde o inicio do ensino medio.
+          Tive uma irma que era quatro anos mais velha, entao meus pais basicamente comecaram a me lembrar sobre candidaturas universitarias cedo, embora realmente nao
+          me afetasse no primeiro e segundo ano.
+      - preview: "Comecei a pensar nisso no primeiro ano, mas nao comecei ate o verao antes do ultimo ano."
+        text: >
+          Comecei a pensar sobre a candidatura no primeiro ano do ensino medio. Fiz meu SAT no segundo ano, mas nao comecei
+          com a candidatura real ate o verao antes do ultimo ano.
+      - preview: "Comecei me candidatando para minhas escolas de maior prioridade, e depois reusei meus ensaios existentes para outras escolas."
+        text: >
+          Comecei minha candidatura no meio do verao antes do meu ultimo ano. Comecei olhando para escolas que tinham decisoes rolantes e faculdades de honrarias que eram
+          de maior prioridade para mim. Depois que esses foram feitos, reusei meus ensaios existentes para as outras escolas mais proximas do prazo final.
+          Acho que finalizei meus ensaios aproximadamente uma semana antes de todos os prazos.
+      - preview: "Comecei em fins de junho, mas ainda enviei bem na ultima hora."
+        text: >
+          Acho que comecei tudo em fins de junho. Mas honestamente, procrastinei bastante e enviei minhas candidaturas bem na ultima hora.
+      - preview: "Comecei a trabalhar seriamente na minha candidatura no verao antes do ultimo ano e enviei em outubro."
+        text: >
+          Mais ou menos sabia sobre me candidatar a faculdades desde uma idade jovem. Mas realmente comecei a trabalhar na minha candidatura em junho do verao antes do ultimo ano.
+          Montei meu primeiro rascunho em agosto, fiz o ensaio de video de Brown em setembro, e enviei a candidatura em outubro.
+      - preview: "Comecei a pensar em faculdade no ensino medio; eventualmente enviei minhas candidaturas de agosto a novembro."
+        text: >
+          Meu primeiro pensamento sobre faculdade foi no inicio do ensino medio. A primeira vez que realmente me afetou na escola foi no segundo ano, quando percebi
+          que precisava estudar e me preparar para a faculdade. Acho que comecei minha candidatura no verao antes do ultimo ano, e enviei minha primeira candidatura
+          em agosto porque eram decisoes rolantes, e deixei de me candidatar em novembro.
+      - preview: "Comecei a pesquisar em nono ano e segui construindo minha candidatura durante todo o ensino medio."
+        text: >
+          A primeira vez que soube sobre faculdades foi em sexto ano. Mas como meus pais nunca frequentaram faculdade, continuava sendo apenas uma ideia inicial para mim.
+          Realmente comecei a pesquisar sobre candidaturas universitarias em nono ano. Em decimo ano, comecei a escrever minha declaracao pessoal. Tambem percebi que
+          nao estava fazendo nada fora de aulas, entao comecei a fazer algumas atividades extracurriculares. Em decimo primeiro ano, realmente me concentrei em minhas atividades extracurriculares
+          e me candidatei para programas que as faculdades oferecem. Quando chegou decimo segundo ano, pedi aos meus professores para revisar meus ensaios e finalizei minha candidatura.
+
+  - id: recommendation-letters
+    prompt: "De quem voce pediu cartas de recomendacao?"
+    responses:
+      - preview: "Professor de matematica e ingles, porque tinha o melhor relacionamento com eles."
+        text: >
+          Alem da carta de recomendacao obrigatoria do conselheiro, pedi cartas de recomendacao dos meus professores de matematica e ingles. Lia
+          em algum lugar que voce deveria ter suas duas recomendacoes de professor serem de assuntos nao adjacentes, e sentia que tinha o melhor relacionamento
+          com meu professor de matematica em aulas STEM, e professor de ingles em aulas nao STEM.
+      - preview: "Pedi a professores que me conheciam bem, alem do meu treinador de julgamento simulado."
+        text: >
+          Pedi ao meu professor de historia do primeiro e terceiro ano. Ele tambem foi moderador de um clube em que estava, entao sentia que poderia dar
+          uma perspectiva util. Tambem pedi ao meu professor de matematica porque era meu assunto favorito na epoca e participava frequentemente da aula.
+          De fato tambem tive uma carta adicional do meu treinador de julgamento simulado.
+      - preview: "Professor de matematica/CS e professor de filosofia, que viram meu crescimento no ensino medio. Tambem um professor de pesquisa online."
+        text: >
+          Pedi ao meu professor de matematica e CS, que me ensinou por tres anos. Sentia que sua aula me desafiou mais; sempre saio de sua aula exausto, de uma forma boa.
+          Tambem pedi ao meu professor de filosofia, que me ensinou e me viu atraves de coisas de competicoes de etica, que foi uma das minhas maiores dificuldades
+          no ensino medio. Tambem tive uma carta de um professor em outra faculdade com quem fiz pesquisa online.
+      - preview: "Pedi aos meus professores de Latim e Ingles."
+        text: >
+          Pedi aos meus professores de Latim e Ingles. Sinto que esses dois eram os professores com os quais tinha os relacionamentos mais desenvolvidos fora da
+          sala de aula. Tambem, sobre o topico de sugerir que as cartas de recomendacao sejam de areas de assunto diferentes, acho que nao se aplicava tanto a mim porque
+          estava me candidatando a duas carreiras em humanidades. Tambem acho que ajudou a me mostrar como alguem que conhece mais ou menos a direcao em que vou.
+      - preview: "Pedi aos meus professores de ingles, filosofia e alguem de uma organizacao juvenil."
+        text: >
+          Pedi aos meus professores de ingles e filosofia cartas de recomendacao porque tive desempenho em suas aulas e tambem tive bons relacionamentos com eles.
+          Tambem pedi a uma das pessoas em uma organizacao juvenil na qual estava participando. Tinha conexoes fortes com eles e qualificacoes fortes nessa area.
+      - preview: "Pedi a professores STEM e humanidades para falar sobre forcas diferentes."
+        text: >
+          Sinto que meu historico especifico vem com alguns estereotipos, especialmente porque estou me candidatando em STEM. Entao tive uma tatica onde
+          pedi a dois professores STEM e dois professores de humanidades, e pedi a um de cada um para falar sobre minha forca pessoal, e o outro sobre
+          minha forca academica.
+
+  - id: application-help
+    prompt: "Quem te ajudou com sua candidatura universitaria?"
+    responses:
+      - preview: "Professor de ingles, pai."
+        text: >
+          Meu professor de ingles e meu pai me ajudaram a revisar meus ensaios. Meu pai tambem me ajudou com pesquisa de escolas sobre quais me candidatar.
+          Alem disso, estive em breve contato com uma empresa de orientacao universitaria, mas nao terminei trabalhando com eles. Minha escola tambem fornecia
+          conselheiros universitarios, mas nao foram super uteis para mim.
+      - preview: "Minha mae, irma e conselheiro escolar."
+        text: >
+          Minha mae me lembrava sobre faculdade e planejamento antecipado para candidaturas. Minha irma ajudou a revisar meus ensaios. Tive alguma interacao com meu
+          conselheiro universitario na escola tambem; eles olharam minha lista de faculdades e de fato me sugeriram ROTC, que nao fiz.
+      - preview: "Estudantes graduados, pais, empresa de orientacao universitaria paga."
+        text: >
+          Lembro de alguns estudantes graduados que me ajudaram a escolher escolas. Meus pais tambem estavam um pouco envolvidos no processo. A maioria da ajuda veio de
+          uma empresa externa de orientacao universitaria paga. Foi muito uma operacao fora da escola.
+      - preview: "Meu pai e meu professor de literatura."
+        text: >
+          Acho que a maior ajuda que recebi foi do meu pai que revisou muitos dos meus ensaios. Ele tambem me ajudou a edita-los antes de enviar. Meu professor de
+          literatura tambem nos fez enviar nossas declaracoes pessoais e dar feedback sobre elas.
+      - preview: "Principalmente confiei no meu conselheiro universitario e no meu proprio sentido de voz."
+        text: >
+          Alem do meu conselheiro universitario que me deu bons conselhos gerais e conhecimento sobre candidaturas, realmente nao recebi muita outra ajuda. Nao
+          sentia que outras pessoas podiam falar por mim.
+      - preview: "Meu consultor universitario ajudou com o lado tecnico, e minha familia e amigos leram meus ensaios."
+        text: >
+          Meu consultor universitario da escola secundaria me ajudou muito com o lado tecnico do processo, como lidar com CommonApp, obter documentos para
+          diferentes escolas, e coisas assim. Tambem tive minha familia e amigos revisar meus ensaios.
+      - preview: "Um oficial de admissoes de CMU me ajudou muito no processo; meus pais e meu professor de ingles tambem contribuiram."
+        text: >
+          Tomei um salto quando participei de um programa de verao em CMU falando com um oficial de admissoes la pelo departamento de CS. Ela me ajudou a
+          revisar meus ensaios e atividades extracurriculares, ate tive uma chamada do zoom um-a-um com ela para passar por cada sentenca da minha declaracao pessoal. Alem disso, recebi muita
+          motivacao dos meus pais, e tambem tive meu professor de ingles ajudar a revisar meus ensaios.
+
+  - id: frame-application
+    prompt: "Como voce enquadrou sua candidatura?"
+    responses:
+      - preview: "Engenheiro biomedico interessado em ciencias naturais."
+        text: >
+          Tive muitas experiencias de olimpiada durante o ensino medio, como em ciencia da computacao, matematica e biologia,
+          entao principalmente centrei minha candidatura em torno delas. Tambem incluia xadrez como meu passatempo principal fora de academicos, mas era so isso.
+          Diria que me apresentei como um engenheiro biomedico interessado em ciencias naturais.
+      - preview: "Alguem que se importa com outras pessoas e com a sociedade mais ampla."
+        text: >
+          Me apresentei como alguem que se importa com outras pessoas e com a sociedade mais ampla. Me concentrei em minhas observacoes sobre coisas que estavam acontecendo
+          ao meu redor em detalhes e me envolvi com elas em um nivel mais profundo.
+      - preview: "Uma candidatura e uma ficcao baseada na realidade."
+        text: >
+          Acho que uma candidatura nao e nao-ficcao. E ficcao baseada na realidade. Nesse sentido, se voce quer fazer um personagem memoravel, voce tem
+          que dar a eles historias de fundo que sao tragicas ou engraçadas. Por isso escolhi uma tragica e engraçada. Queria ser visto como um nerd, mas por boas razoes, nao
+          porque quero ir para alguma faculdade, mas porque de alguma forma nasci e sou disposto a ser assim.
+      - preview: "Enquadrei minha candidatura em torno de minha paixao por matematica e CS."
+        text: >
+          Estava realmente interessado em coisas de matematica e CS, entao tentei enquadrar em torno de minha paixao por matematica e CS. Em retrospectiva, acho que
+          provavelmente deveria ter tecido algumas das minhas outras atividades que me diferenciassem da multidao.
+      - preview: "Tentei mostrar que valorizava a comunidade."
+        text: >
+          Realmente valoriço a comunidade e queria que as faculdades soubessem disso. Realmente tentei mostrar esse ponto atraves da minha declaracao pessoal e
+          atividades extracurriculares. Tambem, para meu portfolio de arte, tambem me certifiquei de que mensagens relacionadas a humildade e empatia se transmitissem.
+      - preview: "Queria que cada parte da minha candidatura se alinhasse com uma historia maior."
+        text: >
+          Queria me apresentar de duas formas: quem sou e para onde vou. E estava realmente preocupado em que cada parte da candidatura se alinhasse
+          com uma historia maior que e autentica para mim. Acho que as pessoas as vezes ficam com medo pensando que outra pessoa esta do outro lado, mas por mais estranho que
+          possa parecer, o oficial de admissoes sabe que voce ainda e uma crianca, entao aproveitei isso para me divertir.
+      - preview: "Apresentei meu nicho atraves de participacao politica e trabalho em organizacoes juvenis."
+        text: >
+          Uma coisa importante para mim era me apresentar como uma especie de nicho. Nao se trata apenas de ter uma candidatura forte em termos de
+          testes padronizados e notas, mas tambem nas formas como voce se envolve com sua sociedade e comunidade como um todo. Na minha candidatura, realmente enfatizei
+          minha participacao politica e envolvimento em organizacoes juvenis.
+      - preview: "Me concentrei na minha historia e historico de superacao de adversidades."
+        text: >
+          Acho que poderia nao ser o mais extraordinario em academicos, entao me concentrei na minha historia e meu historico de superacao de adversidades,
+          que acho que sao minhas forcas.
+
+  - id: general-tips
+    prompt: "Alguma dica geral/palavras para estudantes mais jovens?"
+    responses:
+      - preview: "Comece seus ensaios universitarios cedo!"
+        text: >
+          Argumentavelmente, um dos componentes mais importantes da sua candidatura universitaria alem de atividades e notas e seu ensaio. Certifique-se de
+          comecai cedo nesses. Pessoalmente, tive mais de 10 versoes da minha declaracao pessoal, com algumas reescritas completas!
+      - preview: "Tente enquadrar sua candidatura em torno de um tema/assunto."
+        text: >
+          Realmente apresente o que te interessa. Se for dificil descobrir seu interesse exato, voce ainda deveria tentar enquadrar sua
+          candidatura em torno de um tema/assunto. Tambem, lembre-se de que pode exagerar em sua candidatura, mas nao minta!
+      - preview: "Nao gaste muito tempo em suas escolas de seguranca."
+        text: >
+          Para estudantes individuais, eles devem evitar ser ensinados por estudantes universitarios atuais. Apenas porque passaram pelo processo nao
+          significa que sabem como funciona. Tambem, nao gaste muito tempo em suas escolas de seguranca, ja que provavelmente entrara.
+      - preview: "O processo e estressante, mas voce geralmente terminara bem."
+        text: >
+          Estava realmente estressado durante a temporada de candidaturas sobre coisas como entrar em uma faculdade realmente prestigiosa. Mas agora que estou no meu segundo
+          ano de faculdade, me encontrei se saindo bastante bem. Entao sim, acho que por mais estressante que seja a temporada de candidaturas, voce geralmente terminara bem.
+      - preview: "Comece a pensar em ensaios cedo, procure ajuda se precisar e pesquise e visite faculdades."
+        text: >
+          Voce deveria pelo menos comecai a pensar em seus ensaios no verao antes do ultimo ano. Tambem certifique-se de procurar ajuda se precisar.
+          Pesquise as faculdades para as quais esta se candidatando e definitivamente visite faculdades tambem!
+      - preview: "Tenha uma direcao e faca sua candidatura parecer uma historia coesiva."
+        text: >
+          Embora nao tenha que estar definido, sinto que deveria ter uma ideia do por que quer ir para a faculdade e onde estara no final.
+          Sua candidatura tambem deveria ser uma historia coesiva, com diferentes partes da candidatura sendo subsecoes distintas apontando para a mesma coisa.
+      - preview: "Diferencie-se e mantenha-se organizado com seus documentos."
+        text: >
+          Acho que voce deveria fazer algo para se diferenciar da populacao geral. Talvez atraves de atividades extracurriculares unicas, fazendo com que o
+          oficial de admissoes pense que voce esta comprometido com sua educacao. Tambem, voce precisa estar organizado com os documentos e coisas que esta
+          enviando para a faculdade.
+      - preview: "Mantenha-se motivado e pesquise como funciona o processo de admissoes universitarias."
+        text: >
+          A coisa mais importante e ter motivacao para si mesmo. Porque no final do dia, onde voce sera admitido realmente depende de onde voce quer ir. Tambem realmente pesquise
+          o processo de admissoes: sempre muda e as faculdades se preocupam com coisas diferentes. Pesquisei em fontes como YouTube, pesquisa na web e forums, que frequentemente tinham
+          sugestoes e instrucoes sobre partes do processo de admissoes.
