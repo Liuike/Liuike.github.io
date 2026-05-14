@@ -2,7 +2,7 @@
 layout: post
 title: "Hello, World - My First Post"
 date: 2025-08-20 12:00:00 -0400
-categories: blog personal
+tags: [Personal]
 ---
 
 This is my first post on my new personal site. 🎉

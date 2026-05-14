@@ -160,7 +160,7 @@ nav, .nav {
 /* Main Content */
 .main-content {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     min-height: calc(100vh - 80px);
     padding: 2rem;
@@ -358,6 +358,7 @@ article .links {
     position: relative;
 }
 
+
 .link {
     text-decoration: none;
     color: #E07A5F;
@@ -408,6 +409,22 @@ a:not(.brand):not(.logo):not(.link):not(.nav a):not(.nav-links a):hover {
 
 .clickable-music:hover {
     color: #C4654F;
+}
+
+/* Spoiler text styling */
+.spoiler {
+    background-color: #121212;
+    color: #121212;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.spoiler:hover {
+    background-color: transparent;
+    color: inherit;
 }
 
 /* Image dropdown styling */
@@ -461,6 +478,82 @@ a:not(.brand):not(.logo):not(.link):not(.nav a):not(.nav-links a):hover {
 .post-list {
     padding-left: 0;
     list-style: none;
+}
+
+/* Blog layout (sidebar is independent of main content) */
+.blog-main-content {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 900px) 200px 1fr;
+    column-gap: 3rem;
+    align-items: start;
+}
+
+.blog-main-content > .container {
+    grid-column: 2;
+    margin: 0;
+}
+
+.blog-sidebar-external {
+    grid-column: 3;
+    width: 200px;
+}
+
+/* Blog header layout (title and intro only, no sidebar) */
+.blog-header {
+    margin-bottom: 2rem;
+}
+
+/* Tag filtering */
+.tag-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 2.2rem;
+}
+
+.category-label {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #121212;
+    margin-bottom: 0.5rem;
+}
+
+.tag-btn {
+    background-color: transparent;
+    color: #4B5563;
+    border: none;
+    padding: 0.25rem 0;
+    border-radius: 0;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.tag-btn:hover {
+    color: #121212;
+}
+
+.tag-btn.active {
+    font-weight: 700;
+    color: #121212;
+}
+
+/* Post tags */
+.post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+.post-tag {
+    background-color: #F3F4F6;
+    color: #4B5563;
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
 }
 
 .post-list li {
@@ -547,6 +640,37 @@ a:not(.brand):not(.logo):not(.link):not(.nav a):not(.nav-links a):hover {
         margin-right: auto;
     }
 
+    .blog-header {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .blog-header-sidebar {
+        width: 100%;
+    }
+
+    .blog-header-content {
+        min-width: 0;
+    }
+
+    .blog-page-wrapper {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .blog-sidebar-external {
+        width: 100%;
+    }
+
+    .tag-filters {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .tag-btn {
+        width: auto;
+    }
+
     .home-container {
         flex-direction: column;
         gap: 2rem;
@@ -586,6 +710,7 @@ a:not(.brand):not(.logo):not(.link):not(.nav a):not(.nav-links a):hover {
         align-items: center;
     }
 
+
     nav, .nav {
         padding: 0 1rem;
     }
@@ -595,7 +720,15 @@ a:not(.brand):not(.logo):not(.link):not(.nav a):not(.nav-links a):hover {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 960px) {
+    .blog-sidebar-external {
+        display: none;
+    }
+
+    .blog-main-content {
+        grid-template-columns: 1fr minmax(0, 900px) 1fr;
+    }
+
     .profile-image {
         width: 120px;
         height: 217px;
