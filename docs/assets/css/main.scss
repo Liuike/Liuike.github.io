@@ -242,7 +242,7 @@ h1 {
     font-weight: 300;
     margin-left: -0.5rem;
     margin-bottom: 1rem;
-    font-family: 'Source Serif Pro', Georgia, serif;
+    font-family: "Microsoft YaHei", "Microsoft YaHei UI", "PingFang SC", "Noto Sans CJK SC", sans-serif;
 }
 
 .social-links {
@@ -281,6 +281,14 @@ h1 {
 .social-icon svg {
     width: 24px;
     height: 24px;
+}
+
+.social-icon.email-icon {
+    color: #FFFFFF;
+}
+
+.social-icon.email-icon svg {
+    stroke: currentColor;
 }
 
 .github-icon {
@@ -375,14 +383,14 @@ article .links {
 }
 
 /* Universal hyperlink styling */
-a:not(.brand):not(.logo):not(.link):not(.nav a):not(.nav-links a) {
+a:not(.brand):not(.logo):not(.link):not(.nav a):not(.nav-links a):not(.social-icon) {
     color: #E07A5F;
     text-decoration: underline;
     font-size: inherit;
     transition: color 0.3s ease;
 }
 
-a:not(.brand):not(.logo):not(.link):not(.nav a):not(.nav-links a):hover {
+a:not(.brand):not(.logo):not(.link):not(.nav a):not(.nav-links a):not(.social-icon):hover {
     color: #C4654F;
 }
 
@@ -443,6 +451,10 @@ a:not(.brand):not(.logo):not(.link):not(.nav a):not(.nav-links a):hover {
     max-width: 600px;
     height: auto;
     border-radius: 6px;
+}
+
+.image-dropdown .image-credit {
+    font-size: 0.8rem;
 }
 
 /* Music player dropdown styling */
@@ -567,6 +579,15 @@ a:not(.brand):not(.logo):not(.link):not(.nav a):not(.nav-links a):hover {
 
 .post-list li:hover {
     box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+/* Projects list should not lift on hover */
+.projects-main-content .post-list li {
+    transition: none;
+}
+
+.projects-main-content .post-list li:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .post-list a {

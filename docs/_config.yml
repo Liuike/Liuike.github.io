@@ -15,10 +15,10 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
   
-# Collections (optional)
-# collections:
-#   projects:
-#     output: true
+# Collections
+collections:
+  projects:
+    output: false
 
 # Permalinks
 permalink: /:categories/:year/:month/:day/:title/
