@@ -1,0 +1,5 @@
+{%- assign hover_text = include.text | default: "hover" -%}
+{%- assign img_src = include.src | default: "/assets/img/example.jpg" -%}
+{%- assign img_alt = include.alt | default: "Preview image" -%}
+{%- assign img_side = include.side | default: "right" -%}
+<span class="hover-image" data-side="{{ img_side | escape }}">{{ hover_text }}<img src="{{ img_src | escape }}" alt="{{ img_alt | escape }}"></span>
