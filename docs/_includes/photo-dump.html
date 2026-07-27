@@ -1,0 +1,23 @@
+{%- assign dir = include.dir | default: "/assets/img" -%}
+{%- assign files_raw = include.files | default: "" -%}
+{%- assign files = files_raw | split: "," -%}
+{%- assign dir_prefix = dir | append: "/" -%}
+{%- assign gallery_id = include.id | default: "" -%}
+<div class="photo-dump">
+  <div class="justified-gallery"{% if gallery_id != "" %} id="{{ gallery_id | escape }}"{% endif %}>
+{%- if files_raw != "" -%}
+  {%- for file in files -%}
+    {%- assign trimmed = file | strip -%}
+    {%- if trimmed != "" -%}
+    <img src="{{ dir | escape }}/{{ trimmed | escape }}" alt="">
+    {%- endif -%}
+  {%- endfor -%}
+{%- else -%}
+  {%- for static_file in site.static_files -%}
+    {%- if static_file.path contains dir_prefix -%}
+    <img src="{{ static_file.path | escape }}" alt="">
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+  </div>
+</div>

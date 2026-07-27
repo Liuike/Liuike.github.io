@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<div class="main-content">
+<div class="main-content post-main-content">
   <article class="container">
     <h1>{{ page.title }}</h1>
     <p><small>{{ page.date | date: "%B %d, %Y" }}</small></p>
@@ -13,4 +13,23 @@ layout: default
       <a href="/" class="link">← Back to home</a>
     </div>
   </article>
+  {% if page.toc_auto %}
+    <aside class="blog-sidebar-external post-sidebar-external">
+      <div class="tag-filters toc-filters" data-toc>
+        <div class="category-label">{{ page.toc_title | default: "Contents" }}</div>
+        <div class="toc-scroll" data-toc-list></div>
+      </div>
+    </aside>
+  {% elsif page.toc %}
+    <aside class="blog-sidebar-external post-sidebar-external">
+      <div class="tag-filters">
+        <div class="category-label">{{ page.toc_title | default: "Contents" }}</div>
+        <div class="toc-scroll">
+          {% for item in page.toc %}
+            <a class="tag-btn" href="{{ item.url }}">{{ item.title }}</a>
+          {% endfor %}
+        </div>
+      </div>
+    </aside>
+  {% endif %}
 </div>
