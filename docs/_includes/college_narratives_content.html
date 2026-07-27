@@ -1,22 +1,52 @@
 {% assign narratives = site.data.college_narratives %}
+{% assign labels = narratives.labels %}
+{% assign translations_es = site.data.college_narratives_translations_es %}
+{% assign translations_pt = site.data.college_narratives_translations_pt %}
 
 <div class="main-content narratives-page">
   <div class="container narratives-container">
     <div class="narratives-hero">
-      <h1>{{ narratives.title }}</h1>
+      <div class="language-toggle" role="group" aria-label="Language toggle">
+        <button class="language-toggle-btn" type="button" data-language-option data-language="en">{{ labels.language_en | default: 'English' }}</button>
+        <button class="language-toggle-btn" type="button" data-language-option data-language="es">{{ labels.language_es | default: 'Espanol' }}</button>
+        <button class="language-toggle-btn" type="button" data-language-option data-language="pt">{{ labels.language_pt | default: 'Portugues' }}</button>
+      </div>
+      <div class="ai-translation-disclaimer" data-lang-content="es" hidden>
+        <span class="disclaimer-badge">Traducción asistida por IA</span>
+      </div>
+      <div class="ai-translation-disclaimer" data-lang-content="pt" hidden>
+        <span class="disclaimer-badge">Tradução assistida por IA</span>
+      </div>
+      <h1>
+        <span data-lang-content="en">{{ narratives.title }}</span>
+        <span data-lang-content="es" hidden>Narrativas de Solicitudes Universitarias</span>
+        <span data-lang-content="pt" hidden>Narrativas de Candidatura Universitaria</span>
+      </h1>
       <div class="intro">
-        {{ narratives.intro | markdownify }}
+        <div data-lang-content="en">{{ narratives.intro | markdownify }}</div>
+        <div data-lang-content="es" hidden>{{ translations_es.intro | default: narratives.intro | markdownify }}</div>
+        <div data-lang-content="pt" hidden>{{ translations_pt.intro | default: narratives.intro | markdownify }}</div>
       </div>
     </div>
 
     <section class="narratives-jump-list" aria-labelledby="questions-heading">
-      <p id="questions-heading" class="narratives-nav-label">Questions</p>
+      <p id="questions-heading" class="narratives-nav-label">
+        <span data-lang-content="en">{{ labels.questions_en | default: 'Questions' }}</span>
+        <span data-lang-content="es" hidden>{{ labels.questions_es | default: labels.questions_en | default: 'Questions' }}</span>
+        <span data-lang-content="pt" hidden>{{ labels.questions_pt | default: labels.questions_en | default: 'Questions' }}</span>
+      </p>
       <ul class="question-links">
         {% for question in narratives.questions %}
+          {% assign trans_question_es = translations_es.questions | where: 'id', question.id | first %}
+          {% assign trans_question_pt = translations_pt.questions | where: 'id', question.id | first %}
           <li>
             <a href="#{{ question.id }}">
               <span class="question-link-num">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
-              <span class="question-link-text">{{ question.prompt }}</span>
+              <span class="question-link-text">
+                <span data-lang-content="en">{{ question.prompt }}</span>
+                <span data-lang-content="es" hidden>{{ trans_question_es.prompt | default: question.prompt }}</span>
+                <span data-lang-content="pt" hidden>{{ trans_question_pt.prompt | default: question.prompt }}</span>
+              </span>
             </a>
           </li>
         {% endfor %}
@@ -25,44 +55,80 @@
 
     <div class="narratives-sections">
       {% for question in narratives.questions %}
+        {% assign trans_question_es = translations_es.questions | where: 'id', question.id | first %}
+        {% assign trans_question_pt = translations_pt.questions | where: 'id', question.id | first %}
         <section class="question-section" id="{{ question.id }}" data-response-section>
           <div class="question-header">
-            <p class="question-label">Question {{ forloop.index }}</p>
-            <h2>{{ question.prompt }}</h2>
+            <p class="question-label">
+              <span data-lang-content="en">{{ labels.question_prefix_en | default: 'Question' }} {{ forloop.index }}</span>
+              <span data-lang-content="es" hidden>{{ labels.question_prefix_es | default: labels.question_prefix_en | default: 'Question' }} {{ forloop.index }}</span>
+              <span data-lang-content="pt" hidden>{{ labels.question_prefix_pt | default: labels.question_prefix_en | default: 'Question' }} {{ forloop.index }}</span>
+            </p>
+            <h2>
+              <span data-lang-content="en">{{ question.prompt }}</span>
+              <span data-lang-content="es" hidden>{{ trans_question_es.prompt | default: question.prompt }}</span>
+              <span data-lang-content="pt" hidden>{{ trans_question_pt.prompt | default: question.prompt }}</span>
+            </h2>
           </div>
 
           <div class="response-list">
             {% if question.responses and question.responses.size > 0 %}
               {% for response in question.responses %}
+                {% assign trans_response_es = trans_question_es.responses[forloop.index0] %}
+                {% assign trans_response_pt = trans_question_pt.responses[forloop.index0] %}
                 <details class="response-card" data-response-card data-endorsed="{% if response.endorsed %}true{% else %}false{% endif %}">
                   <summary class="response-summary">
                     <div class="response-meta">
                       <p class="response-author">
-                        {% if response.university %}{{ response.university }}{% endif %}{% if response.university and response.graduation_year %}, Class of {{ response.graduation_year }}{% endif %}{% if response.graduation_year and response.university == nil %}Class of {{ response.graduation_year }}{% endif %}{% if response.intended_majors %}{% if response.university or response.graduation_year %}, {% endif %}Major{% if response.intended_majors contains " and " or response.intended_majors contains "," %}s{% endif %}: {{ response.intended_majors }}{% endif %}
+                        {% if response.is_editor_note %}
+                          <span data-lang-content="en">{{ response.university }}</span>
+                          <span data-lang-content="es" hidden>{{ trans_response_es.university | default: response.university }}</span>
+                          <span data-lang-content="pt" hidden>{{ trans_response_pt.university | default: response.university }}</span>
+                        {% else %}
+                          {% if response.university %}{{ response.university }}{% endif %}{% if response.university and response.graduation_year %}, Class of {{ response.graduation_year }}{% endif %}{% if response.graduation_year and response.university == nil %}Class of {{ response.graduation_year }}{% endif %}{% if response.intended_majors %}{% if response.university or response.graduation_year %}, {% endif %}Major{% if response.intended_majors contains " and " or response.intended_majors contains "," %}s{% endif %}: {{ response.intended_majors }}{% endif %}
+                        {% endif %}
                       </p>
                     </div>
-                    <p class="response-preview">"{{ response.preview }}"</p>
+                    <p class="response-preview">
+                      <span data-lang-content="en">"{{ response.preview }}"</span>
+                      <span data-lang-content="es" hidden>"{{ trans_response_es.preview | default: response.preview }}"</span>
+                      <span data-lang-content="pt" hidden>"{{ trans_response_pt.preview | default: response.preview }}"</span>
+                    </p>
                   </summary>
 
                   <div class="response-body">
-                    <p>{{ response.text }}</p>
+                    <div data-lang-content="en">{{ response.text | markdownify }}</div>
+                    <div data-lang-content="es" hidden>{{ trans_response_es.text | default: response.text | markdownify }}</div>
+                    <div data-lang-content="pt" hidden>{{ trans_response_pt.text | default: response.text | markdownify }}</div>
                   </div>
                 </details>
               {% endfor %}
             {% else %}
-              <p class="response-empty">No narratives added for this question yet.</p>
+              <p class="response-empty">
+                <span data-lang-content="en">{{ labels.empty_responses_en | default: 'No narratives added for this question yet.' }}</span>
+                <span data-lang-content="es" hidden>{{ labels.empty_responses_es | default: labels.empty_responses_en | default: 'No narratives added for this question yet.' }}</span>
+                <span data-lang-content="pt" hidden>{{ labels.empty_responses_pt | default: labels.empty_responses_en | default: 'No narratives added for this question yet.' }}</span>
+              </p>
             {% endif %}
           </div>
 
           {% if question.responses and question.responses.size > 4 %}
-            <button class="responses-toggle" type="button" data-show-all-responses>View all responses</button>
+            <button class="responses-toggle" type="button" data-show-all-responses>
+              <span data-lang-content="en">{{ labels.view_all_en | default: 'View all responses' }}</span>
+              <span data-lang-content="es" hidden>{{ labels.view_all_es | default: labels.view_all_en | default: 'View all responses' }}</span>
+              <span data-lang-content="pt" hidden>{{ labels.view_all_pt | default: labels.view_all_en | default: 'View all responses' }}</span>
+            </button>
           {% endif %}
         </section>
       {% endfor %}
     </div>
 
     <div class="narratives-bottom-actions">
-      <a href="{{ narratives.main_site_url }}" class="link narratives-return-link">{{ narratives.main_site_label }}</a>
+      <a href="{{ narratives.main_site_url }}" class="link narratives-return-link">
+        <span data-lang-content="en">{{ narratives.main_site_label }}</span>
+        <span data-lang-content="es" hidden>Si quieres ver quién está detrás de este proyecto :)</span>
+        <span data-lang-content="pt" hidden>Se quiser ver quem está por trás deste projeto :)</span>
+      </a>
     </div>
   </div>
 </div>

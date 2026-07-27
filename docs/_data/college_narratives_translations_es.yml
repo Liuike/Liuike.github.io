@@ -1,0 +1,346 @@
+# Spanish translations for college narratives
+# Maps question IDs to translated prompts and responses
+intro: |
+  Este proyecto tiene como objetivo responder a las preguntas comunes y poco comunes sobre las admisiones universitarias usando narrativas personales de estudiantes universitarios que lo han vivido de primera mano.
+
+  Estas respuestas son intencionalmente personales. Esperamos ofrecer mas que hechos y anecdotas que se oyen por todas partes. Aqui puedes escuchar historias veridicas, aunque quizas no tan llamativas, que (con suerte) guien tu proceso de solicitud universitaria.
+
+  Recuerda, estas historias no representan "la manera" de postular a las universidades. Cito a una de las personas que respondio: "haber pasado por el [proceso de solicitud universitario]" no significa que los estudiantes realmente sepan como funciona.
+  Aun asi, esperamos que este proyecto te sea util.
+questions:
+  - id: choose-where-to-apply
+    prompt: "¿Como eliges donde postularte?"
+    responses:
+      - preview: "Tenia una lista de escuelas de 'seguridad', 'objetivo' y 'alcance'."
+        text: >
+          Segui la sugerencia estandar que escuche, que es tener un conjunto de escuelas de "seguridad", "objetivo" y "alcance". No tenia muchos otros
+          factores que influyeran en donde postularme. Me postule a las universidades publicas de mi estado para seguridad; escuelas con programas STEM fuertes como escuelas objetivo;
+          y top 20 para escuelas de alcance. Tambien me postule a las escuelas de UC.
+      - preview: "Considere la dificultad de la aplicacion frente al tiempo dedicado..."
+        text: >
+          Estoy basado en California, asi que naturalmente me postule a las escuelas de UC. En cuanto a otras escuelas, considere la dificultad de la aplicacion frente al tiempo dedicado
+          a la aplicacion al crear mi lista de escuelas de "seguridad", "objetivo" y "alcance". Especificamente, visite Harvard y senti que las vibraciones eran extranas, asi que no me postule
+          alli.
+      - preview: "Hice una lista grande, luego investigue si habia algo desagradable."
+        text: >
+          Mi proceso fue muy basado en vibraciones. Hice una lista de 40 escuelas, en las que podria imaginarme estar. Luego investigue si alguna de las escuelas
+          tenia algo desagradable. Algunas de mis razones para poner una escuela en mi lista son la ubicacion y la fortaleza en un tema que me interesa.
+      - preview: "Me postule a universidades en el estado por arancel, y tambien a escuelas de alcance fuertes en CS."
+        text: >
+          Principalmente pense en postularme a universidades en el estado por el arancel estatal. Despues de eso, me postule a escuelas de alcance que eran fuertes en el
+          departamento de CS, como MIT, Stanford y similares.
+      - preview: "Me enfoque en escuelas en el estado debido a la ayuda fuerte para residentes de Virginia de bajos ingresos."
+        text: >
+          Soy de Virginia, y principalmente busque escuelas en el estado porque las escuelas de Virginia tienen una buena ayuda para personas de bajos ingresos aqui. Creo que en la Universidad de Richmond,
+          los residentes de Virginia con ingresos menores a $75,000 pueden obtener una beca completa. Y esta era una motivacion principal detras de mis elecciones.
+      - preview: "La cultura estudiantil y el tamano de la escuela fueron mis factores mas importantes."
+        text: >
+          Valoro la cultura estudiantil en una universidad mas que nada, y tambien me gustan las escuelas mas grandes. Y esas fueron las influencias principales cuando elegi mis escuelas.
+      - preview: "Tenia una mezcla saludable de escuelas de seguridad, objetivo y alcance basada en mi GPA y preferencias."
+        text: >
+          Tenia una mezcla saludable de escuelas de seguridad, objetivo y alcance. Pero tambien base mis elecciones en mi GPA y preferencias. Tampoco me postule
+          a muchas Ivy Leagues porque no se alineaban con mi vibe.
+      - preview: "Elegi escuelas basadas en la orientacion familiar y la fortaleza del programa de ingenieria."
+        text: >
+          Los lugares que elegi se basaron en la vision de mi familia sobre a que universidades necesitaba ir. Tambien me postule para programas especificos que eran muy
+          buenos para ingenieria. Diria que la influencia entre la orientacion de los padres y la fortaleza del programa fue mitad y mitad.
+
+  - id: early-decision-choice
+    prompt: "¿Te postulaste con decision anticipada a alguna escuela? Si es asi, ¿como elegiste la escuela?"
+    responses:
+      - preview: "Elegi mi escuela anticipada basada en el ambiente, prestigio y tamano de la escuela."
+        text: >
+          Me postule ED a Brown y ED2 a Pomona College. Mas o menos sabia que eran mis opciones principales por el ambiente, prestigio y un tamano de escuela mas pequeno.
+      - preview: "Me postule ED a Brown por el curriculo abierto y las perspectivas de empleo."
+        text: >
+          Me postule ED a Brown. Elegi Brown porque queria hacer lo que quisiera, y el curriculo abierto se ajusta a eso. Tambien tiene suficiente
+          prestigio, que es una buena herramienta si quiero obtener empleo despues.
+      - preview: "Decidi no postularme con decision anticipada en ningun lado, aunque me postule con accion anticipada no restrictiva."
+        text: >
+          Decidi no postularme con decision anticipada en ningun lado. Mas o menos sentia que no me sentia muy fuertemente sobre ninguna escuela individual. Pero en retrospectiva,
+          podria haber valido la pena simplemente disparar mi toma en una escuela. Me postule con accion anticipada no restrictiva a escuelas en mi lista que la tenian.
+      - preview: "Elegi UVA decision anticipada por su tamano y cultura estudiantil."
+        text: >
+          Me postule ED a la Universidad de Virginia porque me gusta que sea una escuela mas grande y tenga una buena cultura estudiantil. Como estoy realmente interesado en
+          la cultura y la comunidad estudiantil, tome esta decision siguiendo cuentas en linea de las escuelas que estaba considerando y encontre cual se me ajustaba mejor.
+      - preview: "Me postule por la fortaleza departamental y el curriculo abierto."
+        text: >
+          Me postule ED a Brown. Como sabia que iba a estudiar clasicas, Brown era una opcion natural porque tiene un programa de clasicas realmente bueno. Tambien
+          sabia que queria hacer multiples cosas, asi que el curriculo abierto se ajustaba perfecto a mis necesidades.
+      - preview: "Elegi CMU decision anticipada despues de asistir a un programa de verano alli."
+        text: >
+          Me postule con decision anticipada a CMU y de hecho entre, pero en realidad no pude aceptar la oferta por razones financieras. Elegi CMU porque hice
+          un programa de verano alli, SAMS, y esa fue realmente la primera vez que vi estudiantes con trasfondos e intereses similares.
+
+  - id: choose-major
+    prompt: "¿Como elegiste una carrera y la mantuviste?"
+    responses:
+      - preview: "Solo elegi lo que se ajustaba mejor a mi portafolio."
+        text: >
+          Realmente no tenia idea de que postularme, asi que solo me postule como Ingenieria Biomedica (BME) porque tenia experiencia en olimpiadas de biologia.
+          De hecho, solo elegi lo que se ajustaba mejor a mi portafolio.
+          Durante la universidad, decidi que la ingenieria era una mala idea y cambie a APMA.
+      - preview: "Elegi mi carrera porque se alineaba con mis ensayos y portafolio."
+        text: >
+          Elegi sociologia cuando me postule y si me mantuve en ella. Elegi sociologia porque se alineaba con mis ensayos y portafolio en desigualdades de salud
+          y cosas asi. Supongo que tambien podria haber elegido salud publica, pero elegi sociologia al final porque creo que cubre
+          un area mas amplia de mis intereses, y tampoco queria seguir la carrera medica completa.
+      - preview: "Me postule con una amplia gama de carreras y declare filosofia por ahora."
+        text: >
+          Me postule en el rango de filosofia, religion, Frances, psicologia y linguistica, que son todas, en general, mis intereses. Declare filosofia en mi primer semestre en la universidad
+          porque queria tener un ancla. Pero todavia estoy explorando otras carreras tambien.
+      - preview: "Siempre quise hacer informatica."
+        text: >
+          Siempre quise hacer informatica, asi que realmente no pense demasiado en ello y me postule como CS para todas las escuelas.
+      - preview: "Me postule sin decidir."
+        text: >
+          De hecho no elegi una carrera. Me postule sin decidir.
+      - preview: "Elegi artes visuales porque mi trasfondo en artes se sentia mas fuerte."
+        text: >
+          Tuve una batalla muy dura eligiendo entre artes visuales y psicologia. Me postule como psicologia para UVA, pero aparte de eso, principalmente me postule como
+          artes visuales porque sentia que tenia un trasfondo mas fuerte en artes. Para CMU especificamente, me postule como artes visuales porque me gusto su programa de arte e integracion con tecnologia.
+      - preview: "Me postule como clasicas y arqueologia, y luego agregue IAPA."
+        text: >
+          Me postule como clasicas y tambien puse arqueologia como mi segunda carrera. Mi historia con clasicas fue en la escuela secundaria, mi profesor de ingles tenia un titulo en clasicas,
+          y enseño una clase de clasicas. Es uno de esos profesores que aparecen una sola vez en la vida, y realmente me intereso el tema. Aqui en Brown, tambien
+          elegi IAPA porque tambien tengo interes en politica moderna.
+      - preview: "Elegi ingenieria mecanica porque me gustan el CAD, diseno y manufactura."
+        text: >
+          Estaba eligiendo entre ingenieria mecanica e ingenieria civil. Al final, elegi y me mantuve en ingenieria mecanica porque me interesa
+          el CAD, diseno y manufactura.
+
+  - id: pay-for-college
+    prompt: "¿Como pagaste la universidad?"
+    responses:
+      - university: "Nota del editor"
+        preview: "Recursos adicionales relacionados con la ayuda financiera y becas."
+        text: |
+          Buscar ayuda/becas puede ser desafiante. Esperamos ayudar incluyendo algunos enlaces adicionales a recursos relevantes:
+
+          Ayuda gubernamental: [FAFSA](https://studentaid.gov/h/apply-for-aid/fafsa), [Programas estatales de ayuda financiera](https://www.nasfaa.org/state_financial_aid_programs)
+
+          Ayuda específica de universidades/becas: [CSS](https://cssprofile.collegeboard.org/), [QuestBridge](https://www.questbridge.org/apply-to-college/programs/national-college-match)
+
+          Estudiantes inmigrantes/no documentados: [The Dream US](https://www.thedream.us/scholarships/), [Immigrants Rising](https://immigrantsrising.org/resource/list-of-scholarships-and-fellowships/)
+
+          Búsqueda de becas: [College Board](https://bigfuture.collegeboard.org/scholarship-search?sort=deadline-nearest-first), [Career One Stop](https://www.careeronestop.org/Toolkit/Training/find-scholarships.aspx)
+
+          Evitar estafas de becas/ayuda financiera: [FTA](https://consumer.ftc.gov/articles/how-avoid-scholarship-and-financial-aid-scams)
+      - preview: "Mis padres pudieron pagar mi universidad."
+        text: >
+          Es realmente afortunado poder decir que mis padres pudieron pagar toda mi arancel.
+      - preview: "Principalmente padres, mas una pequena porcion de ayuda financiera federal."
+        text: >
+          Principalmente padres, mas una pequena porcion de ayuda financiera federal.
+      - preview: "La ayuda financiera cubrio mi arancel y gastos relacionados con la escuela."
+        text: >
+          No pague nada en terminos de arancel; reciba ayuda financiera completa para arancel y gastos relacionados con la escuela.
+      - preview: "Una mezcla de ayuda FAFSA, prestamos y contribucion de los padres."
+        text: >
+          Tome ayuda y prestamo de FAFSA. Tambien tuve contribucion de mis padres, es una mezcla de ambos.
+      - preview: "Las becas cubrieron la mayoria de mis costos, el resto de mis padres."
+        text: >
+          Estoy pagando principalmente a traves de becas de UMich. De hecho recibe muchas becas por merito porque me postule con accion anticipada.
+          Es aproximadamente una division 2:1 entre becas y mis padres. De hecho tambien me postule para muchas becas externas, como
+          becas especificas etnicas, competencias de escritura y cosas asi.
+
+  - id: financial-aid-documents
+    prompt: "¿Que tipo de documentos necesitabas para ayuda financiera? ¿Hubo dificultades en obtenerlos?"
+    responses:
+      - preview: "Los documentos fueron manejables de conseguir, pero habia muchos."
+        text: >
+          Pidieron tantas cosas: declaracion de impuestos de dos anos antes, documentacion de ingresos, prueba de empleo e informacion especifica del hogar de mis padres.
+          Toda esa informacion tambien tiene que ser enrutada a traves de College Board/FAFSA.
+      - preview: "Muchos documentos, pero no fue dificil porque los tenia organizados."
+        text: >
+          Recuerdo tener que obtener formularios W2, formularios de impuestos, numeros de contribuyente, etc. No fueron dificiles de encontrar, principalmente porque ya los tenia organizados.
+      - preview: "Tuve que investigar FAFSA cuidadosamente porque mis padres no estaban familiarizados con el proceso."
+        text: >
+          Tuve que obtener documentos de informacion financiera de mis padres para ponerlos en FAFSA. Porque mis padres son inmigrantes y no saben realmente
+          como hacer estas cosas, y tuve que hacer mucha investigacion por mi cuenta para asegurarme de que estoy presentando FAFSA correctamente.
+
+  - id: application-timeline
+    prompt: "¿Cuando comenzaste tu solicitud universitaria y cual fue tu cronograma?"
+    responses:
+      - preview: "No pense en solicitudes universitarias hasta el tercer ano."
+        text: >
+          Vagamente comence a saber sobre solicitudes universitarias en la escuela intermedia, pero realmente no me importo hasta el tercer ano de la escuela secundaria.
+          Comence a prepararme para el SAT en mi tercer ano, pedi cartas de recomendacion al final del tercer ano, y comence a escribir mis ensayos
+          en el verano antes del ultimo ano. Los ensayos y solicitudes continuaron hasta el final de las decisiones regulares.
+      - preview: "Comence a pensar sobre solicitudes temprano, pero no me afecto hasta mas tarde en la secundaria."
+        text: >
+          Comence a escribir mi solicitud en el ultimo ano de la escuela secundaria, pero supongo que comence a pensar sobre universidades desde el inicio de la escuela secundaria.
+          Tuve una hermana que era cuatro anos mayor, asi que mis padres mas o menos comenzo a recordarme sobre solicitudes universitarias temprano, aunque realmente no
+          me afecto en primer y segundo ano.
+      - preview: "Comence a pensar en ello en primer ano, pero no comence hasta el verano antes del ultimo ano."
+        text: >
+          Comence a pensar sobre la solicitud en el primer ano de la escuela secundaria. Tome mi SAT en mi segundo ano, pero no comence
+          con la solicitud real hasta el verano antes del ultimo ano.
+      - preview: "Comence postulando a mis escuelas de mayor prioridad, y luego reuse mis ensayos existentes para otras escuelas."
+        text: >
+          Comence mi solicitud a mitad del verano antes de mi ultimo ano. Comence mirando escuelas que tenian decisiones por rodillo y colegios de honores que eran
+          de mayor prioridad para mi. Despues de que esos estuvieran hechos, reuse mis ensayos existentes para las otras escuelas mas cercanas a la fecha limite.
+          Creo que finalice mis ensayos aproximadamente una semana antes de todos los plazos.
+      - preview: "Comence a fines de junio pero aun presente bastante ultimo momento."
+        text: >
+          Creo que comence todo a fines de junio. Pero honestamente, procrastine bastante y presente mis solicitudes bastante en el ultimo momento.
+      - preview: "Comence a trabajar seriamente en mi solicitud en el verano antes del ultimo ano y presente en octubre."
+        text: >
+          Mas o menos supe sobre postularme a universidades desde una edad joven. Pero realmente comence a trabajar en mi solicitud en junio del verano antes del ultimo ano.
+          Jinte mi primer borrador en agosto, hice el ensayo de video de Brown en septiembre, y presente la solicitud en octubre.
+      - preview: "Comence a pensar sobre la universidad en la escuela secundaria; eventualmente presente mis solicitudes de agosto a noviembre."
+        text: >
+          Mi primer pensamiento sobre la universidad fue al inicio de la escuela secundaria. La primera vez que realmente me afecto en la escuela fue en segundo ano, cuando me di cuenta
+          de que necesitaba estudiar y prepararme para la universidad. Creo que comence mi solicitud en el verano antes del ultimo ano, y presente mi primera solicitud
+          en agosto porque eran decisiones por rodillo, y deje de postularme en noviembre.
+      - preview: "Comence a investigar en noveno grado y segui construyendo mi solicitud durante toda la escuela secundaria."
+        text: >
+          La primera vez que supe sobre universidades fue en sexto grado. Pero como mis padres nunca asistieron a la universidad, seguia siendo solo una idea temprana para mi.
+          Realmente comence a investigar sobre solicitudes universitarias en noveno grado. En decimo grado, comence a escribir mi declaracion personal. Tambien me di cuenta de que
+          no estaba haciendo nada fuera de clases, asi que comence a hacer algunas actividades extracurriculares tambien. En onceavo grado, realmente me enfoque en mis actividades extracurriculares
+          y me postule para programas que las universidades ofrecen. Cuando llego duodecimo grado, pedi a mis profesores que leyeran mis ensayos y finalice mi solicitud.
+
+  - id: recommendation-letters
+    prompt: "¿A quien le pediste cartas de recomendacion?"
+    responses:
+      - preview: "Profesor de matematica e ingles, porque tenia la mejor relacion con ellos."
+        text: >
+          Aparte de la carta de recomendacion requerida del consejero, pedi cartas de recomendacion de mis profesores de matematica e ingles. Leia
+          en alguna parte que deberian tener dos recomendaciones de profesor de temas no adyacentes, y sentia que tenia la mejor relacion
+          con mi profesor de matematica en clases STEM, y profesor de ingles en clases no STEM.
+      - preview: "Pedi a profesores que me conocian bien, ademas mi entrenador de juicio simulado."
+        text: >
+          Pedi a mi profesor de historia del primer y tercer ano. Tambien fue moderador de un club en el que estaba, asi que sentia que podia dar
+          una perspectiva util. Tambien pedi a mi profesor de matematica porque era mi asignatura favorita en ese momento y participaba frecuentemente en la clase.
+          De hecho tambien tuve una carta adicional de mi entrenador de juicio simulado.
+      - preview: "Profesor de matematica/CS y profesor de filosofia, quienes vieron mi crecimiento en la escuela secundaria. Tambien un profesor de investigacion en linea."
+        text: >
+          Pedi a mi profesor de matematica y CS, quien me enseño durante tres anos. Senti que su clase me desafio mas; siempre salgo de su clase agotado, de buena forma.
+          Tambien pedi a mi profesor de filosofia, quien me enseño y me vio a traves de cosas de competencias de etica, que fue una de mis mayores dificultades
+          en la escuela secundaria. Tambien tuve una carta de un profesor en otra universidad con quien hice investigacion en linea.
+      - preview: "Pedi a mis profesores de Latin e Ingles."
+        text: >
+          Pedi a mi profesor de Latin e Ingles. Siento que esos dos eran los profesores con los que tenia las relaciones mas desarrolladas fuera del
+          aula. Tambien, sobre el tema de sugerir que las cartas de recomendacion sean de diferentes areas tematicas, creo que no se me aplico tanto porque
+          estaba postulando para dos carreras en humanidades. Tambien creo que ayudo a mostrarme como alguien que conoce mas o menos la direccion que van.
+      - preview: "Pedi a mis profesores de ingles, filosofia y alguien de una organizacion juvenil."
+        text: >
+          Pedi a mis profesores de ingles y filosofia cartas de recomendacion porque me fue bien en sus clases y tambien tuve buenas relaciones con ellos.
+          Tambien pedi a una de las personas en una organizacion juvenil en la que estaba participando. Tenia conexiones fuertes con ellos y calificaciones fuertes en esa area.
+      - preview: "Pedi a profesores STEM y humanidades para hablar de diferentes fortalezas."
+        text: >
+          Siento que mi trasfondo especifico viene con algunos estereotipos, especialmente porque me estoy postulando en STEM. Asi que tuve una tactica donde
+          pedi a dos profesores STEM y dos profesores de humanidades, y pedi a uno de cada uno que hablara sobre mi fortaleza personal, y el otro sobre
+          mi fortaleza academica.
+
+  - id: application-help
+    prompt: "¿Quien te ayudo con tu solicitud universitaria?"
+    responses:
+      - preview: "Profesor de ingles, papa."
+        text: >
+          Mi profesor de ingles y mi papa me ayudaron a revisar mis ensayos. Mi papa tambien me ayudo a investigar escuelas sobre cuales aplicar.
+          Aparte de eso, estuve en breve contacto con una empresa de asesoramiento universitario, pero no termine trabajando con ellos. Mi escuela tambien tenia
+          consejeros universitarios, pero no fueron super utiles para mi.
+      - preview: "Mi mama, hermana y consejero escolar."
+        text: >
+          Mi mama me recordo sobre la universidad y la planificacion anticipada para solicitudes. Mi hermana ayudo a revisar mis ensayos. Tuve algo de interaccion con mi
+          consejero universitario en la escuela tambien; revisaron mi lista de universidades y de hecho me sugirieron ROTC, que no hice.
+      - preview: "Estudiantes graduados, padres, empresa de asesoramiento universitario pagada."
+        text: >
+          Recuerdo a algunos estudiantes graduados que me ayudaron a elegir escuelas. Mis padres tambien estaban algo involucrados en el proceso. La mayoria de ayuda vino de
+          una empresa de asesoramiento universitario pagada externa. Fue muy una operacion fuera de la escuela.
+      - preview: "Mi padre y mi profesor de literatura."
+        text: >
+          Creo que la mayor ayuda que obtuve fue de mi padre quien reviso muchos de mis ensayos. Tambien me ayudo a editarlos antes de presentar. Mi profesor de
+          literatura tambien nos hizo presentar nuestras declaraciones personales y dar retroalimentacion sobre esas.
+      - preview: "Principalmente confie en mi consejero universitario y en mi propio sentido de voz."
+        text: >
+          Mas alla de mi consejero universitario quien me dio buenos consejos generales y conocimiento sobre solicitudes, realmente no obtuve mucha otra ayuda. No
+          sentia que otras personas podian hablar por mi.
+      - preview: "Mi asesor universitario ayudo con el lado tecnico, y mi familia y amigos leyeron mis ensayos."
+        text: >
+          Mi asesor universitario de la escuela secundaria me ayudo mucho con el lado tecnico del proceso, como lidiar con CommonApp, obtener documentos para
+          diferentes escuelas, y cosas asi. Tambien tuve a mi familia y amigos revisar mis ensayos.
+      - preview: "Un oficial de admisiones de CMU me ayudo mucho con el proceso; mis padres y mi profesor de ingles tambien contribuyeron."
+        text: >
+          Tome un salto cuando participe en un programa de verano en CMU hablando con un oficial de admisiones alli para el departamento de CS. Ella me ayudo a
+          revisar mis ensayos y actividades extracurriculares, incluso tuve una llamada de zoom uno-a-uno con ella para pasar por cada oracion de mi declaracion personal. Aparte de eso, reciba mucha
+          motivacion de mis padres, y tambien tuve a mi profesor de ingles ayudar a revisar mis ensayos.
+
+  - id: frame-application
+    prompt: "¿Como enmarcaste tu solicitud?"
+    responses:
+      - preview: "Ingeniero biomedico interesado en ciencias naturales."
+        text: >
+          Tenia muchas experiencias de olimpiada durante la escuela secundaria, como en informatica, matematica y biologia,
+          asi que principalmente centre mi solicitud alrededor de esas. Tambien incluia ajedrez como mi pasatiempo principal fuera de lo academico, pero eso era todo.
+          Diria que me presente como un ingeniero biomedico interesado en ciencias naturales.
+      - preview: "Alguien que se preocupa por otras personas y por la sociedad mas amplia."
+        text: >
+          Me presente como alguien que se preocupa por otras personas y por la sociedad mas amplia. Me enfoque en mis observaciones sobre cosas que sucedian
+          a mi alrededor en detalle y me involucre con ellas a un nivel mas profundo.
+      - preview: "Una solicitud es una ficcion basada en la realidad."
+        text: >
+          Creo que una solicitud no es realidad. Es ficcion basada en la realidad. En ese sentido, si quieres hacer un personaje memorable, tienes
+          que darles historias de fondo que sean tragicas o divertidas. Por eso elegi una tragica y divertida. Queria ser visto como un nerd, pero por razones buenas, no
+          porque quiero ir a alguna universidad, sino porque de alguna manera naci y estoy dispuesto a serlo.
+      - preview: "Enmarque mi solicitud alrededor de mi pasion por matematica y CS."
+        text: >
+          Estaba realmente interesado en cosas de matematica y CS, asi que intente enmarcar alrededor de mi pasion por matematica y CS. En retrospectiva, creo que
+          probablemente deberia haber tejido algunas de mis otras actividades que me diferenciarian de la multitud.
+      - preview: "Intente mostrar que valoraba la comunidad."
+        text: >
+          Realmente valoro la comunidad, y queria que las universidades lo supieran. Realmente intente mostrar ese punto a traves de mi declaracion personal y
+          actividades extracurriculares. Tambien, para mi portafolio de arte, tambien me asegure que los mensajes relacionados con la humildad y la empatia se transmitieran.
+      - preview: "Queria que cada parte de mi solicitud coincidiera con una historia mas grande."
+        text: >
+          Queria presentarme de dos formas: quien soy, y a donde voy. Y estaba realmente preocupado de que cada parte de la solicitud se alineara
+          con una historia mas grande que sea autentica para mi. Creo que las personas a veces se asustan pensando que otra persona esta del otro lado, pero tan raro como
+          pueda sonar, el oficial de admisiones sabe que todavia eres un nino, asi que tome ventaja de eso para divertirme.
+      - preview: "Presente mi nicho a traves de participacion politica y trabajo en organizaciones juveniles."
+        text: >
+          Una cosa importante para mi era presentarme como una especie de nicho. No se trata solo de tener una solicitud fuerte en terminos de
+          pruebas estandarizadas y calificaciones, sino tambien en formas en que te involucras con tu sociedad y comunidad en general. En mi solicitud, realmente enfatice
+          mi participacion politica e involucramiento en organizaciones juveniles.
+      - preview: "Me enfoque en mi historia y trasfondo de superar adversidades."
+        text: >
+          Creo que podria no ser el mas extraordinario en lo academico, asi que me enfoque en mi historia y mi trasfondo de superar adversidades,
+          que creo que son mis fortalezas.
+
+  - id: general-tips
+    prompt: "¿Algun consejo general/palabras para estudiantes mas jovenes?"
+    responses:
+      - preview: "¡Comienza tus ensayos universitarios temprano!"
+        text: >
+          Argumentablemente, uno de los componentes mas importantes de tu solicitud universitaria aparte de actividades y calificaciones es tu ensayo. Asegurate de
+          comenzar temprano en esos. Personalmente, tuve mas de 10 versiones de mi declaracion personal, ¡con algunas reescrituras completas!
+      - preview: "Intenta centrar tu solicitud alrededor de un tema/asignatura."
+        text: >
+          Realmente presenta lo que te interesa. Si es dificil descubrir tu interes exacto, aun deberia intentar centrar tu
+          solicitud alrededor de un tema/asignatura. Tambien, recuerda que puedes exagerar en tu solicitud, ¡pero no mientas!
+      - preview: "No gastes demasiado tiempo en tus escuelas de seguridad."
+        text: >
+          Para estudiantes individuales, deberian evitar ser tutorados por estudiantes universitarios actuales. Solo porque han pasado por el proceso no
+          significa que sepan como funciona. Ademas, no gastes demasiado tiempo en tus escuelas de seguridad, ya que probablemente entres.
+      - preview: "El proceso es estresante, pero generalmente terminara bien."
+        text: >
+          Estaba realmente estresado durante la temporada de solicitudes sobre cosas como entrar a una universidad realmente prestigiosa. Pero ahora que estoy en mi segundo
+          ano de universidad, me he encontrado haciendo bastante bien. Asi que si, creo que tan estresante como pueda ser la temporada de solicitudes, generalmente terminara bien.
+      - preview: "Comienza a pensar sobre ensayos temprano, busca ayuda si la necesitas, e investiga y visita universidades."
+        text: >
+          Deberia al menos comenzar a pensar sobre tus ensayos en el verano antes del ultimo ano. Tambien asegurate de buscar ayuda si la necesitas.
+          Investiga las universidades a las que te postulas, ¡y definitivamente visita universidades tambien!
+      - preview: "Ten una direccion y haz que tu solicitud se sienta como una historia cohesiva."
+        text: >
+          Aunque no tengas que estar seguro, siento que deberia tener una idea de por que quieres ir a la universidad, y donde estaras al final.
+          Tu solicitud tambien deberia ser una historia cohesiva, con diferentes partes de la solicitud siendo subsecciones distintas apuntando hacia la misma cosa.
+      - preview: "Diferenciarte y mantente organizado con tus documentos."
+        text: >
+          Creo que deberia hacer algo para diferenciarte de la poblacion general. Tal vez a traves de actividades extracurriculares unicas, haciendo que el
+          oficial de admisiones piense que estas comprometido con tu educacion. Tambien, necesitas estar organizado con los documentos y cosas que estas
+          enviando a la universidad.
+      - preview: "Mantente motivado e investiga como funcionan las admisiones universitarias."
+        text: >
+          Lo mas importante es tener motivacion para ti mismo. Porque al final del dia, donde entres realmente depende de donde quieras ir. Tambien realmente investiga
+          el proceso de admisiones: siempre cambia y las escuelas se preocupan por cosas diferentes. Investigue en fuentes como YouTube, busqueda web y foros, que a menudo tenian
+          sugerencias e instrucciones sobre partes del proceso de admisiones.
