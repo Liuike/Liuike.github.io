@@ -1,8 +1,11 @@
 <header class="site-header">
-  <nav class="nav">
+  <nav class="nav" aria-label="Primary navigation">
     <div class="nav-left">
       <a class="brand" href="{{ '/' | relative_url }}">{{ site.brand }}</a>
-      <ul>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+        Menu
+      </button>
+      <ul id="primary-navigation">
         {% for item in site.nav %}
           {% assign item_url = item.url | relative_url %}
           {% assign current_url = page.url | relative_url %}

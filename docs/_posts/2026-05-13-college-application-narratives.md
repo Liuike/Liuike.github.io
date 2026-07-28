@@ -9,7 +9,7 @@ This semester at Brown, I created a college application resource for underprivil
 
 College application is such a widely discussed topic in the U.S., and there's many, many free online resources students can access, so why this project? For me, it really stems from a simple question: how can I provide the **interpersonal** touch to these resources? Before diving any deeper, I want to start by asking a quick question: what are factors that deter underprivileged students from applying to prestigeous universities? There's obviously many answers, but think about a few, and click to see if the factor below is one of them.
 
-Hover for answer: <span class="spoiler">Feeling they don't belong/will never get in.</span>[^1]
+Reveal the answer: <button class="spoiler" type="button" aria-expanded="false">Feeling they don't belong/will never get in.</button>[^1]
 
 Surprising? Maybe not so much, but was this one of your first reactions to the question? This is a common experience for underprivileged students, even when from an outside perspective, they're more than qualified and prepared to apply. I believe that this experience is also partly promoted by popular tools like "college calculators", which tell you your chance of admission using GPA and SAT scores. 
 

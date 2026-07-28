@@ -149,3 +149,86 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+	const navToggle = document.querySelector(".nav-toggle");
+	const primaryNavigation = document.getElementById("primary-navigation");
+
+	if (navToggle && primaryNavigation) {
+		const closeNavigation = () => {
+			primaryNavigation.classList.remove("is-open");
+			navToggle.setAttribute("aria-expanded", "false");
+		};
+
+		navToggle.addEventListener("click", () => {
+			const isOpen = primaryNavigation.classList.toggle("is-open");
+			navToggle.setAttribute("aria-expanded", String(isOpen));
+		});
+
+		primaryNavigation.querySelectorAll("a").forEach((link) => {
+			link.addEventListener("click", closeNavigation);
+		});
+
+		document.addEventListener("click", (event) => {
+			if (!primaryNavigation.contains(event.target) && !navToggle.contains(event.target)) {
+				closeNavigation();
+			}
+		});
+
+		document.addEventListener("keydown", (event) => {
+			if (event.key === "Escape") {
+				closeNavigation();
+				navToggle.focus();
+			}
+		});
+	}
+
+	const previewTriggers = document.querySelectorAll(".hover-image");
+	if (previewTriggers.length) {
+		const previewDialog = document.createElement("dialog");
+		previewDialog.className = "image-preview-dialog";
+
+		const closeButton = document.createElement("button");
+		closeButton.type = "button";
+		closeButton.className = "image-preview-dialog__close";
+		closeButton.textContent = "Close preview";
+
+		const previewImage = document.createElement("img");
+		previewDialog.append(closeButton, previewImage);
+		document.body.append(previewDialog);
+
+		let lastPreviewTrigger = null;
+		const closePreview = () => previewDialog.close();
+
+		closeButton.addEventListener("click", closePreview);
+		previewDialog.addEventListener("click", (event) => {
+			if (event.target === previewDialog) {
+				closePreview();
+			}
+		});
+		previewDialog.addEventListener("close", () => lastPreviewTrigger?.focus());
+
+		previewTriggers.forEach((trigger) => {
+			trigger.addEventListener("click", () => {
+				const sourceImage = trigger.querySelector("img");
+				if (!sourceImage) {
+					return;
+				}
+
+				lastPreviewTrigger = trigger;
+				previewImage.src = sourceImage.currentSrc || sourceImage.src;
+				previewImage.alt = sourceImage.alt;
+				previewDialog.showModal();
+				closeButton.focus();
+			});
+		});
+	}
+
+	document.querySelectorAll(".spoiler").forEach((trigger) => {
+		trigger.addEventListener("click", () => {
+			const isRevealed = !trigger.classList.contains("is-revealed");
+			trigger.classList.toggle("is-revealed", isRevealed);
+			trigger.setAttribute("aria-expanded", String(isRevealed));
+		});
+	});
+});
