@@ -2,9 +2,6 @@
   <nav class="nav" aria-label="Primary navigation">
     <div class="nav-left">
       <a class="brand" href="{{ '/' | relative_url }}">{{ site.brand }}</a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
-        Menu
-      </button>
       <ul id="primary-navigation">
         {% for item in site.nav %}
           {% assign item_url = item.url | relative_url %}
@@ -28,6 +25,13 @@
         {% endfor %}
       </ul>
     </div>
-    <!-- Search UI removed -->
+    <div class="nav-actions">
+      <button class="nav-command" type="button" data-command-palette-trigger aria-haspopup="dialog" aria-controls="command-palette">
+        <span>Find</span>
+      </button>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+        Menu
+      </button>
+    </div>
   </nav>
 </header>

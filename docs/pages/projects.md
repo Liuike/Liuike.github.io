@@ -4,38 +4,36 @@ title: Projects
 permalink: /projects/
 ---
 
-<div class="main-content projects-main-content">
-  <div class="container">
-    <h1>Projects</h1>
-
-    <div class="intro">
+<div class="landing-page projects-page">
+  <header class="collection-hero">
+    <div>
+      <h1>Projects</h1>
+    </div>
+    <div class="page-intro">
       <p>A collection of things I've built.</p>
     </div>
+  </header>
 
-    {% if site.projects and site.projects.size > 0 %}
-      {% assign sorted_projects = site.projects | sort: "title" %}
-      <ul class="post-list">
-        {% for project in sorted_projects %}
-          <li class="post-item">
-            {% if project.external_url %}
-              <a href="{{ project.external_url }}" target="_blank" rel="noopener">{{ project.title }}</a>
-            {% else %}
-              <span>{{ project.title }}</span>
-            {% endif %}
+  {% if site.projects and site.projects.size > 0 %}
+    {% assign sorted_projects = site.projects | sort: "title" %}
+    <ul class="project-index" aria-label="Project list">
+      {% for project in sorted_projects %}
+        <li class="project-item">
+          {% if project.external_url %}
+            <a href="{{ project.external_url }}" target="_blank" rel="noopener noreferrer">{{ project.title }}</a>
+          {% else %}
+            <span>{{ project.title }}</span>
+          {% endif %}
+          <small class="entry-meta">Project / {{ forloop.index | prepend: "0" | slice: -2, 2 }}</small>
+          <div class="project-summary">
             {% if project.content %}
               {{ project.content | markdownify }}
             {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <div class="intro">
-        <p>No projects yet. Add your first one in the projects collection.</p>
-      </div>
-    {% endif %}
-
-    <div class="links">
-      <a href="/" class="link">← Back to home</a>
-    </div>
-  </div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="page-intro">No projects yet. Add your first one in the projects collection.</p>
+  {% endif %}
 </div>

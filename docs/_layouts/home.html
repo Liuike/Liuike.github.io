@@ -1,48 +1,68 @@
 ---
 layout: default
 ---
-<div class="main-content">
-  <div class="container">
-    <div class="home-container">
-      <div class="profile-image">
-        <img src="{{ '/assets/img/pfp.jpg' | relative_url }}" alt="{{ site.title }}" />
-      </div>
-      
-      <div class="content">
-        <h1>{{ site.title }}</h1>
+<div class="landing-page about-page">
+  <section class="about-hero">
+    <div class="about-identity">
+      <h1>{{ site.title }}</h1>
+      <div class="about-meta">
         <p class="chinese-name">张恩岩</p>
-        
-        <div class="social-links">
+      </div>
+      <div class="social-links contact-links" aria-label="Contact links">
+        {% if site.author.github %}
+          <a href="https://github.com/{{ site.author.github }}" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+            <img src="{{ '/assets/img/github-mark-white.png' | relative_url }}" alt="" />
+            <span>GitHub</span>
+          </a>
+        {% endif %}
+        <a href="https://www.linkedin.com/in/luke-zhang-797875212/" target="_blank" rel="noopener noreferrer" class="social-icon linkedin-icon" aria-label="LinkedIn">
+          <img src="{{ '/assets/img/LinkedIn_icon.png' | relative_url }}" alt="" />
+          <span>LinkedIn</span>
+        </a>
+        <a href="mailto:enyan_zhang1@brown.edu" class="social-icon email-icon" aria-label="Email">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <span>Email</span>
+        </a>
+      </div>
+    </div>
+    <div class="about-body">
+      <div class="about-portrait">
+        <div class="profile-image">
+          <img src="{{ '/assets/img/pfp.jpg' | relative_url }}" alt="{{ site.title }}" />
+        </div>
+        <div class="legacy-social-links" aria-hidden="true">
           {% if site.author.github %}
-            <a href="https://github.com/{{ site.author.github }}" target="_blank" class="social-icon" title="GitHub">
-              <img src="{{ '/assets/img/github-mark-white.png' | relative_url }}" alt="GitHub" />
+            <a href="https://github.com/{{ site.author.github }}" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+              <img src="{{ '/assets/img/github-mark-white.png' | relative_url }}" alt="" />
             </a>
           {% endif %}
-          
-          <a href="https://www.linkedin.com/in/luke-zhang-797875212/" target="_blank" class="social-icon" title="LinkedIn">
-            <img src="{{ '/assets/img/LinkedIn_icon.png' | relative_url }}" alt="LinkedIn" />
+          <a href="https://www.linkedin.com/in/luke-zhang-797875212/" target="_blank" rel="noopener noreferrer" class="social-icon linkedin-icon" aria-label="LinkedIn">
+            <img src="{{ '/assets/img/LinkedIn_icon.png' | relative_url }}" alt="" />
           </a>
-          
-          <a href="mailto:enyan_zhang1@brown.edu" class="social-icon email-icon" title="Email">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <a href="mailto:enyan_zhang1@brown.edu" class="social-icon email-icon" aria-label="Email">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2,2-2z"></path>
               <polyline points="22,6 12,13 2,6"></polyline>
             </svg>
           </a>
         </div>
-        
-        <div class="intro">
-          {{ content }}
-        </div>
-
-        <div class="links">
-        </div>
+      </div>
+      <div class="about-copy">
+        {{ content }}
       </div>
     </div>
+  </section>
 
-    {% if site.posts.size > 0 %}
-      <h2>Latest posts</h2>
-      <ul class="post-list">
+  {% if site.posts.size > 0 %}
+    <section class="landing-section" aria-labelledby="latest-posts">
+      <div class="section-rail">
+        <p class="collection-label">Recent writing</p>
+        <h2 id="latest-posts">Latest posts</h2>
+      </div>
+      <ul class="landing-list">
         {% for post in site.posts limit:5 %}
           <li>
             <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
@@ -50,6 +70,6 @@ layout: default
           </li>
         {% endfor %}
       </ul>
-    {% endif %}
-  </div>
+    </section>
+  {% endif %}
 </div>

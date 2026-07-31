@@ -1,27 +1,29 @@
 ---
 layout: default
 ---
-<div class="main-content post-main-content">
-  <article class="container">
-    <h1>{{ page.title }}</h1>
-    <p><small>{{ page.date | date: "%B %d, %Y" }}</small></p>
-    <p><br></p>
-    <div class="intro">
+<div class="landing-page post-page">
+  <header class="collection-hero post-hero">
+    <div class="post-heading{% if page.title.size > 55 %} post-heading--long{% endif %}">
+      <p class="entry-meta">{{ page.date | date: "%B %d, %Y" }}</p>
+      <h1>{{ page.title }}</h1>
+    </div>
+  </header>
+
+  <div class="post-layout{% if page.toc_auto or page.toc %} post-layout--with-contents{% endif %}">
+    <article class="post-article">
+    <div class="post-copy">
       {{ content }}
     </div>
-    <div class="links">
-      <a href="/" class="link">← Back to home</a>
-    </div>
-  </article>
-  {% if page.toc_auto %}
-    <aside class="blog-sidebar-external post-sidebar-external">
+    </article>
+    {% if page.toc_auto %}
+      <aside class="blog-filter-panel post-sidebar" aria-label="Contents">
       <div class="tag-filters toc-filters" data-toc>
         <div class="category-label">{{ page.toc_title | default: "Contents" }}</div>
         <div class="toc-scroll" data-toc-list></div>
       </div>
-    </aside>
-  {% elsif page.toc %}
-    <aside class="blog-sidebar-external post-sidebar-external">
+      </aside>
+    {% elsif page.toc %}
+      <aside class="blog-filter-panel post-sidebar" aria-label="Contents">
       <div class="tag-filters">
         <div class="category-label">{{ page.toc_title | default: "Contents" }}</div>
         <div class="toc-scroll">
@@ -30,6 +32,10 @@ layout: default
           {% endfor %}
         </div>
       </div>
-    </aside>
-  {% endif %}
+      </aside>
+    {% endif %}
+  </div>
+  <nav class="post-nav" aria-label="Post navigation">
+    <a href="{{ '/blog/' | relative_url }}">← Back to blog</a>
+  </nav>
 </div>

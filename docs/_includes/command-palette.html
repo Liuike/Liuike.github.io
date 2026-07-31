@@ -1,0 +1,16 @@
+<dialog class="command-palette" id="command-palette" aria-labelledby="command-palette-title">
+  <div class="command-palette__topline">
+    <label class="command-palette__label" id="command-palette-title" for="command-palette-input">Find a page</label>
+    <button class="command-palette__close" type="button" data-command-palette-close>Close</button>
+  </div>
+  <div class="command-palette__topline">
+    <input class="command-palette__input" id="command-palette-input" type="search" autocomplete="off" placeholder="Type to filter pages">
+  </div>
+  <nav class="command-palette__list" aria-label="Site pages">
+    {% for item in site.nav %}
+      <a class="command-palette__item" href="{{ item.url | relative_url }}" data-command-palette-item>
+        {{ item.name }}<span>{{ item.url }}</span>
+      </a>
+    {% endfor %}
+  </nav>
+</dialog>

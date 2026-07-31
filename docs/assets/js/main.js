@@ -96,8 +96,32 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	});
 
+	const blogFilterPanel = document.querySelector(".blog-filter-panel");
+	const blogPosts = Array.from(document.querySelectorAll(".blog-list .post-item"));
+	if (blogFilterPanel && blogPosts.length) {
+		const filterButtons = Array.from(blogFilterPanel.querySelectorAll("[data-tag]"));
+		const applyBlogFilter = (selectedTag) => {
+			filterButtons.forEach((button) => {
+				const isActive = button.dataset.tag === selectedTag;
+				button.classList.toggle("active", isActive);
+				button.setAttribute("aria-pressed", String(isActive));
+			});
+
+			blogPosts.forEach((post) => {
+				const postTags = (post.dataset.tags || "").split(" ").filter(Boolean);
+				post.hidden = selectedTag !== "all" && !postTags.includes(selectedTag);
+			});
+		};
+
+		filterButtons.forEach((button) => {
+			button.addEventListener("click", () => applyBlogFilter(button.dataset.tag || "all"));
+		});
+
+		applyBlogFilter(blogFilterPanel.querySelector(".tag-btn.active")?.dataset.tag || "all");
+	}
+
 	const tocContainers = document.querySelectorAll(".tag-filters[data-toc]");
-	const contentRoot = document.querySelector("article .intro");
+	const contentRoot = document.querySelector("article .post-copy, article .intro");
 
 	if (tocContainers.length && contentRoot) {
 		const headings = Array.from(contentRoot.querySelectorAll("h2, h3"));
@@ -176,9 +200,80 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 
 		document.addEventListener("keydown", (event) => {
-			if (event.key === "Escape") {
+			if (event.key === "Escape" && primaryNavigation.classList.contains("is-open")) {
 				closeNavigation();
 				navToggle.focus();
+			}
+		});
+	}
+
+	const commandPalette = document.getElementById("command-palette");
+	const commandTrigger = document.querySelector("[data-command-palette-trigger]");
+	if (commandPalette && commandTrigger) {
+		const commandInput = commandPalette.querySelector(".command-palette__input");
+		const closeCommandButton = commandPalette.querySelector("[data-command-palette-close]");
+		const commandItems = Array.from(commandPalette.querySelectorAll("[data-command-palette-item]"));
+		let lastCommandTrigger = null;
+
+		const visibleCommandItems = () => commandItems.filter((item) => !item.hidden);
+
+		const filterCommands = () => {
+			const query = commandInput.value.trim().toLowerCase();
+			commandItems.forEach((item) => {
+				item.hidden = !item.textContent.toLowerCase().includes(query);
+				item.classList.remove("is-active");
+			});
+			visibleCommandItems()[0]?.classList.add("is-active");
+		};
+
+		const closeCommandPalette = () => {
+			if (commandPalette.open && typeof commandPalette.close === "function") {
+				commandPalette.close();
+			} else {
+				commandPalette.removeAttribute("open");
+			}
+		};
+		const openCommandPalette = () => {
+			lastCommandTrigger = document.activeElement;
+			commandInput.value = "";
+			filterCommands();
+			if (!commandPalette.open) {
+				try {
+					commandPalette.showModal();
+				} catch (error) {
+					commandPalette.setAttribute("open", "");
+				}
+			}
+			window.requestAnimationFrame(() => commandInput.focus());
+		};
+
+		commandTrigger.addEventListener("click", openCommandPalette);
+		closeCommandButton.addEventListener("click", closeCommandPalette);
+		commandPalette.addEventListener("click", (event) => {
+			if (event.target === commandPalette) closeCommandPalette();
+		});
+		commandPalette.addEventListener("close", () => lastCommandTrigger?.focus());
+		commandInput.addEventListener("input", filterCommands);
+		commandInput.addEventListener("keydown", (event) => {
+			const items = visibleCommandItems();
+			const activeIndex = items.findIndex((item) => item.classList.contains("is-active"));
+			if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+				event.preventDefault();
+				if (!items.length) return;
+				const nextIndex = event.key === "ArrowDown"
+					? (activeIndex + 1 + items.length) % items.length
+					: (activeIndex - 1 + items.length) % items.length;
+				items.forEach((item) => item.classList.remove("is-active"));
+				items[nextIndex].classList.add("is-active");
+			}
+			if (event.key === "Enter" && items[activeIndex]) {
+				items[activeIndex].click();
+			}
+		});
+		document.addEventListener("keydown", (event) => {
+			if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+				event.preventDefault();
+				if (!commandPalette.open) openCommandPalette();
 			}
 		});
 	}

@@ -414,7 +414,7 @@ article .links {
 
 .link {
     text-decoration: none;
-    color: #E07A5F;
+    color: var(--color-accent);
     font-weight: 500;
     font-size: 1rem;
     padding: 0.5rem 0;
@@ -422,25 +422,25 @@ article .links {
 }
 
 .link:hover {
-    border-bottom-color: #E07A5F;
-    color: #81B29A;
+    border-bottom-color: var(--color-accent);
+    color: var(--color-ink);
 }
 
 /* Universal hyperlink styling */
 a:not(.brand):not(.logo):not(.link):not(.nav a):not(.nav-links a):not(.social-icon):not(.tag-btn) {
-    color: #E07A5F;
+    color: var(--color-accent);
     text-decoration: underline;
     font-size: inherit;
 }
 
 a:not(.brand):not(.logo):not(.link):not(.nav a):not(.nav-links a):not(.social-icon):not(.tag-btn):hover {
-    color: #C4654F;
+    color: var(--color-ink);
 }
 
 /* Clickable text styling */
 .clickable-fore {
     cursor: pointer;
-    color: #E07A5F;
+    color: var(--color-accent);
     text-decoration: underline;
     font-weight: 600;
     border: 0;
@@ -451,12 +451,12 @@ a:not(.brand):not(.logo):not(.link):not(.nav a):not(.nav-links a):not(.social-ic
 }
 
 .clickable-fore:hover {
-    color: #C4654F;
+    color: var(--color-ink);
 }
 
 .clickable-music {
     cursor: pointer;
-    color: #E07A5F;
+    color: var(--color-accent);
     text-decoration: underline;
     font-weight: 600;
     border: 0;
@@ -467,7 +467,7 @@ a:not(.brand):not(.logo):not(.link):not(.nav a):not(.nav-links a):not(.social-ic
 }
 
 .clickable-music:hover {
-    color: #C4654F;
+    color: var(--color-ink);
 }
 
 /* Hover image handle (inline preview) */
