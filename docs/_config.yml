@@ -1,11 +1,11 @@
 # Site settings
 # Change these to your info
 
-url: "https://liuike.github.io"   # no trailing slash
+url: "https://lukeez.com"   # no trailing slash
 baseurl: ""                       # empty for user sites (username.github.io repos)
 title: "Enyan (Luke) Zhang"
 brand: "Luke"
-description: "Average Student"
+description: "Student studying Math-CS and Education Studies at Brown University"
 
 # Build settings (safe GitHub Pages defaults)
 markdown: kramdown
