@@ -3,8 +3,6 @@ layout: home
 title: About
 ---
 
----
-
 Hi! I'm Luke. I'm an undergraduate student studying Math‑CS and Education Studies at Brown University. Before Brown, I attended [George School](https://www.georgeschool.org/) in Newtown, PA.
 
 I'm interested in optimization for machine learning; I'm also exploring the field of world models. Outside of CS, I enjoy thinking about the psychology of teaching and learning and equitable education.

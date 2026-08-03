@@ -1,34 +1,25 @@
 ---
 layout: null
 ---
+{% assign searchable_pages = site.pages | where: "layout", "default" %}
+{% assign searchable_items = site.posts | concat: searchable_pages | concat: site.projects %}
 [
-  {% for post in site.posts %}
+  {% assign first_search_entry = true %}
+  {% for item in searchable_items %}
+    {% assign include_search_entry = true %}
+    {% if item.name == "404.html" %}
+      {% assign include_search_entry = false %}
+    {% endif %}
+    {% if include_search_entry %}
+      {% unless first_search_entry %},{% endunless %}
     {
-      "title": {{ post.title | jsonify }},
-      "url": {{ post.url | relative_url | jsonify }},
-      "content": {{ post.content | strip_html | truncatewords: 50 | jsonify }},
-      "date": {{ post.date | date: "%B %d, %Y" | jsonify }}
-    }{% unless forloop.last %},{% endunless %}
+      "title": {{ item.title | default: site.title | jsonify }},
+      "url": {% if item.collection == "projects" %}{{ '/projects/' | relative_url | jsonify }}{% else %}{{ item.url | relative_url | jsonify }}{% endif %},
+      "content": {{ item.content | strip_html | normalize_whitespace | jsonify }},
+      "tags": {{ item.tags | join: " " | jsonify }},
+      "type": {% if item.collection == "posts" %}"Blog"{% elsif item.collection == "projects" %}"Project"{% else %}"Page"{% endif %}
+    }
+      {% assign first_search_entry = false %}
+    {% endif %}
   {% endfor %}
-  {% if site.posts.size > 0 %},{% endif %}
-  {
-    "title": "Home",
-    "url": "/",
-    "content": "Enyan (Luke) Zhang - Personal website and portfolio"
-  },
-  {
-    "title": "Blog",
-    "url": "/blog/",
-    "content": "Blog posts and articles by Luke Zhang"
-  },
-  {
-    "title": "Projects",
-    "url": "/pages/projects/",
-    "content": "Portfolio of projects and work"
-  },
-  {
-    "title": "Fun Facts",
-    "url": "/fun-facts/",
-    "content": "Interesting facts and hobbies"
-  }
 ]
