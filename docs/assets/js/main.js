@@ -212,18 +212,125 @@ document.addEventListener("DOMContentLoaded", () => {
 	if (commandPalette && commandTrigger) {
 		const commandInput = commandPalette.querySelector(".command-palette__input");
 		const closeCommandButton = commandPalette.querySelector("[data-command-palette-close]");
-		const commandItems = Array.from(commandPalette.querySelectorAll("[data-command-palette-item]"));
+		const commandResults = commandPalette.querySelector("[data-command-palette-results]");
+		let searchEntries = [];
+		let searchIndexPromise = null;
 		let lastCommandTrigger = null;
 
-		const visibleCommandItems = () => commandItems.filter((item) => !item.hidden);
+		const visibleCommandItems = () => Array.from(commandResults.querySelectorAll("[data-command-palette-item]"));
+
+		const showCommandMessage = (message) => {
+			commandResults.replaceChildren();
+			const emptyState = document.createElement("p");
+			emptyState.className = "command-palette__empty";
+			emptyState.textContent = message;
+			commandResults.append(emptyState);
+		};
+
+		const searchScore = (entry, terms) => {
+			const title = (entry.title || "").toLowerCase();
+			const tags = (entry.tags || "").toLowerCase();
+			const content = (entry.content || "").toLowerCase();
+			let score = 0;
+
+			for (const term of terms) {
+				if (!title.includes(term) && !tags.includes(term) && !content.includes(term)) return -1;
+				score += title.includes(term) ? 8 : 0;
+				score += tags.includes(term) ? 4 : 0;
+				score += content.includes(term) ? 1 : 0;
+			}
+
+			return score;
+		};
+
+		const matchingSentence = (content, terms) => {
+			const sentences = (content || "").match(/[^.!?]+(?:[.!?]+|$)/g) || [content || ""];
+			const sentence = sentences.find((candidate) => {
+				const lowerCaseCandidate = candidate.toLowerCase();
+				return terms.some((term) => lowerCaseCandidate.includes(term));
+			}) || content || "";
+			const trimmed = sentence.trim();
+			return trimmed.length > 180 ? `${trimmed.slice(0, 177).trimEnd()}…` : trimmed;
+		};
+
+		const appendHighlightedText = (element, text, terms) => {
+			const escapedTerms = terms
+				.map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+				.sort((first, second) => second.length - first.length);
+			const matcher = new RegExp(`(${escapedTerms.join("|")})`, "gi");
+			const exactMatcher = new RegExp(`^(?:${escapedTerms.join("|")})$`, "i");
+
+			text.split(matcher).forEach((part) => {
+				if (!part) return;
+				if (exactMatcher.test(part)) {
+					const mark = document.createElement("mark");
+					mark.textContent = part;
+					element.append(mark);
+				} else {
+					element.append(document.createTextNode(part));
+				}
+			});
+		};
 
 		const filterCommands = () => {
-			const query = commandInput.value.trim().toLowerCase();
-			commandItems.forEach((item) => {
-				item.hidden = !item.textContent.toLowerCase().includes(query);
-				item.classList.remove("is-active");
+			const terms = commandInput.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+			if (!terms.length) {
+				commandResults.replaceChildren();
+				return;
+			}
+
+			const matches = searchEntries
+				.map((entry) => ({ entry, score: searchScore(entry, terms) }))
+				.filter(({ score }) => score >= 0)
+				.sort((first, second) => second.score - first.score || first.entry.title.localeCompare(second.entry.title))
+				.slice(0, 12)
+				.map(({ entry }) => entry);
+
+			commandResults.replaceChildren();
+			if (!matches.length) {
+				showCommandMessage("No results found.");
+				return;
+			}
+
+			matches.forEach((entry, index) => {
+				const result = document.createElement("a");
+				result.className = "command-palette__item";
+				result.href = entry.url;
+				result.dataset.commandPaletteItem = "";
+
+				const title = document.createElement("span");
+				title.className = "command-palette__result-title";
+				title.textContent = entry.title;
+
+				const type = document.createElement("span");
+				type.className = "command-palette__result-type";
+				type.textContent = entry.type;
+
+				const preview = document.createElement("span");
+				preview.className = "command-palette__preview";
+				appendHighlightedText(preview, matchingSentence(entry.content, terms), terms);
+
+				result.append(title, type, preview);
+				if (index === 0) result.classList.add("is-active");
+				commandResults.append(result);
 			});
-			visibleCommandItems()[0]?.classList.add("is-active");
+		};
+
+		const loadSearchIndex = () => {
+			if (searchIndexPromise) return searchIndexPromise;
+			searchIndexPromise = fetch(commandPalette.dataset.searchIndex, { cache: "no-store" })
+				.then((response) => {
+					if (!response.ok) throw new Error("Search index unavailable");
+					return response.json();
+				})
+				.then((entries) => {
+					searchEntries = Array.isArray(entries) ? entries : [];
+				})
+				.catch(() => {
+					searchEntries = [];
+					showCommandMessage("Unable to load the search index.");
+				});
+			return searchIndexPromise;
 		};
 
 		const closeCommandPalette = () => {
@@ -236,7 +343,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		const openCommandPalette = () => {
 			lastCommandTrigger = document.activeElement;
 			commandInput.value = "";
-			filterCommands();
+			commandResults.replaceChildren();
 			if (!commandPalette.open) {
 				try {
 					commandPalette.showModal();
@@ -244,6 +351,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					commandPalette.setAttribute("open", "");
 				}
 			}
+			loadSearchIndex().then(filterCommands);
 			window.requestAnimationFrame(() => commandInput.focus());
 		};
 

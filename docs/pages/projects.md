@@ -9,9 +9,6 @@ permalink: /projects/
     <div>
       <h1>Projects</h1>
     </div>
-    <div class="page-intro">
-      <p>A collection of things I've built.</p>
-    </div>
   </header>
 
   {% if site.projects and site.projects.size > 0 %}

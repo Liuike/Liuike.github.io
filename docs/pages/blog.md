@@ -9,9 +9,6 @@ permalink: /blog/
     <div>
       <h1>Blog</h1>
     </div>
-    <div class="page-intro">
-      <p>Notes on whatever has my attention.</p>
-    </div>
   </header>
 
   <div class="blog-layout">

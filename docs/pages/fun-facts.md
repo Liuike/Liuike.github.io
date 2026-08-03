@@ -9,9 +9,6 @@ permalink: /fun-facts/
     <div>
       <h1>Fun</h1>
     </div>
-    <div class="page-intro">
-      <p>A few things outside the formal bio.</p>
-    </div>
   </header>
 
   <ul class="fun-stream">

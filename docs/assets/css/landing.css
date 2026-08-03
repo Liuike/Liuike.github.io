@@ -12,6 +12,41 @@ body {
   line-height: 1.6;
 }
 
+/* Hallmark · component: native scrollbar · genre: modern-minimal · theme: Cobalt
+ * states: default · hover · active (native control; disabled/loading/error/success do not apply)
+ * contrast: pass (46–50)
+ */
+html,
+body,
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklch, var(--color-muted) 46%, transparent) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: var(--space-xs);
+  height: var(--space-xs);
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  border: var(--space-3xs) solid transparent;
+  border-radius: var(--radius-control);
+  background: color-mix(in oklch, var(--color-muted) 46%, transparent);
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: color-mix(in oklch, var(--color-muted) 68%, transparent);
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: var(--color-rule-strong);
+}
+
 .site-header {
   position: sticky;
   top: 0;
@@ -201,7 +236,7 @@ body {
   display: grid;
   grid-template-areas: "copy portrait";
   grid-template-columns: minmax(0, 1fr) minmax(12rem, 16rem);
-  gap: clamp(var(--space-lg), 5vw, var(--space-3xl));
+  gap: var(--space-md);
   align-items: stretch;
   margin-top: var(--space-lg);
   padding-top: var(--space-lg);
@@ -283,17 +318,19 @@ body {
   display: grid;
   grid-template-rows: minmax(0, 1fr) auto;
   gap: var(--space-sm);
-  width: 100%;
-  max-width: 16rem;
+  width: min(100%, clamp(12rem, calc(28vw + var(--space-2xs)), 16rem));
+  max-width: none;
   min-height: 0;
   margin: 0;
-  justify-self: end;
+  justify-self: start;
 }
 
 .profile-image {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+  width: clamp(7.5rem, calc(10vw + 6.5rem), 12.5rem);
+  height: auto;
   min-height: 0;
   margin: 0;
   box-shadow: none;
@@ -305,9 +342,9 @@ body {
 
 .profile-image img {
   display: block;
-  width: auto;
+  width: 100%;
   max-width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: contain;
   object-position: top left;
 }
@@ -321,7 +358,7 @@ body {
 
 .about-copy {
   grid-area: copy;
-  max-width: 62ch;
+  max-width: 78ch;
   min-width: 0;
   margin-top: 0;
 }
@@ -401,11 +438,15 @@ body {
 
 .collection-hero {
   display: block;
-  padding: var(--space-sm) clamp(var(--space-md), 5vw, var(--space-3xl));
+  min-height: 7rem;
+  padding: var(--space-sm) clamp(var(--space-xs), 2.5vw, var(--space-xl));
   border-bottom: var(--rule);
 }
 
 .collection-hero > :first-child {
+  display: flex;
+  align-items: center;
+  min-height: 5rem;
   padding-left: 0;
 }
 
@@ -814,13 +855,18 @@ body {
 }
 
 .command-palette {
+  position: fixed;
+  top: clamp(5.5rem, 18vh, 10rem);
+  left: 50%;
   width: min(34rem, calc(100vw - 2rem));
   max-height: min(32rem, calc(100dvh - 2rem));
+  margin: 0;
   padding: 0;
   border: var(--rule);
   border-radius: var(--radius-panel);
   background: var(--color-surface);
   color: var(--color-ink);
+  transform: translateX(-50%);
 }
 
 .command-palette::backdrop {
@@ -837,8 +883,10 @@ body {
 }
 
 .command-palette__input {
-  width: 100%;
+  flex: 1 1 auto;
+  min-width: 0;
   min-height: 2.75rem;
+  padding: 0 var(--space-xs);
   border: 0;
   background: transparent;
   color: var(--color-ink);
@@ -863,25 +911,41 @@ body {
 }
 
 .command-palette__list {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  justify-content: stretch;
-  gap: var(--space-3xs);
+  display: none;
+  margin: 0;
+}
+
+.command-palette__list:not(:empty) {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: var(--space-2xs);
+  height: min(20rem, calc(100dvh - 11rem));
+  overflow-y: auto;
+  scrollbar-gutter: stable;
   padding: var(--space-xs);
 }
 
+.command-palette__empty {
+  margin: 0;
+  padding: var(--space-sm);
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
 .command-palette__item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 3rem;
-  padding: 0 var(--space-sm);
+  display: block;
+  flex: 0 0 auto;
+  min-height: 4rem;
+  padding: var(--space-sm);
   border-radius: var(--radius-control);
   color: var(--color-ink);
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   text-decoration: none;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .command-palette__item:hover,
@@ -894,6 +958,34 @@ body {
 .command-palette__item span {
   color: var(--color-muted);
   font-size: var(--text-xs);
+}
+
+.command-palette__result-title {
+  display: block;
+  min-width: 0;
+  color: inherit !important;
+  font-size: inherit !important;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.command-palette__result-type {
+  display: block;
+  margin-top: var(--space-2xs);
+}
+
+.command-palette__preview {
+  display: block;
+  margin-top: var(--space-xs);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.command-palette__preview mark {
+  padding: 0 0.1em;
+  background: color-mix(in oklch, var(--color-accent) 28%, transparent);
+  color: inherit;
+  font-weight: 600;
 }
 
 .landing-page button:active,
@@ -954,7 +1046,6 @@ body {
   }
 
   .about-hero,
-  .about-body,
   .collection-hero,
   .blog-layout,
   .project-index .project-item,
@@ -966,35 +1057,16 @@ body {
     padding-left: 0;
   }
 
+  .collection-hero {
+    padding-inline: 0;
+  }
+
   .projects-page .project-index,
   .blog-page .blog-layout,
   .fun-page .fun-stream,
   .post-layout,
   .post-nav {
     margin-left: 0;
-  }
-
-  .about-body {
-    grid-template-areas:
-      "copy"
-      "portrait";
-    gap: var(--space-lg);
-  }
-
-  .about-portrait {
-    grid-area: portrait;
-    width: min(100%, 14rem);
-    height: auto;
-    justify-self: start;
-  }
-
-  .profile-image img {
-    width: 100%;
-    height: auto;
-  }
-
-  .about-copy {
-    grid-area: copy;
   }
 
   .blog-layout {
@@ -1061,6 +1133,15 @@ body {
     display: block;
     overflow-x: auto;
     white-space: normal;
+  }
+}
+
+@media (max-width: 34rem) {
+  .about-body {
+    grid-template-areas:
+      "copy"
+      "portrait";
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
