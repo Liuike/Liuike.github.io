@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const contentRoot = document.querySelector("article .post-copy, article .intro");
 
 	if (tocContainers.length && contentRoot) {
-		const headings = Array.from(contentRoot.querySelectorAll("h2, h3"));
+		const headings = Array.from(contentRoot.querySelectorAll("h2"));
 		const usedIds = new Set();
 
 		const slugify = (text) => {
@@ -159,9 +159,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			link.className = "tag-btn";
 			link.href = `#${heading.id}`;
 			link.textContent = heading.textContent || "Section";
-			if (heading.tagName.toLowerCase() === "h3") {
-				link.style.paddingLeft = "0.75rem";
-			}
 			fragment.appendChild(link);
 		});
 

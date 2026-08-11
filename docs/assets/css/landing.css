@@ -625,13 +625,11 @@ body,
   display: block;
   width: 100%;
   max-width: 100%;
-  font-size: clamp(var(--text-2xl), 4vw + 0.75rem, var(--text-display));
   line-height: 0.94;
 }
 
 .post-hero .post-heading--long h1 {
   max-width: 100%;
-  font-size: clamp(var(--text-xl), 3vw, var(--text-2xl));
   line-height: 1;
 }
 
@@ -666,6 +664,16 @@ body,
 
 .post-copy > :first-child {
   margin-top: 0;
+}
+
+/* Keep wide display equations readable rather than letting them widen the page. */
+.post-copy mjx-container[display="true"] {
+  display: block;
+  max-width: 100%;
+  margin: 0 0 var(--space-md) !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: var(--space-2xs) 0;
 }
 
 .post-copy h2,
@@ -823,6 +831,11 @@ body,
   padding: var(--space-md) 0 0;
   border-top: var(--rule);
   justify-content: normal;
+}
+
+.post-layout--with-contents + .post-nav {
+  max-width: 78ch;
+  margin-left: clamp(var(--space-xs), 2.5vw, var(--space-xl));
 }
 
 .image-dropdown,
