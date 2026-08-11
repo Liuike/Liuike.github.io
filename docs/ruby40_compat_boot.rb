@@ -21,37 +21,40 @@ end
 # Ruby 4 removed File.exists?, while Jekyll-Scholar 5.x still uses it.
 File.singleton_class.alias_method(:exists?, :exist?) unless File.respond_to?(:exists?)
 
-# Jekyll-Scholar 5.x is the newest release compatible with this site's
-# GitHub Pages/Jekyll 3 deployment. These two patches account for Ruby 4's
-# changed block and String#dup behaviour in its older bibtex-ruby dependency.
-require 'bibtex'
+# Bundler evaluates the Gemfile before installing dependencies. Load and patch
+# bibtex-ruby only when it is already available (during Jekyll's build step).
+begin
+  require 'bibtex'
 
-class BibTeX::Bibliography
-  def each(&block)
-    return to_enum unless block
+  class BibTeX::Bibliography
+    def each(&block)
+      return to_enum unless block
 
-    data.each(&block)
-    self
-  end
-end
-
-class BibTeX::Name
-  def dup
-    super
-  end
-end
-
-class BibTeX::Entry
-  def each(&block)
-    return to_enum unless block
-
-    fields.each(&block)
-    self
+      data.each(&block)
+      self
+    end
   end
 
-  alias each_pair each
-
-  def convert(*filters, &block)
-    block ? dup.convert!(*filters, &block) : dup.convert!(*filters)
+  class BibTeX::Name
+    def dup
+      super
+    end
   end
+
+  class BibTeX::Entry
+    def each(&block)
+      return to_enum unless block
+
+      fields.each(&block)
+      self
+    end
+
+    alias each_pair each
+
+    def convert(*filters, &block)
+      block ? dup.convert!(*filters, &block) : dup.convert!(*filters)
+    end
+  end
+rescue LoadError
+  # bibtex-ruby is installed by `bundle install` before Jekyll runs.
 end
