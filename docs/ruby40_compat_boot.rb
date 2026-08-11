@@ -1,5 +1,10 @@
 # Compatibility shim for older Jekyll/Liquid on modern Ruby.
 # This file is required from the Gemfile so it loads before Jekyll boots.
+# Jekyll-Scholar reads bibliography files through IO.read. Cloudflare's Ruby
+# build environment defaults that external encoding to US-ASCII, while this
+# site's bibliography includes UTF-8 Chinese text.
+Encoding.default_external = Encoding::UTF_8
+
 module Ruby40TaintCompat
   def tainted?
     false
