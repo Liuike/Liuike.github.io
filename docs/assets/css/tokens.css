@@ -13,6 +13,8 @@
   --color-accent: oklch(58% 0.20 256);
   --color-accent-ink: oklch(100% 0 0);
   --color-focus: oklch(52% 0.21 256);
+  --color-danger: oklch(52% 0.2 25);
+  --color-danger-ink: oklch(100% 0 0);
   --color-graphite: oklch(22% 0.016 260);
   --color-graphite-2: oklch(28% 0.018 260);
   --color-graphite-ink: oklch(94% 0.008 250);

@@ -13,10 +13,40 @@
   const isEditor = Boolean(editorRoot);
   const publicApi = "/api/reading/";
   const editorApi = "/reading/edit/api/";
+  const localMockEntry = {
+    id: 0,
+    name: "Training language models to follow instructions with human feedback",
+    link: "https://arxiv.org/pdf/2203.02155",
+    tags: ["RL", "RLHF", "DL"],
+    notes_markdown: "A local preview entry for refining the reading-list layout. It is only shown when the site is running on localhost.",
+    created_at: "",
+    updated_at: "",
+  };
+  const localTagWrapMockEntry = {
+    id: -1,
+    name: "A deliberately tag-heavy local preview entry",
+    link: "https://example.com/tag-preview",
+    tags: ["AI", "Alignment", "Cognition", "Design", "Economics", "History", "Methods", "Systems"],
+    notes_markdown: "A localhost-only entry used to check how a long tag set wraps within a reading-list card.",
+    created_at: "",
+    updated_at: "",
+  };
+  const isStaticLocalPreview = ["localhost", "127.0.0.1"].includes(window.location.hostname) && window.location.port === "4000";
   const escapeHtml = (value) => String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;");
   const isSafeHttpUrl = (value) => { try { const url = new URL(value); return url.protocol === "http:" || url.protocol === "https:"; } catch { return false; } };
   const makeTags = (value) => [...new Set(String(value || "").split(",").map((tag) => tag.trim()).filter(Boolean))];
   const formatEntry = (entry) => ({ ...entry, id: Number(entry.id), name: String(entry.name || ""), link: String(entry.link || ""), tags: Array.isArray(entry.tags) ? entry.tags.map(String) : [], notes_markdown: String(entry.notes_markdown || "") });
+  const createIcon = (name) => {
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 24 24"); svg.setAttribute("aria-hidden", "true"); svg.setAttribute("focusable", "false");
+    if (name === "chevron-down") {
+      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      path.setAttribute("d", "m6 9 6 6 6-6"); path.setAttribute("fill", "none"); path.setAttribute("stroke", "currentColor"); path.setAttribute("stroke-linecap", "round"); path.setAttribute("stroke-linejoin", "round"); path.setAttribute("stroke-width", "2"); svg.append(path);
+    } else {
+      [5, 12, 19].forEach((cy) => { const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle"); circle.setAttribute("cx", "12"); circle.setAttribute("cy", String(cy)); circle.setAttribute("r", "1.5"); circle.setAttribute("fill", "currentColor"); svg.append(circle); });
+    }
+    return svg;
+  };
 
   const renderInlineMarkdown = (value) => {
     let result = escapeHtml(value);
@@ -71,6 +101,7 @@
   const noteContent = root.querySelector("[data-reading-note-content]");
   let entries = [];
   const activeTags = new Set();
+  let tagsExpanded = false;
 
   const closeDialog = (dialog) => { if (dialog?.open) dialog.close(); };
   root.querySelectorAll("[data-reading-note-close]").forEach((button) => button.addEventListener("click", () => closeDialog(noteDialog)));
@@ -86,26 +117,39 @@
 
   const renderTags = () => {
     tagsRoot.replaceChildren();
-    const tags = [...new Set(entries.flatMap((entry) => entry.tags))].sort((a, b) => a.localeCompare(b));
+    const tagCounts = new Map();
+    entries.flatMap((entry) => entry.tags).forEach((tag) => tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1));
+    const tags = [...tagCounts.entries()].sort(([leftTag, leftCount], [rightTag, rightCount]) => rightCount - leftCount || leftTag.localeCompare(rightTag)).map(([tag]) => tag);
     tags.forEach((tag) => {
       const button = document.createElement("button");
       button.type = "button"; button.className = "reading-tag"; button.textContent = tag; button.setAttribute("aria-pressed", String(activeTags.has(tag)));
       button.addEventListener("click", () => { activeTags.has(tag) ? activeTags.delete(tag) : activeTags.add(tag); renderTags(); renderEntries(); });
       tagsRoot.append(button);
     });
+    requestAnimationFrame(() => {
+      const buttons = [...tagsRoot.querySelectorAll(".reading-tag")];
+      const firstRowTop = buttons[0]?.offsetTop;
+      const overflowIndex = buttons.findIndex((button) => button.offsetTop > firstRowTop);
+      if (overflowIndex === -1) return;
+      if (!tagsExpanded) buttons.slice(overflowIndex).forEach((button) => { button.hidden = true; });
+      const toggle = document.createElement("button");
+      toggle.type = "button"; toggle.className = "reading-tag reading-tag--expand"; toggle.textContent = tagsExpanded ? "Show fewer tags" : `Show all ${tags.length} tags`; toggle.setAttribute("aria-expanded", String(tagsExpanded));
+      toggle.addEventListener("click", () => { tagsExpanded = !tagsExpanded; renderTags(); });
+      tagsRoot.append(toggle);
+    });
   };
 
   const entryActions = (entry) => {
     const actions = document.createElement("div"); actions.className = "reading-entry__actions";
     if (entry.notes_markdown.trim()) {
-      const notesButton = document.createElement("button"); notesButton.type = "button"; notesButton.className = "reading-icon-button"; notesButton.setAttribute("aria-label", `Expand notes for ${entry.name}`); notesButton.textContent = "⌄"; notesButton.addEventListener("click", () => openNotes(entry, notesButton)); actions.append(notesButton);
+      const notesButton = document.createElement("button"); notesButton.type = "button"; notesButton.className = "reading-icon-button"; notesButton.setAttribute("aria-label", `Expand notes for ${entry.name}`); notesButton.append(createIcon("chevron-down")); notesButton.addEventListener("click", () => openNotes(entry, notesButton)); actions.append(notesButton);
     }
     if (isEditor) {
       const menu = document.createElement("details"); menu.className = "reading-entry-menu";
-      const summary = document.createElement("summary"); summary.className = "reading-icon-button"; summary.setAttribute("aria-label", `Edit options for ${entry.name}`); summary.textContent = "…";
+      const summary = document.createElement("summary"); summary.className = "reading-icon-button"; summary.setAttribute("aria-label", `Edit options for ${entry.name}`); summary.setAttribute("aria-haspopup", "menu"); summary.append(createIcon("more-options"));
       const menuBody = document.createElement("div"); menuBody.className = "reading-entry-menu__body";
       const edit = document.createElement("button"); edit.type = "button"; edit.textContent = "Edit"; edit.addEventListener("click", () => openForm(entry));
-      const remove = document.createElement("button"); remove.type = "button"; remove.textContent = "Delete"; remove.addEventListener("click", () => deleteEntry(entry));
+      const remove = document.createElement("button"); remove.type = "button"; remove.className = "reading-entry-menu__delete"; remove.textContent = "Delete"; remove.addEventListener("click", () => deleteEntry(entry));
       menuBody.append(edit, remove); menu.append(summary, menuBody); actions.append(menu);
     }
     return actions;
@@ -128,18 +172,22 @@
     visible.forEach((entry) => {
       const article = document.createElement("article"); article.className = "reading-entry";
       const head = document.createElement("div"); head.className = "reading-entry__head";
-      const title = document.createElement("h2"); title.textContent = entry.name;
-      const link = document.createElement("a"); link.className = "reading-entry__link"; link.href = entry.link; link.target = "_blank"; link.rel = "noopener noreferrer"; link.textContent = entry.link;
-      head.append(title, link); article.append(head, entryActions(entry));
+      const title = document.createElement("h2");
+      const titleLink = document.createElement("a"); titleLink.className = "reading-entry__title-link"; titleLink.href = entry.link; titleLink.target = "_blank"; titleLink.rel = "noopener noreferrer"; titleLink.textContent = entry.name;
+      title.append(titleLink); head.append(title); article.append(head, entryActions(entry));
       if (entry.tags.length) { const tagList = document.createElement("div"); tagList.className = "reading-entry__tags"; entry.tags.forEach((tag) => { const chip = document.createElement("span"); chip.textContent = tag; tagList.append(chip); }); article.append(tagList); }
       results.append(article);
     });
   };
 
   search.addEventListener("input", renderEntries);
+  window.addEventListener("resize", () => { if (!tagsExpanded) renderTags(); });
 
   let formDialog; let form; let idInput; let nameInput; let linkInput; let tagsInput; let notesInput; let suggestions; let preview; let mode; let heading; let deleteButton; let saveButton; let saveStatus;
-  const refresh = async () => { entries = await fetchEntries(isEditor ? editorApi : publicApi); renderTags(); renderEntries(); if (isEditor) renderSuggestions(); };
+  const refresh = async () => {
+    entries = isStaticLocalPreview ? [localMockEntry, localTagWrapMockEntry] : await fetchEntries(isEditor ? editorApi : publicApi);
+    renderTags(); renderEntries(); if (isEditor) renderSuggestions();
+  };
 
   const renderSuggestions = () => {
     suggestions.replaceChildren();
