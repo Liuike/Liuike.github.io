@@ -477,16 +477,26 @@ body,
   margin-top: var(--space-lg);
 }
 
-.project-index .project-item {
+.projects-page .project-index {
+  display: block;
+}
+
+.projects-page .project-index .project-item {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   column-gap: var(--space-md);
   row-gap: var(--space-xs);
+  min-height: 0;
+  padding: var(--space-md) 0;
+  border: 0;
+  border-bottom: var(--rule);
+  background: transparent;
 }
 
-.project-index .project-summary {
+.projects-page .project-index .project-summary {
   grid-column: 1 / -1;
   max-width: 62ch;
+  overflow-wrap: anywhere;
 }
 
 .project-index .project-summary p {
@@ -494,11 +504,41 @@ body,
   color: var(--color-ink-2);
 }
 
-.project-index span {
+.project-index .project-title {
+  margin: 0;
   color: var(--color-ink);
   font-family: var(--font-display);
   font-size: var(--text-md);
   font-weight: 600;
+  line-height: 1.25;
+}
+
+.project-index .project-link {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: start;
+  margin-top: 0;
+  padding: var(--space-2xs) var(--space-xs);
+  border: var(--rule);
+  border-color: var(--color-accent);
+  border-radius: var(--radius-control);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out);
+}
+
+.project-index .project-link:hover {
+  background-color: var(--color-accent);
+  color: var(--color-paper);
+}
+
+.project-index .project-link:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
 }
 
 .blog-layout {
@@ -625,13 +665,11 @@ body,
   display: block;
   width: 100%;
   max-width: 100%;
-  font-size: clamp(var(--text-2xl), 4vw + 0.75rem, var(--text-display));
   line-height: 0.94;
 }
 
 .post-hero .post-heading--long h1 {
   max-width: 100%;
-  font-size: clamp(var(--text-xl), 3vw, var(--text-2xl));
   line-height: 1;
 }
 
@@ -666,6 +704,16 @@ body,
 
 .post-copy > :first-child {
   margin-top: 0;
+}
+
+/* Keep wide display equations readable rather than letting them widen the page. */
+.post-copy mjx-container[display="true"] {
+  display: block;
+  max-width: 100%;
+  margin: 0 0 var(--space-md) !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: var(--space-2xs) 0;
 }
 
 .post-copy h2,
@@ -823,6 +871,11 @@ body,
   padding: var(--space-md) 0 0;
   border-top: var(--rule);
   justify-content: normal;
+}
+
+.post-layout--with-contents + .post-nav {
+  max-width: 78ch;
+  margin-left: clamp(var(--space-xs), 2.5vw, var(--space-xl));
 }
 
 .image-dropdown,
@@ -1048,9 +1101,22 @@ body,
   .about-hero,
   .collection-hero,
   .blog-layout,
-  .project-index .project-item,
   .post-layout {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .projects-page .project-index {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .projects-page .project-index .project-item {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project-index .project-link {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
   }
 
   .collection-hero > :first-child {

@@ -8,12 +8,16 @@
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/tokens.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/landing.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  {% if page.reading_list %}
+  <link rel="stylesheet" href="{{ '/assets/css/reading-list.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  {% endif %}
   <link rel="apple-touch-icon" sizes="180x180" href="{{ '/apple-touch-icon.png' | relative_url }}">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ '/favicon-32x32.png' | relative_url }}">
   <link rel="icon" type="image/png" sizes="16x16" href="{{ '/favicon-16x16.png' | relative_url }}">
   <link rel="icon" href="{{ '/favicon.ico' | relative_url }}">
   <link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
   {% include head.html %}
+  {% include mathjax.html %}
 </head>
 <body>
   {% include header.html %}
@@ -22,6 +26,9 @@
   </main>
   {% include footer.html %}
   {% include command-palette.html %}
+  {% if page.reading_list %}
+  <script src="{{ '/assets/js/reading-list.js' | relative_url }}" defer></script>
+  {% endif %}
   <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
   {% include analytics.html %}
 </body>

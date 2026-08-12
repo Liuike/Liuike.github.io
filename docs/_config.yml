@@ -10,10 +10,18 @@ description: "Student studying Math-CS and Education Studies at Brown University
 # Build settings (safe GitHub Pages defaults)
 markdown: kramdown
 theme: null
+# Build-time plugins.
 plugins:
+  - jekyll-scholar
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+
+scholar:
+  source: ./_bibliography
+  bibliography: references.bib
+  style: apa
+  locale: en
   
 # Collections
 collections:
@@ -21,7 +29,7 @@ collections:
     output: false
 
 # Permalinks
-permalink: /:categories/:year/:month/:day/:title/
+permalink: /blog/:title/
 
 # Excludes from build
 exclude:
@@ -33,6 +41,9 @@ exclude:
   - node_modules/
   - .sass-cache/
   - .jekyll-cache/
+
+include:
+  - _routes.json
 
 # Author/profile (used in templates)
 author:

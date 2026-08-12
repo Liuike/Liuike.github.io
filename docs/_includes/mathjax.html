@@ -1,0 +1,218 @@
+{% if page.math %}
+<script>
+  (function () {
+    const matrixMacros = {
+      weights: '\\bm{w}',
+      Weights: '\\bm{W}',
+      Gr: '\\bm{G}',
+      Momentum: '\\bm{M}',
+      Orthogonal: '\\bm{O}',
+      Tangent: '\\bm{A}',
+      MSubproblem: '\\bm{M}',
+      XSubproblem: '\\bm{X}',
+      OmSubproblem: '\\Omega',
+      bias: '\\mathbf{b}',
+      params: '\\bm{\\theta}',
+      Hessian: '\\mathbf{H}',
+      Jacobian: '\\mathbf{J}',
+      eigenvec: '\\mathbf{v}',
+      eigenval: '\\bm{\\lambda}'
+    };
+
+    function readDelimitedArgument(source, start, open, close) {
+      if (source[start] !== open) return null;
+
+      let depth = 0;
+      for (let index = start; index < source.length; index += 1) {
+        if (source[index] === '\\') {
+          index += 1;
+          continue;
+        }
+        if (source[index] === open) depth += 1;
+        if (source[index] === close && --depth === 0) {
+          return { value: source.slice(start + 1, index), end: index + 1 };
+        }
+      }
+      return null;
+    }
+
+    function readMatrixArguments(source, start) {
+      let position = start;
+      while (/\s/.test(source[position] || '')) position += 1;
+      const open = source[position];
+      const close = open === '{' ? '}' : open === '[' ? ']' : null;
+      const args = ['', '', '', ''];
+
+      if (!close) return { args, end: start };
+
+      for (let index = 0; index < args.length; index += 1) {
+        while (/\s/.test(source[position] || '')) position += 1;
+        const argument = readDelimitedArgument(source, position, open, close);
+        if (!argument) break;
+        args[index] = argument.value;
+        position = argument.end;
+      }
+      return { args, end: position };
+    }
+
+    function expandMatrixMacro(name, args) {
+      let result = matrixMacros[name];
+      if (args[0] || args[3]) {
+        result += '_{' + args[0] + (args[3] ? '\\lbrack ' + args[3] + '\\rbrack' : '') + '}';
+      }
+      if (args[1] || args[2]) {
+        result += '^{' + args[1] + (args[2] ? '(' + args[2] + ')' : '') + '}';
+      }
+      return result;
+    }
+
+    function rewriteMatrixMacros(source) {
+      const pattern = /\\(weights|Weights|Gr|Momentum|Orthogonal|Tangent|MSubproblem|XSubproblem|OmSubproblem|bias|params|Hessian|Jacobian|eigenvec|eigenval)(?![A-Za-z])/g;
+      let match;
+      let result = '';
+      let lastIndex = 0;
+
+      while ((match = pattern.exec(source)) !== null) {
+        const parsed = readMatrixArguments(source, match.index + match[0].length);
+        result += source.slice(lastIndex, match.index) + expandMatrixMacro(match[1], parsed.args);
+        lastIndex = parsed.end;
+      }
+      return result + source.slice(lastIndex);
+    }
+
+    function prepareMatrixMacros() {
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+        acceptNode(node) {
+          const parent = node.parentElement;
+          return parent && !parent.closest('code, pre, script, style, textarea')
+            ? NodeFilter.FILTER_ACCEPT
+            : NodeFilter.FILTER_REJECT;
+        }
+      });
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach((node) => {
+        node.nodeValue = rewriteMatrixMacros(node.nodeValue);
+      });
+    }
+
+    function scrollEquationReference(hash = window.location.hash) {
+      if (!hash || !hash.startsWith('#mjx-eqn')) return;
+
+      const equation = document.getElementById(decodeURIComponent(hash.slice(1)));
+      if (!equation) return;
+
+      equation.scrollIntoView({
+        block: 'center',
+        inline: 'nearest',
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+      });
+    }
+
+    document.addEventListener('click', (event) => {
+      const reference = event.target.closest('a[href^="#mjx-eqn"]');
+      if (!reference || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+      event.preventDefault();
+      history.pushState(null, '', reference.hash);
+      scrollEquationReference(reference.hash);
+    });
+
+    window.addEventListener('hashchange', () => scrollEquationReference());
+    window.addEventListener('popstate', () => scrollEquationReference());
+    window.prepareMatrixMacros = prepareMatrixMacros;
+    window.scrollEquationReference = scrollEquationReference;
+  }());
+
+  window.MathJax = {
+    loader: {
+      load: ['[tex]/boldsymbol']
+    },
+    startup: {
+      ready() {
+        window.prepareMatrixMacros();
+        MathJax.startup.defaultReady();
+        MathJax.startup.promise.then(() => window.scrollEquationReference());
+      }
+    },
+    tex: {
+      inlineMath: [['$', '$']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      tags: 'ams',
+      packages: {'[+]': ['boldsymbol']},
+      macros: {
+        bm: ['\\boldsymbol{#1}', 1],
+        R: '\\mathbb{R}',
+        N: '\\mathbb{N}',
+        Z: '\\mathbb{Z}',
+        F: '\\mathbb{F}',
+        Q: '\\mathbb{Q}',
+        E: '\\mathbb{E}',
+        Ex: '\\mathbb{E}',
+        vecspace: '\\mathcal{V}',
+        dualspace: '\\mathcal{V}^{*}',
+        weightspace: '\\mathcal{W}^{*}',
+        tasknum: ['\\tau_{#1}', 1, ''],
+        outertasknum: ['\\bm{\\phi}_{\\tau}', 1, ''],
+        constr: ['\\iota_{\\mathcal{C}}', 1, ''],
+        constrSet: '\\mathcal{C}',
+        simplex: '\\Delta',
+        msign: ['\\text{msign}(#1)', 1, ''],
+        holderexp: ['\\alpha_{#1}', 1, ''],
+        transpose: ['{#1}^{\\top}', 1],
+        grad: ['\\nabla_{#1}', 1, ''],
+        subgrad: ['s_{#1}', 1, ''],
+        gr: ['\\bm{g}_{#1}', 1, ''],
+
+        direction: ['\\bm{t}_{#1}', 1, ''],
+        Expect: '\\mathbb{E}',
+        supp: '\\operatorname{supp}',
+        prox: '\\operatorname{prox}',
+        softmax: '\\operatorname{softmax}',
+        trace: '\\operatorname{tr}',
+        dualize: '\\operatorname{dualize}_{\\Vert\\cdot\\Vert}',
+        norm: ['\\lVert #1\\rVert', 1, ''],
+        dualnorm: ['\\lVert #1\\rVert^{\\dagger}', 1, ''],
+        frobeniusnorm: ['\\lVert #1\\rVert_{F}', 1, ''],
+        snorm: ['\\lVert #1 \\rVert_2', 1],
+        rmsnorm: ['\\lVert #1 \\rVert_{\\text{RMS}}', 1],
+        rmsrmsnorm: ['\\lVert #1 \\rVert_{\\text{RMS} \\rightarrow \\text{RMS}}', 1],
+        diverg: '\\mathcal{D}_{\\psi}',
+        distgen: ['\\psi^{#1}', 1, ''],
+        reg: ['R_{#1}', 1, ''],
+        dualvar: ['\\Lambda_{#1}', 1, ''],
+        change: ['\\Delta^{#1}', 1, ''],
+        major: ['\\lambda^{#1}', 1, ''],
+        sharpparam: ['\\lambda_{#1}', 1, ''],
+        numiters: ['K_{#1}', 1, ''],
+        deepnet: ['f_{#1}', 1, ''],
+        layer: ['l_{#1}', 1, ''],
+        numlayers: ['L_{#1}', 1, ''],
+        layerdim: ['M_{#1}', 1, ''],
+        inputdim: 'd',
+        outputdim: 'K',
+        lossfunc: ['\\mathcal{L}_{#1}', 1, ''],
+        batchloss: ['\\ell_{#1}', 1, ''],
+        nonlin: ['\\sigma^{#1}', 1, ''],
+        relu: 'ReLU',
+        firstlip: '\\alpha',
+        secondlip: '\\beta',
+        margin: ['\\gamma_{#1}', 1, ''],
+        radius: ['r_{#1}', 1, ''],
+
+        inner: ['\\bm{\\theta}_{#1}^{#2(#3)}', 3],
+        outer: ['\\bm{\\phi}_{#1}^{#2(#3)}', 3],
+        datax: ['\\bm{x}_{#1}^{#2(#3)}', 3],
+        datay: ['\\bm{y}_{#1}^{#2(#3)}', 3],
+        datadist: ['\\bm{p}_{#1}^{#2(#3)}', 3],
+        mydef: ['\\textbf{#1}', 1],
+        argmax: '\\mathop{\\operatorname{arg\\,max}}\\limits',
+        argmin: '\\mathop{\\operatorname{arg\\,min}}\\limits',
+        fanin: '\\text{fan-in}',
+        fanout: '\\text{fan-out}'
+      }
+    }
+  };
+</script>
+<script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+{% endif %}

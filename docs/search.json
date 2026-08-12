@@ -10,6 +10,9 @@ layout: null
     {% if item.name == "404.html" %}
       {% assign include_search_entry = false %}
     {% endif %}
+    {% if item.search == false %}
+      {% assign include_search_entry = false %}
+    {% endif %}
     {% if include_search_entry %}
       {% unless first_search_entry %},{% endunless %}
     {
