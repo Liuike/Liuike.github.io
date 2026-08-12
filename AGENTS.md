@@ -7,6 +7,7 @@
   - `_layouts/` and `_includes/` contain shared page structure.
   - `assets/css/`, `assets/js/`, and `assets/img/` contain source assets.
   - `_site/` is generated output; never edit it directly.
+- `scripts/` contains scripts for mocking cloudflare deployment locally for testing
 - `design.md` is the locked visual system. Reuse its tokens, typography, and motion stance.
 - `README.md` documents local development commands.
 
