@@ -12,21 +12,19 @@ permalink: /projects/
   </header>
 
   {% if site.projects and site.projects.size > 0 %}
-    {% assign sorted_projects = site.projects | sort: "title" %}
+    {% assign sorted_projects = site.projects | sort: "date" | reverse %}
     <ul class="project-index" aria-label="Project list">
       {% for project in sorted_projects %}
         <li class="project-item">
-          {% if project.external_url %}
-            <a href="{{ project.external_url }}" target="_blank" rel="noopener noreferrer">{{ project.title }}</a>
-          {% else %}
-            <span>{{ project.title }}</span>
-          {% endif %}
-          <small class="entry-meta">Project / {{ forloop.index | prepend: "0" | slice: -2, 2 }}</small>
+          <h2 class="project-title">{{ project.title }}</h2>
           <div class="project-summary">
             {% if project.content %}
               {{ project.content | markdownify }}
             {% endif %}
           </div>
+          {% if project.external_url %}
+            <a class="project-link" href="{{ project.external_url }}" target="_blank" rel="noopener noreferrer">View Project</a>
+          {% endif %}
         </li>
       {% endfor %}
     </ul>
