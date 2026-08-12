@@ -12,7 +12,6 @@ sitemap: false
     <div>
       <h1>Reading list</h1>
     </div>
-    <a class="reading-editor-link" href="{{ '/reading/edit/' | relative_url }}">Edit list</a>
   </header>
 
   <div class="reading-tools" aria-label="Reading list filters">
@@ -21,6 +20,9 @@ sitemap: false
       <input id="reading-search" type="search" autocomplete="off" placeholder="Name, tag, or note" data-reading-search>
     </label>
     <div class="reading-filter-tags" data-reading-tags aria-label="Filter by tag"></div>
+    <div class="reading-tools__actions">
+      <button class="reading-button" type="button" data-reading-navigate="{{ '/reading/edit/' | relative_url }}">Edit list</button>
+    </div>
   </div>
 
   <p class="reading-status" data-reading-status role="status">Loading reading list…</p>

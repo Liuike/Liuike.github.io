@@ -4,6 +4,12 @@
   const root = editorRoot || publicRoot;
   if (!root) return;
 
+  root.querySelectorAll("[data-reading-navigate]").forEach((button) => {
+    button.addEventListener("click", () => {
+      window.location.assign(button.dataset.readingNavigate);
+    });
+  });
+
   const isEditor = Boolean(editorRoot);
   const publicApi = "/api/reading/";
   const editorApi = "/reading/edit/api/";
@@ -104,6 +110,12 @@
     }
     return actions;
   };
+
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".reading-entry-menu")) {
+      root.querySelectorAll(".reading-entry-menu[open]").forEach((menu) => menu.removeAttribute("open"));
+    }
+  });
 
   const renderEntries = () => {
     const query = search.value.trim().toLocaleLowerCase();
