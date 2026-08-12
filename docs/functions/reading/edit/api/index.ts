@@ -42,11 +42,7 @@ function entryFromRow(row: ReadingEntryRow) {
 
 async function payloadFromRequest(request: Request): Promise<EntryPayload | Response> {
   let body: unknown;
-  try {
-    body = await request.json();
-  } catch {
-    return jsonError("Send a JSON entry payload.");
-  }
+  try { body = await request.json(); } catch { return jsonError("Send a JSON entry payload."); }
   if (!body || typeof body !== "object") return jsonError("Send a JSON entry payload.");
   const value = body as Record<string, unknown>;
   const name = typeof value.name === "string" ? value.name.trim() : "";
@@ -54,15 +50,12 @@ async function payloadFromRequest(request: Request): Promise<EntryPayload | Resp
   const notes = typeof value.notes_markdown === "string" ? value.notes_markdown : "";
   const rawTags = Array.isArray(value.tags) ? value.tags : [];
   const tags = [...new Set(rawTags.filter((tag): tag is string => typeof tag === "string").map((tag) => tag.trim()).filter(Boolean))];
-
   if (!name || name.length > MAX_NAME_LENGTH) return jsonError("Name is required and must be 300 characters or fewer.");
   if (link.length > MAX_LINK_LENGTH) return jsonError("Link must be 2,048 characters or fewer.");
   try {
     const url = new URL(link);
     if (url.protocol !== "http:" && url.protocol !== "https:") throw new Error("Unsupported protocol");
-  } catch {
-    return jsonError("Link must be a valid HTTP or HTTPS URL.");
-  }
+  } catch { return jsonError("Link must be a valid HTTP or HTTPS URL."); }
   if (tags.length > MAX_TAGS || tags.some((tag) => tag.length > MAX_TAG_LENGTH)) return jsonError("Use at most 25 tags, each 64 characters or fewer.");
   if (notes.length > MAX_NOTES_LENGTH) return jsonError("Reading notes must be 100,000 characters or fewer.");
   return { name, link, tags, notes_markdown: notes };

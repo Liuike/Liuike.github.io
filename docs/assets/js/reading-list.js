@@ -88,7 +88,11 @@
   };
 
   const fetchEntries = async (url) => {
-    const response = await fetch(url, { headers: { Accept: "application/json" }, cache: "no-store" });
+    const response = await fetch(url, {
+      headers: { Accept: "application/json" },
+      cache: "no-store",
+      credentials: "same-origin",
+    });
     const data = await response.json().catch(() => ({}));
     if (!response.ok) throw new Error(data.error || "Unable to load the reading list.");
     return Array.isArray(data.entries) ? data.entries : [];
@@ -242,8 +246,10 @@
       });
     };
 
+    const adminApi = "/reading/edit/api/";
+
     const refreshEntries = async () => {
-      entries = (await fetchEntries("/api/reading-admin/")).map(formatEntry);
+      entries = (await fetchEntries(adminApi)).map(formatEntry);
       renderList();
       status.textContent = `${entries.length} ${entries.length === 1 ? "entry" : "entries"}.`;
       status.dataset.state = "";
@@ -259,9 +265,10 @@
       setButtonLoading(saveButton, true, "Save entry");
       saveStatus.textContent = "";
       try {
-        const response = await fetch(id ? `/api/reading-admin/${id}` : "/api/reading-admin/", {
+        const response = await fetch(id ? `${adminApi}${id}` : adminApi, {
           method: id ? "PUT" : "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
+          credentials: "same-origin",
           body: JSON.stringify(payload),
         });
         const data = await response.json().catch(() => ({}));
@@ -284,7 +291,7 @@
       if (!id || !window.confirm("Delete this reading-list entry?")) return;
       deleteButton.disabled = true;
       try {
-        const response = await fetch(`/api/reading-admin/${id}`, { method: "DELETE" });
+        const response = await fetch(`${adminApi}${id}`, { method: "DELETE", credentials: "same-origin" });
         if (!response.ok) {
           const data = await response.json().catch(() => ({}));
           throw new Error(data.error || "Unable to delete this entry.");
