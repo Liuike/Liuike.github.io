@@ -4,6 +4,29 @@
   max-width: 78rem;
 }
 
+.reading-page .collection-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.reading-editor-link {
+  min-height: 2.75rem;
+  padding: var(--space-2xs) var(--space-sm);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-control);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.reading-editor-link:hover { background: var(--color-paper-2); }
+
 .reading-tools {
   display: grid;
   grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
@@ -110,6 +133,7 @@
 }
 
 .reading-entry {
+  position: relative;
   display: flex;
   min-width: 0;
   min-height: 18rem;
@@ -120,6 +144,61 @@
   border-bottom: var(--rule);
   background: var(--color-surface);
 }
+
+.reading-entry__actions {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  display: flex;
+  gap: var(--space-3xs);
+  align-items: flex-start;
+}
+
+.reading-icon-button {
+  display: inline-grid;
+  width: 2.25rem;
+  min-height: 2.25rem;
+  place-items: center;
+  border: var(--rule);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  line-height: 1;
+  transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+}
+
+.reading-icon-button:hover { background: var(--color-paper-2); color: var(--color-accent); }
+.reading-icon-button:active { transform: translateY(1px); }
+
+.reading-entry-menu { position: relative; }
+.reading-entry-menu summary { list-style: none; cursor: pointer; }
+.reading-entry-menu summary::-webkit-details-marker { display: none; }
+.reading-entry-menu__body {
+  position: absolute;
+  top: calc(100% + var(--space-3xs));
+  right: 0;
+  z-index: var(--z-popover);
+  display: grid;
+  min-width: 7rem;
+  border: var(--rule);
+  background: var(--color-surface);
+  box-shadow: 0 var(--space-2xs) var(--space-md) var(--color-overlay);
+}
+
+.reading-entry-menu__body button {
+  min-height: 2.5rem;
+  padding: var(--space-2xs) var(--space-xs);
+  border: 0;
+  background: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-align: left;
+}
+
+.reading-entry-menu__body button:hover { background: var(--color-paper-2); color: var(--color-accent); }
 
 .reading-entry__head {
   display: grid;
@@ -281,6 +360,51 @@
 .reading-preview { margin-top: var(--space-xl); padding-top: var(--space-md); border-top: var(--rule); }
 .reading-preview h3 { margin: var(--space-2xs) 0 var(--space-md); font-size: var(--text-md); }
 
+.reading-note-dialog,
+.reading-form-dialog {
+  width: min(100% - (2 * var(--space-md)), 46rem);
+  max-height: min(80dvh, 48rem);
+  padding: 0;
+  border: var(--rule);
+  border-radius: var(--radius-panel);
+  background: var(--color-surface);
+  color: var(--color-ink);
+}
+
+.reading-form__header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+
+.reading-note-dialog::backdrop,
+.reading-form-dialog::backdrop { background: var(--color-overlay); }
+
+.reading-note-dialog__header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  border-bottom: var(--rule);
+  background: var(--color-surface);
+}
+
+.reading-note-dialog__header h2 {
+  min-width: 0;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-style: normal;
+  overflow-wrap: anywhere;
+}
+
+.reading-note-dialog [data-reading-note-content] { padding: var(--space-md); }
+.reading-form-dialog .reading-form { border: 0; }
+
 @media (max-width: 60rem) {
   .reading-catalogue { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .reading-editor-layout { grid-template-columns: minmax(0, 1fr); }
@@ -296,6 +420,8 @@
   .reading-entry { min-height: 0; }
   .reading-tag { min-height: 2.75rem; }
   .reading-form__header { align-items: flex-start; }
+  .reading-page .collection-hero { align-items: flex-start; }
+  .reading-editor-link { min-height: 2.75rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
