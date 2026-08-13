@@ -13,6 +13,8 @@
   const isEditor = Boolean(editorRoot);
   const publicApi = "/api/reading/";
   const editorApi = "/reading/edit/api/";
+  const toReadApi = "/reading/edit/to-read/";
+  const defaultNotes = "## Problem: What problem is the paper addressing?\n\n\n## Core idea: Explain the method in 2–3 sentences.\n\n\n## Evidence: What experiment/result actually supports the claim?\n\n\n## Relation to previous papers: What did this change?\n\n\n## Weakness / open question: What remains unresolved?\n\n\n## One-sentence memory: If I remember only one thing:";
   const localMockEntry = {
     id: 0,
     name: "Training language models to follow instructions with human feedback",
@@ -191,15 +193,24 @@
 
   const renderSuggestions = () => {
     suggestions.replaceChildren();
-    [...new Set(entries.flatMap((entry) => entry.tags))].sort((a, b) => a.localeCompare(b)).forEach((tag) => { const option = document.createElement("option"); option.value = tag; suggestions.append(option); });
+    const allTags = [...new Set(entries.flatMap((entry) => entry.tags))].sort((a, b) => a.localeCompare(b));
+    const value = tagsInput.value;
+    const prefix = value.slice(value.lastIndexOf(",") + 1).trim().toLocaleLowerCase();
+    const matches = prefix ? allTags.filter((tag) => tag.toLocaleLowerCase().includes(prefix) && !makeTags(value).includes(tag)).slice(0, 8) : [];
+    matches.forEach((tag) => {
+      const button = document.createElement("button"); button.type = "button"; button.setAttribute("role", "option"); button.textContent = tag;
+      button.addEventListener("mousedown", (event) => { event.preventDefault(); const before = value.slice(0, value.lastIndexOf(",") + 1); tagsInput.value = `${before}${before && !before.endsWith(" ") ? " " : ""}${tag}, `; renderSuggestions(); tagsInput.focus(); }); suggestions.append(button);
+    });
+    suggestions.hidden = matches.length === 0;
+    tagsInput.setAttribute("aria-expanded", String(matches.length > 0));
   };
 
   const openForm = (entry = null) => {
     form.reset();
     idInput.value = entry ? String(entry.id) : "";
-    nameInput.value = entry?.name || ""; linkInput.value = entry?.link || ""; tagsInput.value = entry?.tags.join(", ") || ""; notesInput.value = entry?.notes_markdown || "";
+    nameInput.value = entry?.name || ""; linkInput.value = entry?.link || ""; tagsInput.value = entry?.tags.join(", ") || ""; notesInput.value = entry?.notes_markdown || defaultNotes;
     mode.textContent = entry ? "Editing entry" : "New entry"; heading.textContent = entry ? entry.name : "Add entry"; deleteButton.hidden = !entry; saveStatus.textContent = ""; preview.replaceChildren(renderMarkdown(notesInput.value));
-    formDialog.showModal(); nameInput.focus();
+    renderSuggestions(); formDialog.showModal(); nameInput.focus();
   };
 
   const closeForm = () => closeDialog(formDialog);
@@ -215,6 +226,9 @@
     root.querySelector("[data-reading-new]").addEventListener("click", () => openForm());
     root.querySelector("[data-reading-form-close]").addEventListener("click", closeForm);
     notesInput.addEventListener("input", () => preview.replaceChildren(renderMarkdown(notesInput.value)));
+    tagsInput.addEventListener("input", renderSuggestions);
+    tagsInput.addEventListener("keydown", (event) => { if (event.key === "Escape") { suggestions.hidden = true; tagsInput.setAttribute("aria-expanded", "false"); } });
+    tagsInput.addEventListener("blur", () => { window.setTimeout(() => { suggestions.hidden = true; tagsInput.setAttribute("aria-expanded", "false"); }, 120); });
     formDialog.addEventListener("click", (event) => { if (event.target === formDialog) closeForm(); });
     form.addEventListener("submit", async (event) => {
       event.preventDefault(); const id = Number(idInput.value); const payload = { name: nameInput.value, link: linkInput.value, tags: makeTags(tagsInput.value), notes_markdown: notesInput.value };
@@ -224,6 +238,42 @@
       finally { setSaving(false); }
     });
     deleteButton.addEventListener("click", async () => { const entry = entries.find((item) => item.id === Number(idInput.value)); if (entry) { await deleteEntry(entry); closeForm(); } });
+
+    const toReadRoot = root.querySelector("[data-to-read]");
+    const toReadForm = root.querySelector("[data-to-read-form]");
+    const toReadList = root.querySelector("[data-to-read-list]");
+    const toReadStatus = root.querySelector("[data-to-read-status]");
+    root.querySelector("[data-reading-to-read]").addEventListener("click", () => { toReadRoot.scrollIntoView({ behavior: "smooth", block: "start" }); toReadRoot.focus({ preventScroll: true }); });
+    let toReadItems = isStaticLocalPreview ? [{ id: -101, title: "A local queue item", link: "https://example.com", position: 0 }] : [];
+    const toReadRequest = async (url, options) => {
+      const response = await fetch(url, { credentials: "same-origin", headers: { Accept: "application/json", ...(options?.body ? { "Content-Type": "application/json" } : {}) }, ...options });
+      const data = await response.json().catch(() => ({})); if (!response.ok) throw new Error(data.error || "Unable to update the to-read queue."); return data;
+    };
+    const renderToRead = () => {
+      toReadList.replaceChildren();
+      toReadItems.forEach((item, index) => {
+        const row = document.createElement("li"); row.className = "to-read__item"; row.draggable = true;
+        row.addEventListener("dragstart", (event) => { event.dataTransfer.effectAllowed = "move"; event.dataTransfer.setData("text/plain", String(item.id)); row.classList.add("is-dragging"); });
+        row.addEventListener("dragend", () => row.classList.remove("is-dragging"));
+        row.addEventListener("dragover", (event) => { event.preventDefault(); event.dataTransfer.dropEffect = "move"; row.classList.add("is-drop-target"); });
+        row.addEventListener("dragleave", () => row.classList.remove("is-drop-target"));
+        row.addEventListener("drop", async (event) => { event.preventDefault(); row.classList.remove("is-drop-target"); const source = toReadItems.findIndex((candidate) => candidate.id === Number(event.dataTransfer.getData("text/plain"))); if (source === -1 || source === index) return; const [moved] = toReadItems.splice(source, 1); toReadItems.splice(index, 0, moved); renderToRead(); try { await saveToReadOrder(); } catch (error) { toReadStatus.textContent = error.message; await loadToRead(); } });
+        const order = document.createElement("span"); order.textContent = String(index + 1).padStart(2, "0");
+        const title = item.link ? document.createElement("a") : document.createElement("span"); title.textContent = item.title; if (item.link) { title.href = item.link; title.target = "_blank"; title.rel = "noopener noreferrer"; }
+        const actions = document.createElement("div"); actions.className = "to-read__actions";
+        const up = document.createElement("button"); up.type = "button"; up.textContent = "↑"; up.disabled = index === 0; up.setAttribute("aria-label", `Move ${item.title} up`); up.addEventListener("click", () => moveToRead(index, -1));
+        const down = document.createElement("button"); down.type = "button"; down.textContent = "↓"; down.disabled = index === toReadItems.length - 1; down.setAttribute("aria-label", `Move ${item.title} down`); down.addEventListener("click", () => moveToRead(index, 1));
+        const add = document.createElement("button"); add.type = "button"; add.textContent = "Add entry"; add.addEventListener("click", () => { openForm({ name: item.title, link: item.link, tags: [], notes_markdown: defaultNotes }); });
+        const remove = document.createElement("button"); remove.type = "button"; remove.className = "to-read__delete"; remove.textContent = "Delete"; remove.addEventListener("click", () => removeToRead(item.id));
+        actions.append(up, down, add, remove); row.append(order, title, actions); toReadList.append(row);
+      });
+    };
+    const loadToRead = async () => { if (!isStaticLocalPreview) { const data = await toReadRequest(toReadApi); toReadItems = data.items || []; } renderToRead(); };
+    const saveToReadOrder = async () => { if (!isStaticLocalPreview) await toReadRequest(`${toReadApi}reorder`, { method: "PUT", body: JSON.stringify({ ids: toReadItems.map((item) => item.id) }) }); };
+    const moveToRead = async (index, direction) => { const target = index + direction; if (target < 0 || target >= toReadItems.length) return; [toReadItems[index], toReadItems[target]] = [toReadItems[target], toReadItems[index]]; renderToRead(); try { await saveToReadOrder(); } catch (error) { toReadStatus.textContent = error.message; await loadToRead(); } };
+    const removeToRead = async (id) => { if (!isStaticLocalPreview) await toReadRequest(`${toReadApi}${id}`, { method: "DELETE" }); toReadItems = toReadItems.filter((item) => item.id !== id); renderToRead(); };
+    toReadForm.addEventListener("submit", async (event) => { event.preventDefault(); const fields = new FormData(toReadForm); const payload = { title: fields.get("title"), link: fields.get("link") }; try { if (isStaticLocalPreview) toReadItems.push({ id: Date.now(), title: String(payload.title), link: String(payload.link), position: toReadItems.length }); else { await toReadRequest(toReadApi, { method: "POST", body: JSON.stringify(payload) }); } toReadForm.reset(); await loadToRead(); } catch (error) { toReadStatus.textContent = error.message; } });
+    loadToRead().catch((error) => { toReadStatus.textContent = error.message; });
   }
 
   refresh().catch((error) => { status.dataset.state = "error"; status.textContent = error.message; });
