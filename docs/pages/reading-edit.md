@@ -23,6 +23,7 @@ sitemap: false
     <div class="reading-tools__actions">
       <button class="reading-button" type="button" data-reading-navigate="{{ '/reading/' | relative_url }}">Back to view</button>
       <button class="reading-button" type="button" data-reading-new>Add entry</button>
+      <button class="reading-button" type="button" data-reading-to-read>To read</button>
     </div>
   </div>
 
@@ -53,8 +54,7 @@ sitemap: false
 
       <label for="reading-name">Name<input id="reading-name" name="name" maxlength="300" required data-reading-name></label>
       <label for="reading-link">Link<input id="reading-link" name="link" type="url" maxlength="2048" placeholder="https://…" required data-reading-link></label>
-      <label for="reading-tags">Tags<span class="reading-field-note">Separate tags with commas. Existing tags appear as suggestions.</span><input id="reading-tags" name="tags" maxlength="1600" list="reading-tag-suggestions" data-reading-tags-input></label>
-      <datalist id="reading-tag-suggestions" data-reading-tag-suggestions></datalist>
+      <label class="reading-tags-field" for="reading-tags">Tags<span class="reading-field-note">Separate tags with commas. Existing tags appear as you type.</span><input id="reading-tags" name="tags" maxlength="1600" autocomplete="off" aria-autocomplete="list" aria-expanded="false" data-reading-tags-input><div class="reading-tag-suggestions" data-reading-tag-suggestions role="listbox" hidden></div></label>
       <label for="reading-notes">Reading notes<span class="reading-field-note">Markdown is supported; HTML stays plain text.</span><textarea id="reading-notes" name="notes_markdown" rows="14" maxlength="100000" data-reading-notes></textarea></label>
 
       <div class="reading-form__actions">
@@ -68,4 +68,15 @@ sitemap: false
       </section>
     </form>
   </dialog>
+
+  <section class="to-read" aria-labelledby="to-read-heading" data-to-read tabindex="-1">
+    <div class="to-read__header"><div><p class="entry-meta">Private queue</p><h2 id="to-read-heading">To read</h2></div></div>
+    <form class="to-read__form" data-to-read-form>
+      <label>Title<input name="title" maxlength="300" required placeholder="Paper or article title"></label>
+      <label>Link <span>(optional)</span><input name="link" type="url" maxlength="2048" placeholder="https://…"></label>
+      <button class="reading-button" type="submit">Add to queue</button>
+    </form>
+    <p class="reading-save-status" data-to-read-status role="status"></p>
+    <ol class="to-read__list" data-to-read-list></ol>
+  </section>
 </section>
