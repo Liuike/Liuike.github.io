@@ -81,7 +81,15 @@
         container.append(element); continue;
       }
       const paragraph = [];
+      // Only stop for valid Markdown block markers. For example, "-text" is
+      // ordinary paragraph text, not a list item; treating it as a marker here
+      // would leave the cursor in place and loop indefinitely.
       while (index < lines.length && lines[index].trim() && !lines[index].startsWith("```") && !/^(#{1,2})\s+/.test(lines[index]) && !/^([-*]|\d+\.)\s+/.test(lines[index])) paragraph.push(lines[index++]);
+      // Keep the live preview responsive even for incomplete Markdown typed
+      // mid-keystroke (for example a bare "-" on its own line).
+      if (!paragraph.length) {
+        const element = document.createElement("p"); element.innerHTML = renderInlineMarkdown(line); container.append(element); index += 1; continue;
+      }
       const element = document.createElement("p"); element.innerHTML = renderInlineMarkdown(paragraph.join(" ")); container.append(element);
     }
     return container;
