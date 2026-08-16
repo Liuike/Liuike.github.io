@@ -1,0 +1,14 @@
+{
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  "name": "docs",
+  "compatibility_date": "2026-08-08",
+  "pages_build_output_dir": "./_site",
+  "d1_databases": [
+    {
+      "binding": "READING_DB",
+      "database_name": "lukeez-reading-list",
+      "database_id": "a8ad0e70-f8f5-422a-b82e-99617b210850",
+      "migrations_dir": "./migrations"
+    }
+  ]
+}

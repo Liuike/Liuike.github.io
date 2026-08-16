@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS reading_entries (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  link TEXT NOT NULL,
+  tags_json TEXT NOT NULL DEFAULT '[]',
+  notes_markdown TEXT NOT NULL DEFAULT '',
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_reading_entries_name
+  ON reading_entries(name COLLATE NOCASE);

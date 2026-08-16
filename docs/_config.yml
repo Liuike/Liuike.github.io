@@ -42,6 +42,9 @@ exclude:
   - .sass-cache/
   - .jekyll-cache/
 
+include:
+  - _routes.json
+
 # Author/profile (used in templates)
 author:
   name: "Enyan (Luke) Zhang"
