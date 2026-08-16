@@ -74,6 +74,7 @@ sitemap: false
     <form class="to-read__form" data-to-read-form>
       <label>Title<input name="title" maxlength="300" required placeholder="Paper or article title"></label>
       <label>Link <span>(optional)</span><input name="link" type="url" maxlength="2048" placeholder="https://…"></label>
+      <label class="reading-tags-field">Tags<span class="reading-field-note">Separate tags with commas.</span><input name="tags" maxlength="1600" autocomplete="off" aria-autocomplete="list" aria-expanded="false" data-to-read-tags-input><div class="reading-tag-suggestions" data-to-read-tag-suggestions role="listbox" hidden></div></label>
       <button class="reading-button" type="submit">Add to queue</button>
     </form>
     <p class="reading-save-status" data-to-read-status role="status"></p>
