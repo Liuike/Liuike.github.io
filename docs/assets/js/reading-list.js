@@ -199,19 +199,20 @@
     renderTags(); renderEntries(); if (isEditor) renderSuggestions();
   };
 
-  const renderSuggestions = () => {
-    suggestions.replaceChildren();
+  const renderTagSuggestions = (input, suggestionRoot) => {
+    suggestionRoot.replaceChildren();
     const allTags = [...new Set(entries.flatMap((entry) => entry.tags))].sort((a, b) => a.localeCompare(b));
-    const value = tagsInput.value;
+    const value = input.value;
     const prefix = value.slice(value.lastIndexOf(",") + 1).trim().toLocaleLowerCase();
     const matches = prefix ? allTags.filter((tag) => tag.toLocaleLowerCase().includes(prefix) && !makeTags(value).includes(tag)).slice(0, 8) : [];
     matches.forEach((tag) => {
       const button = document.createElement("button"); button.type = "button"; button.setAttribute("role", "option"); button.textContent = tag;
-      button.addEventListener("mousedown", (event) => { event.preventDefault(); const before = value.slice(0, value.lastIndexOf(",") + 1); tagsInput.value = `${before}${before && !before.endsWith(" ") ? " " : ""}${tag}, `; renderSuggestions(); tagsInput.focus(); }); suggestions.append(button);
+      button.addEventListener("mousedown", (event) => { event.preventDefault(); const before = value.slice(0, value.lastIndexOf(",") + 1); input.value = `${before}${before && !before.endsWith(" ") ? " " : ""}${tag}, `; renderTagSuggestions(input, suggestionRoot); input.focus(); }); suggestionRoot.append(button);
     });
-    suggestions.hidden = matches.length === 0;
-    tagsInput.setAttribute("aria-expanded", String(matches.length > 0));
+    suggestionRoot.hidden = matches.length === 0;
+    input.setAttribute("aria-expanded", String(matches.length > 0));
   };
+  const renderSuggestions = () => renderTagSuggestions(tagsInput, suggestions);
 
   const openForm = (entry = null) => {
     form.reset();
@@ -251,8 +252,10 @@
     const toReadForm = root.querySelector("[data-to-read-form]");
     const toReadList = root.querySelector("[data-to-read-list]");
     const toReadStatus = root.querySelector("[data-to-read-status]");
+    const toReadTagsInput = root.querySelector("[data-to-read-tags-input]");
+    const toReadSuggestions = root.querySelector("[data-to-read-tag-suggestions]");
     root.querySelector("[data-reading-to-read]").addEventListener("click", () => { toReadRoot.scrollIntoView({ behavior: "smooth", block: "start" }); toReadRoot.focus({ preventScroll: true }); });
-    let toReadItems = isStaticLocalPreview ? [{ id: -101, title: "A local queue item", link: "https://example.com", position: 0 }] : [];
+    let toReadItems = isStaticLocalPreview ? [{ id: -101, title: "A local queue item", link: "https://example.com", tags: ["RL", "DL"], position: 0 }] : [];
     const toReadRequest = async (url, options) => {
       const response = await fetch(url, { credentials: "same-origin", headers: { Accept: "application/json", ...(options?.body ? { "Content-Type": "application/json" } : {}) }, ...options });
       const data = await response.json().catch(() => ({})); if (!response.ok) throw new Error(data.error || "Unable to update the to-read queue."); return data;
@@ -267,20 +270,23 @@
         row.addEventListener("dragleave", () => row.classList.remove("is-drop-target"));
         row.addEventListener("drop", async (event) => { event.preventDefault(); row.classList.remove("is-drop-target"); const source = toReadItems.findIndex((candidate) => candidate.id === Number(event.dataTransfer.getData("text/plain"))); if (source === -1 || source === index) return; const [moved] = toReadItems.splice(source, 1); toReadItems.splice(index, 0, moved); renderToRead(); try { await saveToReadOrder(); } catch (error) { toReadStatus.textContent = error.message; await loadToRead(); } });
         const order = document.createElement("span"); order.textContent = String(index + 1).padStart(2, "0");
+        const content = document.createElement("div"); content.className = "to-read__content";
         const title = item.link ? document.createElement("a") : document.createElement("span"); title.textContent = item.title; if (item.link) { title.href = item.link; title.target = "_blank"; title.rel = "noopener noreferrer"; }
+        content.append(title);
+        if (item.tags?.length) { const tagList = document.createElement("div"); tagList.className = "to-read__tags"; item.tags.forEach((tag) => { const chip = document.createElement("span"); chip.textContent = tag; tagList.append(chip); }); content.append(tagList); }
         const actions = document.createElement("div"); actions.className = "to-read__actions";
-        const up = document.createElement("button"); up.type = "button"; up.textContent = "↑"; up.disabled = index === 0; up.setAttribute("aria-label", `Move ${item.title} up`); up.addEventListener("click", () => moveToRead(index, -1));
-        const down = document.createElement("button"); down.type = "button"; down.textContent = "↓"; down.disabled = index === toReadItems.length - 1; down.setAttribute("aria-label", `Move ${item.title} down`); down.addEventListener("click", () => moveToRead(index, 1));
-        const add = document.createElement("button"); add.type = "button"; add.textContent = "Add entry"; add.addEventListener("click", () => { openForm({ name: item.title, link: item.link, tags: [], notes_markdown: defaultNotes }); });
+        const add = document.createElement("button"); add.type = "button"; add.textContent = "Add entry"; add.addEventListener("click", () => { openForm({ name: item.title, link: item.link, tags: item.tags || [], notes_markdown: defaultNotes }); });
         const remove = document.createElement("button"); remove.type = "button"; remove.className = "to-read__delete"; remove.textContent = "Delete"; remove.addEventListener("click", () => removeToRead(item.id));
-        actions.append(up, down, add, remove); row.append(order, title, actions); toReadList.append(row);
+        actions.append(add, remove); row.append(order, content, actions); toReadList.append(row);
       });
     };
     const loadToRead = async () => { if (!isStaticLocalPreview) { const data = await toReadRequest(toReadApi); toReadItems = data.items || []; } renderToRead(); };
     const saveToReadOrder = async () => { if (!isStaticLocalPreview) await toReadRequest(`${toReadApi}reorder`, { method: "PUT", body: JSON.stringify({ ids: toReadItems.map((item) => item.id) }) }); };
-    const moveToRead = async (index, direction) => { const target = index + direction; if (target < 0 || target >= toReadItems.length) return; [toReadItems[index], toReadItems[target]] = [toReadItems[target], toReadItems[index]]; renderToRead(); try { await saveToReadOrder(); } catch (error) { toReadStatus.textContent = error.message; await loadToRead(); } };
     const removeToRead = async (id) => { if (!isStaticLocalPreview) await toReadRequest(`${toReadApi}${id}`, { method: "DELETE" }); toReadItems = toReadItems.filter((item) => item.id !== id); renderToRead(); };
-    toReadForm.addEventListener("submit", async (event) => { event.preventDefault(); const fields = new FormData(toReadForm); const payload = { title: fields.get("title"), link: fields.get("link") }; try { if (isStaticLocalPreview) toReadItems.push({ id: Date.now(), title: String(payload.title), link: String(payload.link), position: toReadItems.length }); else { await toReadRequest(toReadApi, { method: "POST", body: JSON.stringify(payload) }); } toReadForm.reset(); await loadToRead(); } catch (error) { toReadStatus.textContent = error.message; } });
+    toReadTagsInput.addEventListener("input", () => renderTagSuggestions(toReadTagsInput, toReadSuggestions));
+    toReadTagsInput.addEventListener("keydown", (event) => { if (event.key === "Escape") { toReadSuggestions.hidden = true; toReadTagsInput.setAttribute("aria-expanded", "false"); } });
+    toReadTagsInput.addEventListener("blur", () => { window.setTimeout(() => { toReadSuggestions.hidden = true; toReadTagsInput.setAttribute("aria-expanded", "false"); }, 120); });
+    toReadForm.addEventListener("submit", async (event) => { event.preventDefault(); const fields = new FormData(toReadForm); const payload = { title: fields.get("title"), link: fields.get("link"), tags: makeTags(fields.get("tags")) }; try { if (isStaticLocalPreview) toReadItems.push({ id: Date.now(), title: String(payload.title), link: String(payload.link), tags: payload.tags, position: toReadItems.length }); else { await toReadRequest(toReadApi, { method: "POST", body: JSON.stringify(payload) }); } toReadForm.reset(); toReadSuggestions.hidden = true; await loadToRead(); } catch (error) { toReadStatus.textContent = error.message; } });
     loadToRead().catch((error) => { toReadStatus.textContent = error.message; });
   }
 
