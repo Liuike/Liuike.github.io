@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Formalizing Projective \"Geometry\""
+title: 'Formalizing “Projective Geometry”'
 date: 2025-12-21
 external_url: "https://github.com/spike7638/CS1951Y-2025"
 ---

@@ -193,7 +193,7 @@
   search.addEventListener("input", renderEntries);
   window.addEventListener("resize", () => { if (!tagsExpanded) renderTags(); });
 
-  let formDialog; let form; let idInput; let nameInput; let linkInput; let tagsInput; let notesInput; let suggestions; let preview; let mode; let heading; let deleteButton; let saveButton; let saveStatus;
+  let formDialog; let form; let idInput; let nameInput; let linkInput; let tagsInput; let notesInput; let suggestions; let preview; let mode; let heading; let deleteButton; let saveButton; let saveStatus; let toReadSourceId = null;
   const refresh = async () => {
     entries = isStaticLocalPreview ? [localMockEntry, localTagWrapMockEntry] : await fetchEntries(isEditor ? editorApi : publicApi);
     renderTags(); renderEntries(); if (isEditor) renderSuggestions();
@@ -214,11 +214,13 @@
   };
   const renderSuggestions = () => renderTagSuggestions(tagsInput, suggestions);
 
-  const openForm = (entry = null) => {
+  const openForm = (entry = null, sourceToReadId = null) => {
     form.reset();
-    idInput.value = entry ? String(entry.id) : "";
+    toReadSourceId = Number.isInteger(sourceToReadId) ? sourceToReadId : null;
+    const isExistingEntry = Number.isInteger(entry?.id) && entry.id > 0;
+    idInput.value = isExistingEntry ? String(entry.id) : "";
     nameInput.value = entry?.name || ""; linkInput.value = entry?.link || ""; tagsInput.value = entry?.tags.join(", ") || ""; notesInput.value = entry?.notes_markdown || defaultNotes;
-    mode.textContent = entry ? "Editing entry" : "New entry"; heading.textContent = entry ? entry.name : "Add entry"; deleteButton.hidden = !entry; saveStatus.textContent = ""; preview.replaceChildren(renderMarkdown(notesInput.value));
+    mode.textContent = isExistingEntry ? "Editing entry" : "New entry"; heading.textContent = isExistingEntry ? entry.name : "Add entry"; deleteButton.hidden = !isExistingEntry; saveStatus.textContent = ""; preview.replaceChildren(renderMarkdown(notesInput.value));
     renderSuggestions(); formDialog.showModal(); nameInput.focus();
   };
 
@@ -240,9 +242,9 @@
     tagsInput.addEventListener("blur", () => { window.setTimeout(() => { suggestions.hidden = true; tagsInput.setAttribute("aria-expanded", "false"); }, 120); });
     formDialog.addEventListener("click", (event) => { if (event.target === formDialog) closeForm(); });
     form.addEventListener("submit", async (event) => {
-      event.preventDefault(); const id = Number(idInput.value); const payload = { name: nameInput.value, link: linkInput.value, tags: makeTags(tagsInput.value), notes_markdown: notesInput.value };
+      event.preventDefault(); const id = Number(idInput.value); const queuedItemId = id ? null : toReadSourceId; const payload = { name: nameInput.value, link: linkInput.value, tags: makeTags(tagsInput.value), notes_markdown: notesInput.value, ...(queuedItemId !== null ? { to_read_id: queuedItemId } : {}) };
       setSaving(true); saveStatus.textContent = "";
-      try { const response = await fetch(id ? `${editorApi}${id}` : editorApi, { method: id ? "PUT" : "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, credentials: "same-origin", body: JSON.stringify(payload) }); const data = await response.json().catch(() => ({})); if (!response.ok) throw new Error(data.error || "Unable to save this entry."); await refresh(); closeForm(); }
+      try { const response = await fetch(id ? `${editorApi}${id}` : editorApi, { method: id ? "PUT" : "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, credentials: "same-origin", body: JSON.stringify(payload) }); const data = await response.json().catch(() => ({})); if (!response.ok) throw new Error(data.error || "Unable to save this entry."); if (queuedItemId !== null) { toReadItems = toReadItems.filter((item) => item.id !== queuedItemId); renderToRead(); } await refresh(); closeForm(); }
       catch (error) { saveStatus.textContent = error.message; saveStatus.dataset.state = "error"; }
       finally { setSaving(false); }
     });
@@ -275,7 +277,7 @@
         content.append(title);
         if (item.tags?.length) { const tagList = document.createElement("div"); tagList.className = "to-read__tags"; item.tags.forEach((tag) => { const chip = document.createElement("span"); chip.textContent = tag; tagList.append(chip); }); content.append(tagList); }
         const actions = document.createElement("div"); actions.className = "to-read__actions";
-        const add = document.createElement("button"); add.type = "button"; add.textContent = "Add entry"; add.addEventListener("click", () => { openForm({ name: item.title, link: item.link, tags: item.tags || [], notes_markdown: defaultNotes }); });
+        const add = document.createElement("button"); add.type = "button"; add.textContent = "Add entry"; add.addEventListener("click", () => { openForm({ name: item.title, link: item.link, tags: item.tags || [], notes_markdown: defaultNotes }, item.id); });
         const remove = document.createElement("button"); remove.type = "button"; remove.className = "to-read__delete"; remove.textContent = "Delete"; remove.addEventListener("click", () => removeToRead(item.id));
         actions.append(add, remove); row.append(order, content, actions); toReadList.append(row);
       });
