@@ -1,118 +1,130 @@
 # Design — Luke's site
 
-A locked design system for the four primary landing pages. Preserve their routes,
-content, and personal tone; use this system for their visual and interaction layer.
+This is the implementation-facing design reference for the **About** and
+**Blog** pages. It records the styles actually shipped from
+`docs/assets/css/tokens.css`, `main.scss`, and `landing.css`; do not use it to
+infer requirements for other routes.
 
-## Genre
+## Design character
 
-Modern-minimal, with a calm technical register.
+Modern-minimal and editorial: a cool, quiet reading surface with thin rules,
+restrained cobalt signals, and compact technical metadata. The site should feel
+like a maintained personal index, not a card-based product or marketing page.
 
-## Macrostructure family
+## Core tokens
 
-- About: Split Studio — identity and portrait beside a concise personal brief.
-- Projects: Portfolio Grid — work as a searchable-looking technical index, not a card deck.
-- Blog: Ecosystem Index — writing as an ordered stream with tag filters.
-- Fun: Index-First — personal notes as lightweight field entries.
+### Colour
 
-## Theme
+All primary colour values are OKLCH and live in `docs/assets/css/tokens.css`.
 
-- `--color-paper`: cool near-white
-- `--color-ink`: cool charcoal
-- `--color-accent`: electric cobalt, used as a small signal only
-- `--color-graphite`: the sole dark band and code-surface colour
+| Token | Value | Role |
+| --- | --- | --- |
+| `--color-paper` | `oklch(98.5% 0.004 250)` | Page background |
+| `--color-paper-2` | `oklch(95.5% 0.008 250)` | Hover and low-emphasis fill |
+| `--color-surface` | `oklch(99.4% 0.003 250)` | Controls and panels |
+| `--color-ink` | `oklch(24% 0.02 258)` | Headings and primary UI text |
+| `--color-ink-2` | `oklch(34% 0.018 257)` | Body copy |
+| `--color-muted` | `oklch(48% 0.014 257)` | Dates, labels, and secondary text |
+| `--color-rule` | `oklch(89% 0.012 250)` | Default one-pixel divider |
+| `--color-rule-strong` | `oklch(76% 0.022 252)` | Hovered control border |
+| `--color-accent` | `oklch(58% 0.20 256)` | Links, active states, and small signals |
+| `--color-focus` | `oklch(52% 0.21 256)` | Focus outline |
+| `--color-graphite` | `oklch(22% 0.016 260)` | Reserved dark surface |
+| `--color-overlay` | `oklch(18% 0.01 258 / 0.48)` | Dialog backdrop |
 
-## Typography
+Use cobalt sparingly: it identifies destinations and active choices; it is not a
+large background or decorative gradient. Surfaces remain flat—no shadows on
+the header, rows, portrait, or filter panel.
 
-- Display: Space Grotesk, 600, roman
-- Body: Inter, 400
-- Mono: JetBrains Mono, 500 for labels, dates, shortcuts, and technical metadata
+### Typography
 
-## Spacing
+The font import supplies Space Grotesk, Inter, and JetBrains Mono.
 
-Use the named 4-point scale in `docs/assets/css/tokens.css`; page CSS references
-tokens rather than introducing raw spacing values.
+- **Display — Space Grotesk.** Headings use 600 weight with tight `-0.045em`
+  tracking and roman styling. The brand is 700; the Chinese name is 500.
+- **Body — Inter.** Default reading text is 400 at a 1.6 line-height. Blog
+  previews and Project descriptions must use this exact body treatment:
+  `--text-base` (16px), Inter 400, `1.6` line-height, and
+  `--color-ink-2`. About copy uses `--text-md` with 1.62 line-height.
+- **Mono — JetBrains Mono.** 500 weight, uppercase, and spaced tracking are
+  used for navigation, dates, filter labels, command-palette UI, and compact
+  controls.
 
-## Motion
+The type scale is tokenized from `0.75rem` (`--text-xs`) to
+`3.052rem` (`--text-3xl`). The general display size is
+`clamp(2.75rem, 5vw + 1rem, 5.25rem)`; collection titles instead use a more
+contained `--text-2xl` to `--text-3xl` clamp.
 
-- One small transform/opacity response for interactive controls.
-- No scroll reveals, bounce, parallax, or automatic animation.
-- Reduced motion removes spatial transitions.
+### Spacing, rules, and corners
 
-## Microinteractions stance
+Use the named four-point-derived scale in `tokens.css`:
+`0.25rem`, `0.5rem`, `0.75rem`, `1rem`, `1.5rem`, `2rem`, `3rem`, `4.5rem`,
+and `7rem`. The shared content rail is `min(100%, 78rem)` with `1.5rem`
+side padding on desktop. Rules are `1px solid var(--color-rule)`.
 
-- The command palette opens through its button or Cmd/Ctrl+K, filters routes, and closes by Escape or backdrop click.
-- Hover states are secondary; keyboard focus and touch interactions remain complete.
-- Primary controls use a one-pixel press, not a lift or glow.
+Controls use a `0.375rem` radius; larger overlays use `0.625rem`. The visual
+language is primarily square, ruled, and flat rather than rounded or elevated.
 
-## CTA voice
+## Shared shell
 
-- Primary: compact cobalt rectangular control with a concrete destination label.
-- Secondary: plain text link with a cobalt underline.
+- The header is sticky, cool-paper translucent, and separated by one rule. Its
+  desktop height is at least `4.25rem`.
+- The display-face brand sits beside a mono, uppercase navigation. The active
+  and hovered navigation item changes to cobalt.
+- The `Find` control and mobile `Menu` control are small outlined mono buttons
+  on a surface fill. On hover-capable devices they receive only a quieter fill
+  and stronger border.
+- The footer is a centered, single-line mono colophon in a `4.5rem` ruled band.
+- The command palette is a centered, flat surface dialog with a dim graphite
+  overlay. It opens from Find or Cmd/Ctrl+K, filters routes, and closes with
+  Escape or a backdrop click.
 
-## Per-page allowances
+## About page reference
 
-- About uses the supplied profile photograph only.
-- Projects, Blog, and Fun are typography-led; do not invent metrics, testimonials, illustrations, or proof.
-- One graphite code/status panel may appear on About as a structural motif, not as a claim about a product.
+About is a concise personal brief, not a promotional hero. The display name,
+Chinese name, and compact contact controls lead. A rule then separates a
+two-column reading area: body copy on the left and an unframed, naturally sized
+portrait on the right. The copy is limited to `78ch`; contact buttons are
+flat, outlined, mono-labelled controls with no hover lift.
 
-## What pages must share
+When present, the latest-posts section continues the index language: a heading
+above a ruled list with evenly padded rows, display-face titles, and mono dates.
 
-- A ruled navigation bar and working command palette.
-- Cool paper, cobalt signal, and the Space Grotesk / Inter / JetBrains Mono pairing.
-- Six-pixel control corners, visible focus rings, and sparse ruled surfaces.
-- A single-line colophon footer.
+## Blog page reference
 
-## What pages may differ on
+Blog begins with a compact collection header: a `7rem` minimum-height title
+band, aligned to the same ruled system. The content becomes a two-column index:
+the posts occupy the flexible column and a `13rem` filter panel sits alongside.
 
-- Their macrostructure and information density.
-- Whether the supplied personal image is present.
-- Whether tag filters or detail toggles are necessary to the content.
+Each post is a ruled row, not a card. Its title and date share the first line;
+the optional excerpt spans below, remains within `62ch`, and uses body colour.
+The filter panel is a flat, ruled surface. Its label and filter buttons use
+mono type; the active or hovered filter changes only to cobalt.
 
-## Exports
+## Interaction and accessibility
 
-### tokens.css
+- Links are cobalt with a subtle accent underline; on hover they become ink and
+  their underline follows the current text colour.
+- Controls press down by one pixel on activation. Do not add lift, glow,
+  bounce, scroll reveals, parallax, or automatic animation.
+- Interactive controls retain visible focus outlines; the command-palette input
+  uses a 2px cobalt focus ring with a 2px offset.
+- Disabled buttons use `opacity: 0.55` and a not-allowed cursor.
+- Reduced-motion mode removes transitions inside landing-page content.
 
-The source export lives at `docs/assets/css/tokens.css`.
+## Responsive behaviour
 
-### Tailwind v4 `@theme`
+At `48rem` and below, the navigation collapses behind Menu, content padding
+reduces to `1rem`, and grid layouts become a single column. The Blog filter
+panel moves above the results and its vertical controls become wrapped outlined
+chips. Post rows stack their metadata below their titles. At `34rem` and below,
+About stacks copy above the portrait. The desktop-only no-wrap About heading is
+released on mobile.
 
-```css
-@theme {
-  --color-paper: oklch(98.5% 0.004 250);
-  --color-ink: oklch(24% 0.02 258);
-  --color-accent: oklch(58% 0.20 256);
-  --font-display: "Space Grotesk", sans-serif;
-  --font-body: "Inter", sans-serif;
-  --spacing-md: 1.5rem;
-}
-```
+## Source of truth
 
-### DTCG `tokens.json`
-
-```json
-{
-  "color": {
-    "paper": { "$value": "oklch(98.5% 0.004 250)", "$type": "color" },
-    "ink": { "$value": "oklch(24% 0.02 258)", "$type": "color" },
-    "accent": { "$value": "oklch(58% 0.20 256)", "$type": "color" }
-  },
-  "font": {
-    "display": { "$value": "Space Grotesk", "$type": "fontFamily" },
-    "body": { "$value": "Inter", "$type": "fontFamily" }
-  }
-}
-```
-
-### shadcn/ui CSS variables
-
-```css
-:root {
-  --background: 98.5% 0.004 250;
-  --foreground: 24% 0.02 258;
-  --primary: 58% 0.20 256;
-  --primary-foreground: 100% 0 0;
-  --border: 89% 0.012 250;
-  --ring: 58% 0.20 256;
-  --radius: 0.375rem;
-}
-```
+- Tokens and font import: `docs/assets/css/tokens.css`
+- Shared shell, About, Blog, and responsive rules: `docs/assets/css/landing.css`
+- Baseline focus treatment and document defaults: `docs/assets/css/main.scss`
+- About template: `docs/_layouts/home.html`
+- Blog template: `docs/pages/blog.md`
